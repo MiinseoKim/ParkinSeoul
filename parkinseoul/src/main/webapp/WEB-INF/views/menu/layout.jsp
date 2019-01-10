@@ -40,8 +40,7 @@
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
 </head><!--/head-->
-  </head>
-  <body>
+<body>
     <!-- Header  영역 -->
     <tiles:insertAttribute name="header" />
     <!-- Main 영역 -->
@@ -51,5 +50,5 @@
     </div>
     <!-- Footer 영역  -->
     <tiles:insertAttribute name="footer" />
-  </body>
+</body>
 </html>

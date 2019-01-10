@@ -2,10 +2,7 @@
 	pageEncoding="UTF-8"%>
 	
 <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
-
 <link rel="stylesheet" href="css/join.css">	
-	
-
 
  <section class="sign-in">
             <div class="container">
@@ -16,7 +13,7 @@
                     </div>
 
                     <div class="signin-form">
-                        <h2 class="form-title">Sign up</h2>
+                        <h2 class="form-title">Sign In</h2>
                         <form class="register-form" id="login-form">
                             <div class="form-group">
                                 <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>

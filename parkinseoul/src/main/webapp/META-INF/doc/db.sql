@@ -168,5 +168,3 @@ ALTER TABLE `USER`
     REFERENCES `AUTHORITIES` ( -- 권한
       `SEQ` -- 회원번호
     );
-    
- insert into `AUTHORITIES` VALUES (1, 'ROLE_USER');
