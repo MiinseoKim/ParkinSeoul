@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.parkinseoul.dao.MemberDao">
+
+  <select id="getSeq" resultType="int">
+    select seq
+    from user
+    where id = #{id}
+  </select>
+  
+  <insert id="insertUsers" parameterType="memberDto">
+    insert into user (id,name, pwd, enabled)
+    values (#{id}, #{name},#{password}, 1)
+  </insert>
+
+<!-- 	<insert id="insertMember" parameterType="memberDto">
+	   insert into member (seq, name)
+     values (#{seq}, #{name}) 
+	</insert>-->
+	
+  <insert id="insertAuthorities" parameterType="memberDto">
+    insert into authorities (seq, authority) 
+    values (#{seq}, 'ROLE_USER')
+  </insert> 
+	
+	<select id="idcheck" resultType="int">
+    SELECT COUNT(*) FROM user
+    WHERE id = #{id}
+  </select>
+
+</mapper>

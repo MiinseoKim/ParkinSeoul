@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+
+	<!-- 최종본 -->  
+	<definition name="*.*" template="/WEB-INF/views/menu/layout.jsp">
+		    <put-attribute name="title"   value="Park in Seoul" />
+		    <put-attribute name="header"  value="/WEB-INF/views/menu/header.jsp" />
+		    <put-attribute name="footer"  value="/WEB-INF/views/menu/footer.jsp" />
+		    <put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp" />
+	</definition> 
+<!-- 	<definition name="mypage.*" template="/WEB-INF/views/menu/layout.jsp">
+		    <put-attribute name="title"   value="Park in Seoul" />
+		    <put-attribute name="header"  value="/WEB-INF/views/menu/header.jsp" />
+		<put-attribute name="sidebar" value="/WEB-INF/views/menu/sidebar.jsp"/>
+		    <put-attribute name="footer"  value="/WEB-INF/views/home/footer.jsp" />
+		    <put-attribute name="content" value="/WEB-INF/views/mypage/{1}.jsp" />
+	</definition> 
+	
+	<definition name="board.*" template="/WEB-INF/views/menu/layout.jsp">
+		    <put-attribute name="title"   value="Park in Seoul" />
+		    <put-attribute name="header"  value="/WEB-INF/views/menu/header.jsp" />
+		    <put-attribute name="footer"  value="/WEB-INF/views/menu/footer.jsp" />
+		    <put-attribute name="content" value="/WEB-INF/views/board/{1}.jsp" />
+	</definition> 
+	<definition name="park.*" template="/WEB-INF/views/menu/layout.jsp">
+		    <put-attribute name="title"   value="Park in Seoul" />
+		    <put-attribute name="header"  value="/WEB-INF/views/menu/header.jsp" />
+		    <put-attribute name="footer"  value="/WEB-INF/views/menu/footer.jsp" />
+		    <put-attribute name="content" value="/WEB-INF/views/park/{1}.jsp" />
+	</definition>  -->
+
+	
+
+</tiles-definitions>
+
+
+
+
+
+
+
+  
