@@ -31,6 +31,21 @@ public class MemberRestServiceImpl implements MemberRestService {
     //sqlSession.getMapper(MemberDao.class).insertMember(memberDto);
     sqlSession.getMapper(MemberDao.class).insertAuthorities(memberDto);
   }
+  
+/*  
+  @Transactional
+  @Override
+  public void insertKakao(MemberDto memberDto) {
+    System.out.println(memberDto);
+    memberDto.setPassword(encoder.encode(memberDto.getPassword()));
+    sqlSession.getMapper(MemberDao.class).insertUsers(memberDto);
+    memberDto.setSeq(sqlSession.getMapper(MemberDao.class).getSeq(memberDto));
+    System.out.println(memberDto.getSeq());
+    //sqlSession.getMapper(MemberDao.class).insertMember(memberDto);
+    sqlSession.getMapper(MemberDao.class).insertAuthorities(memberDto);
+  }
+  */
+  
 
   @Override
   public String selectMember() {

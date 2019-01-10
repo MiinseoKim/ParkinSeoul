@@ -26,10 +26,21 @@ public class MemberRestController {
 
   @RequestMapping(value = "memberrest.htm", method = RequestMethod.POST)
   public void insert(@RequestBody MemberDto memberDto) {
+    System.out.println("controller DTO ====> " + memberDto);
     System.out.println("rest post");
     memberRestService.insertMember(memberDto);
     System.out.println("rest done");
   }
+  
+  /*
+  @RequestMapping(value = "kakaoRest.htm", method = RequestMethod.POST)
+  public void insertKakao(@RequestBody MemberDto memberDto) {
+    System.out.println("controller DTO ====> " + memberDto);
+    System.out.println("insert intro");
+    memberRestService.insertKakao(memberDto);
+    System.out.println("rest done");
+  }
+  */
   
   @RequestMapping(value = "memberrest.htm", method = RequestMethod.PUT)
   public void update(@RequestBody MemberDto memberDto) {

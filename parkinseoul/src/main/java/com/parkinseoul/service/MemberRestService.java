@@ -18,5 +18,7 @@ public interface MemberRestService {
   int idcheck(String id);
 
   String searchMember(MemberDto memberDto);
+
+//  void insertKakao(MemberDto memberDto);
   
 }

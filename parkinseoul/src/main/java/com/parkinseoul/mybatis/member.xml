@@ -15,7 +15,12 @@
     insert into user (id,name, pwd, enabled)
     values (#{id}, #{name},#{password}, 1)
   </insert>
-
+  <!-- 
+  <insert id="insertKakao" parameterType="memberDto">
+    insert into user (id, name, pwd, enabled)
+    values (#{id}, #{name}, #{password}, 1)
+  </insert>
+ -->
 <!-- 	<insert id="insertMember" parameterType="memberDto">
 	   insert into member (seq, name)
      values (#{seq}, #{name}) 
