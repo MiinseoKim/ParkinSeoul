@@ -12,6 +12,7 @@ DROP TABLE IF EXISTS USER RESTRICT;
 
 -- 권한
 DROP TABLE IF EXISTS AUTHORITIES RESTRICT;
+
 -- 공원 좋아요
 CREATE TABLE `HEARTS` (
   `H_NO`      INT         NOT NULL COMMENT '번호', -- 번호
@@ -81,11 +82,12 @@ ALTER TABLE `COMMENT`
 
 -- 멤버
 CREATE TABLE `USER` (
-  `SEQ`     INT          NOT NULL COMMENT '번호', -- 번호
-  `ID`      VARCHAR(20)  NOT NULL COMMENT '아이디', -- 아이디
-  `NAME`    VARCHAR(10)  NOT NULL COMMENT '닉네임', -- 닉네임
-  `PWD`     VARCHAR(100) NOT NULL COMMENT '비밀번호', -- 비밀번호
-  `ENABLED` INT          NULL     COMMENT '사용여부 ' -- 사용여부 
+  `SEQ`      INT          NOT NULL COMMENT '번호', -- 번호
+  `ID`       VARCHAR(20)  NOT NULL COMMENT '아이디', -- 아이디
+  `NAME`     VARCHAR(10)  NOT NULL COMMENT '닉네임', -- 닉네임
+  `PWD`      VARCHAR(100) NOT NULL COMMENT '비밀번호', -- 비밀번호
+  `ENABLED`  INT          NULL     COMMENT '사용여부 ', -- 사용여부 
+  `AUTH_SEQ` INT          NULL     COMMENT '회원번호' -- 회원번호
 )
 COMMENT '멤버';
 
@@ -157,14 +159,18 @@ ALTER TABLE `COMMENT`
     )
     REFERENCES `USER` ( -- 멤버
       `SEQ` -- 번호
-    );
+    )
+    ON DELETE CASCADE
+    ON UPDATE CASCADE;
 
 -- 멤버
 ALTER TABLE `USER`
   ADD CONSTRAINT `FK_AUTHORITIES_TO_USER` -- 권한 -> 멤버
     FOREIGN KEY (
-      `ENABLED` -- 사용여부 
+      `AUTH_SEQ` -- 회원번호
     )
     REFERENCES `AUTHORITIES` ( -- 권한
       `SEQ` -- 회원번호
     );
+ 
+ INSERT INTO AUTHORITIES (seq, AUTHORITY) VALUES (1,"ROLE_USER");

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="se" uri="http://www.springframework.org/security/tags"%>
 <script type="text/javascript">
 $(document).ready(function(){
   $('#test').click(function(){
@@ -27,9 +27,12 @@ $(document).ready(function(){
 			<div class="slide-text">
 				<h1>오늘 공원 어디가지?</h1>
 				<p>서울시에 있는 공원 정보를 한눈에 확인하세요!</p>
+				<!-- Spring security가 제공하는 SPEL :jsp에서 사용할 수 있는 script언어 -->
+        <se:authorize access="isAnonymous()">
 				<a href="join.htm" class="btn btn-common">SIGN UP</a>&nbsp; <a
 					href="login.htm" class="btn btn-common">SIGN IN</a>
 				<!-- 	&nbsp; <a id="test" class="btn btn-common">test</a> -->
+				</se:authorize>
 			</div>
 			<img src="images/home/slider/hill.png" class="slider-hill"
 				alt="slider image"> <img src="images/home/slider/house.png"
