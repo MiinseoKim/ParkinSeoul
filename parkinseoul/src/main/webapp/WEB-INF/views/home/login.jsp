@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
 <link rel="stylesheet" href="css/join.css">	
 
@@ -14,14 +15,15 @@
 
                     <div class="signin-form">
                         <h2 class="form-title">Sign In</h2>
-                        <form class="register-form" id="login-form">
+                        <c:url value="/login" var="loginURL"></c:url>
+                        <form class="register-form" id="login-form" action="${loginURL}" method="post">
                             <div class="form-group">
                                 <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                <input type="text" name="your_name" id="id" placeholder="Your ID"/>
+                                <input type="text" name="username" id="username" placeholder="Your ID"/>
                             </div>
                             <div class="form-group">
                                 <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
-                                <input type="password" name="your_pass" id="password" placeholder="Password"/>
+                                <input type="password" name="password" id="password" placeholder="Password"/>
                             </div>
                           <!--   <div class="form-group">
                                 <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />

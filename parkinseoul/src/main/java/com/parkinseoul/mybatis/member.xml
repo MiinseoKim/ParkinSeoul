@@ -11,24 +11,35 @@
     where id = #{id}
   </select>
   
+  <select id="getAuthority" parameterType="String" resultType="int">
+     select seq
+     from authorities
+     where authority= #{auth}
+  </select>
+  
   <insert id="insertUsers" parameterType="memberDto">
-    insert into user (id,name, pwd, enabled)
-    values (#{id}, #{name},#{password}, 1)
+   <!--  insert into user (id,name, pwd, enabled)
+    values (#{id}, #{name},#{password}, ) -->
+     insert into user (id,name, pwd, auth_seq)
+    values (#{id}, #{name},#{password},  #{auth_seq})
   </insert>
-
-<!-- 	<insert id="insertMember" parameterType="memberDto">
-	   insert into member (seq, name)
-     values (#{seq}, #{name}) 
-	</insert>-->
-	
-  <insert id="insertAuthorities" parameterType="memberDto">
-    insert into authorities (seq, authority) 
-    values (#{seq}, 'ROLE_USER')
-  </insert> 
 	
 	<select id="idcheck" resultType="int">
     SELECT COUNT(*) FROM user
     WHERE id = #{id}
   </select>
+  
+  <select id="infoMember" parameterType="String" resultType="memberDto">
+    select u
+    from user
+    where id = #{id}  
+  </select>
+  
+  
+  
+<!--  <insert id="insertMember" parameterType="memberDto">
+     insert into member (seq, name)
+     values (#{seq}, #{name}) 
+  </insert>-->
 
 </mapper>

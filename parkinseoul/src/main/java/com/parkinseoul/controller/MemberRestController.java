@@ -40,7 +40,7 @@ public class MemberRestController {
   public String search(@RequestBody String id) {
     MemberDto memberDto = new MemberDto();
     memberDto.setName(id);
-    memberDto.setId(id);
+   // memberDto.setId(id);
     String list = memberRestService.searchMember(memberDto);
     return list;
   }
