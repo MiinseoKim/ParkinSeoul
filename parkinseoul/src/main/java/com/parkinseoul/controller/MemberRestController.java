@@ -1,7 +1,5 @@
 package com.parkinseoul.controller;
 
-import java.util.HashMap;
-import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,16 +29,6 @@ public class MemberRestController {
     memberRestService.insertMember(memberDto);
     System.out.println("rest done");
   }
-  
-  /*
-  @RequestMapping(value = "kakaoRest.htm", method = RequestMethod.POST)
-  public void insertKakao(@RequestBody MemberDto memberDto) {
-    System.out.println("controller DTO ====> " + memberDto);
-    System.out.println("insert intro");
-    memberRestService.insertKakao(memberDto);
-    System.out.println("rest done");
-  }
-  */
   
   @RequestMapping(value = "memberrest.htm", method = RequestMethod.PUT)
   public void update(@RequestBody MemberDto memberDto) {
