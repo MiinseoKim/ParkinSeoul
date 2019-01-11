@@ -6,8 +6,8 @@
 <link rel="stylesheet"
 	href="fonts/material-icon/css/material-design-iconic-font.min.css">
 <link rel="stylesheet" href="css/join.css">
-<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 
+<body>
 <section class="sign-in">
 	<div class="container">
 		<div class="signin-content">
@@ -57,46 +57,48 @@
 </section>
 
 <script type="text/javascript">
-  $(document).ready(function() {
-    $('#login').click(function() {
-      location.href = '${pageContext.request.contextPath}/member/list';
-    });
+$('#login').click(function() {
+  location.href = '${pageContext.request.contextPath}/member/list';
+});
 
-    //사용할 앱의 JavaScript 키를 설정해 주세요.
-    Kakao.init('d9e23a5363a7bc0c5284bc04e7e8dd07');
-    //카카오 로그인 버튼을 생성합니다.
-    Kakao.Auth.createLoginButton({
-      container: '#kakao-login-btn',
-      success: function(authObj) {
-        Kakao.API.request({
-          url: '/v2/user/me',
-          success: function(res) {
-            var parameter = JSON.stringify({
-              'id': res.kakao_account.email,
-              'password': res.id,
-              'name': res.properties.nickname
-            });
-            $.ajax({
-              url: 'memberrest.htm',
-              data: parameter,
-              contentType: 'application/json;charset=UTF-8',
-              type: 'POST',
-              success: function() {
-                alert("Welcome to ParkinSeoul!");
-                location.href = "home.htm";
-              }
-            });
-          }
-        });
-      },
-      fail: function(err) {
-        alert(JSON.stringify(err));
-      }
-    });
-
+//사용할 앱의 JavaScript 키를 설정해 주세요.
+Kakao.init('d9e23a5363a7bc0c5284bc04e7e8dd07');
+//카카오 로그인 버튼을 생성합니다.
+function loginWithKakao() {
+  
+  Kakao.Auth.cleanup();
+  Kakao.Auth.login({
+    success: function(authObj) {
+      console.log(authObj);
+      Kakao.API.request({
+        url: '/v2/user/me',
+        success: function(res) {
+          var parameter = JSON.stringify({
+            'id': res.kakao_account.email,
+            'password': res.id,
+            'name': res.properties.nickname
+          });
+          $.ajax({
+            url: 'memberrest.htm',
+            data: parameter,
+            contentType: 'application/json;charset=UTF-8',
+            type: 'POST',
+            success: function() {
+              alert("Welcome to ParkinSeoul!");
+              location.href = "home.htm";
+            }
+          });
+        }
+      });
+    },
+    fail: function(err) {
+      alert(JSON.stringify(err));
+    }
   });
-</script>
+};
 
+</script>
+</body>
 
 
 
