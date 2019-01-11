@@ -45,8 +45,11 @@
 				<div class="social-login">
 					<span class="social-label">Or login with</span>
 					<ul class="socials">
-						<li><a id="kakao-login-btn"> <!-- <img src="images/login/kakao_btn_small.png"> -->
-						</a></li>
+				    <li>
+						  <a id="custom-login-btn" href="javascript:loginWithKakao()"> 
+                <img src="images/login/kakao_btn_small.png">
+              </a>
+            </li>
 						<li><a href="#"><i
 								class="display-flex-center zmdi zmdi-naver">N</i></a></li>
 					</ul>
