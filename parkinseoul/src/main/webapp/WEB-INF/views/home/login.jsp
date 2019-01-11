@@ -6,6 +6,7 @@
 <link rel="stylesheet"
 	href="fonts/material-icon/css/material-design-iconic-font.min.css">
 <link rel="stylesheet" href="css/join.css">
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 
 <section class="sign-in">
 	<div class="container">
