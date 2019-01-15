@@ -2,6 +2,7 @@ package com.parkinseoul.controller;
 
 
 
+import java.security.Principal;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,10 +31,23 @@ public class HomeController {
   private View jsonview;
 
   @Autowired
-  LoginService loginservice;
+  private MemberRestService service;
 
   @RequestMapping(value = "/home.htm")
   public String home() {
+   
+    return "home.index";
+  }
+  
+  @RequestMapping(value = "/homein.htm")
+  public String home2(Authentication auth,Model model) {
+    System.out.println(auth.getName());
+    if(auth.getName()!=null)
+    {
+      MemberDto member = service.infoMember(auth.getName());
+      System.out.println(member.toString());
+      model.addAttribute("dto",member);
+    }
     return "home.index";
   }
 

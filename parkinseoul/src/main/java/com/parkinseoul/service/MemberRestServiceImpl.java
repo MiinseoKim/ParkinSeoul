@@ -50,14 +50,11 @@ public class MemberRestServiceImpl implements MemberRestService {
 
 
   @Override
-  public String infoMember(String id) {
-    JSONObject member = new JSONObject();
+  public MemberDto infoMember(String id) {
 
-    MemberDto memberDto = sqlSession.getMapper(MemberDao.class).infoMember(id);
-    member.put("id", memberDto.getId());
-    member.put("name", memberDto.getName());
-
-    return member.toString();
+    MemberDto member = sqlSession.getMapper(MemberDao.class).infoMember(id);
+    
+    return member;
   }
 
 

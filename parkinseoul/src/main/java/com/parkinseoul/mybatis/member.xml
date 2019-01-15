@@ -30,7 +30,7 @@
   </select>
   
   <select id="infoMember" parameterType="String" resultType="memberDto">
-    select u
+    select *
     from user
     where id = #{id}  
   </select>
