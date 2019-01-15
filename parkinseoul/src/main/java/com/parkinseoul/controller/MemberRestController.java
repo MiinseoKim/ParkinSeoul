@@ -1,7 +1,5 @@
 package com.parkinseoul.controller;
 
-import java.util.HashMap;
-import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,6 +24,7 @@ public class MemberRestController {
 
   @RequestMapping(value = "memberrest.htm", method = RequestMethod.POST)
   public void insert(@RequestBody MemberDto memberDto) {
+    System.out.println("controller DTO ====> " + memberDto);
     System.out.println("rest post");
     memberRestService.insertMember(memberDto);
     System.out.println("rest done");

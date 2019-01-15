@@ -25,7 +25,10 @@
     <script type="text/javascript" src="js/wow.min.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
     
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> 
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!-- kakao -->
+    <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+     
   
 
     <!--[if lt IE 9]>
