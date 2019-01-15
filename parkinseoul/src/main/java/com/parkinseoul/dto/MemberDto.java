@@ -16,7 +16,7 @@ public class MemberDto {
 
   @Override
   public String toString() {
-    return "MemberDto [seq=" + seq + ", id=" + ", name=" + name + ", password=" + ", auth_seq="
+    return "MemberDto [seq=" + seq + ", id=" + id+", name=" + name + ", password=" + password+", auth_seq="
         + auth_seq + "]";
   }
 

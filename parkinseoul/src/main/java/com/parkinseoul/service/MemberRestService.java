@@ -7,7 +7,7 @@ public interface MemberRestService {
   
   String selectMember();
 
-  String infoMember(String id);
+  MemberDto infoMember(String id);
 
   void insertMember(MemberDto memberDto);
 

@@ -10,7 +10,7 @@
                         <ul class="nav nav-pills">
                         <se:authentication property="name" var="loginuser"/>
                         <se:authorize access="hasRole('ROLE_USER')">
-                            <li><a href="me.htm">${loginuser} &nbsp;회원님</a></li><!-- 로그인 시 생기는 링크 -->
+                            <li><a href="me.htm">${dto.name} &nbsp;회원님</a></li><!-- 로그인 시 생기는 링크 -->
                             <li><a href="${pageContext.request.contextPath}/logout">로그아웃</a></li>
                         </se:authorize>
                         </ul>
