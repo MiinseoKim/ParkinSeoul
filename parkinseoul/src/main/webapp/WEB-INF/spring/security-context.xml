@@ -2,6 +2,7 @@
 <beans:beans
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns="http://www.springframework.org/schema/security"
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.2.xsd
@@ -26,16 +27,10 @@
 	   <intercept-url pattern="/me.htm"  access="hasRole('ROLE_USER')" /> 
 	   <intercept-url pattern="/hearts.htm"  access="hasRole('ROLE_USER')" /> 
 
-<!-- 		<form-login login-page="/login.htm"
-			default-target-url="/member/list"
-			authentication-failure-url="/?error" username-parameter="id"
-			password-parameter="password" />
-		<logout logout-url="/logout" logout-success-url="/" />
-		<access-denied-handler
-			error-page="/login/accessDenied" />
-		<csrf disabled="true" /> -->
+
 	</http>
 
+  
 	<beans:bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
 	<beans:bean id="LoginSuccessHandler" class="com.parkinseoul.security.LoginSuccessHandler"></beans:bean>
   <beans:bean id="LoginFailHandler" class="com.parkinseoul.security.LoginFailHandler"></beans:bean>

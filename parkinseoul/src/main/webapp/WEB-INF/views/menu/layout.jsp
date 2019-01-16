@@ -24,11 +24,13 @@
     <script type="text/javascript" src="js/lightbox.min.js"></script>
     <script type="text/javascript" src="js/wow.min.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
-    
+   
+    <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <!-- kakao -->
     <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-     
+    <!-- naver -->
+     <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
   
 
     <!--[if lt IE 9]>

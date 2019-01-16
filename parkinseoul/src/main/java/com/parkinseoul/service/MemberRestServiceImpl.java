@@ -26,10 +26,34 @@ public class MemberRestServiceImpl implements MemberRestService {
     memberDto.setAuth_seq(1);
     memberDto.setPassword(encoder.encode(memberDto.getPassword()));
     sqlSession.getMapper(MemberDao.class).insertUsers(memberDto);
-    memberDto.setSeq(sqlSession.getMapper(MemberDao.class).getSeq(memberDto));
-    System.out.println(memberDto.getSeq());
+    System.out.println("insert done");
   }
 
+
+  @Override
+  public MemberDto infoMember(String id) {
+    System.out.println("infoMember "+id);
+    MemberDto member = sqlSession.getMapper(MemberDao.class).infoMember(id);
+    System.out.println("infoMemberend");
+    return member;
+  }
+
+  
+  @Override
+  public int idcheck(String id) {
+    int count = 0;
+    count = sqlSession.getMapper(MemberDao.class).idcheck(id);
+    return count;
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
   @Override
   public String selectMember() {
     List<MemberDto> list = sqlSession.getMapper(MemberDao.class).selectMember();
@@ -47,16 +71,6 @@ public class MemberRestServiceImpl implements MemberRestService {
     return array.toString();
   }
 
-
-  @Override
-  public MemberDto infoMember(String id) {
-
-    MemberDto member = sqlSession.getMapper(MemberDao.class).infoMember(id);
-    
-    return member;
-  }
-
-
   @Transactional
   @Override
   public void updateMember(MemberDto memberDto) {
@@ -73,12 +87,7 @@ public class MemberRestServiceImpl implements MemberRestService {
     sqlSession.getMapper(MemberDao.class).deleteUsers(memberDto.getSeq());
   }
 
-  @Override
-  public int idcheck(String id) {
-    int count = 0;
-    count = sqlSession.getMapper(MemberDao.class).idcheck(id);
-    return count;
-  }
+  
 
   @Override
   public String searchMember(MemberDto memberDto) {
@@ -89,8 +98,6 @@ public class MemberRestServiceImpl implements MemberRestService {
       mem.put("seq", member.getSeq());
       mem.put("id", member.getId());
       mem.put("name", member.getName());
-      // mem.put("phone", member.getPhone());
-      // mem.put("email", member.getEmail());
       array.put(mem);
     }
     System.out.println(array.toString());

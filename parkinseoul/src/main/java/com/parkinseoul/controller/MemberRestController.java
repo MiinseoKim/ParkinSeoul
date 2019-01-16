@@ -1,5 +1,6 @@
 package com.parkinseoul.controller;
 
+import java.net.URLDecoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,11 +25,26 @@ public class MemberRestController {
 
   @RequestMapping(value = "memberrest.htm", method = RequestMethod.POST)
   public void insert(@RequestBody MemberDto memberDto) {
-    System.out.println("controller DTO ====> " + memberDto);
-    System.out.println("rest post");
     memberRestService.insertMember(memberDto);
-    System.out.println("rest done");
   }
+  
+
+  @RequestMapping(value = "idcheck.htm", method = RequestMethod.POST)
+  public View idcheck(@RequestBody String id,Model model) {
+    int count = 0;
+    //Map<Object, Object> map = new HashMap<Object, Object>();
+    String decode=URLDecoder.decode(id).substring(3);
+    count = memberRestService.idcheck(decode);
+    model.addAttribute("cnt", count);
+   // map.put("cnt", count);
+
+    return jsonview;
+  }
+
+  
+  
+  
+  
   
   @RequestMapping(value = "memberrest.htm", method = RequestMethod.PUT)
   public void update(@RequestBody MemberDto memberDto) {
@@ -43,19 +59,7 @@ public class MemberRestController {
     String list = memberRestService.searchMember(memberDto);
     return list;
   }
-
-  @RequestMapping(value = "idcheck.htm", method = RequestMethod.POST)
-  public View idcheck(@RequestBody String id,Model model) {
-    int count = 0;
-    //Map<Object, Object> map = new HashMap<Object, Object>();
-    System.out.println("check post");
-    count = memberRestService.idcheck(id);
-    model.addAttribute("cnt", count);
-   // map.put("cnt", count);
-
-    return jsonview;
-  }
-
+  
   @RequestMapping(value = "memberrest.htm", method = RequestMethod.GET)
   public String list() {
     String list = memberRestService.selectMember();
