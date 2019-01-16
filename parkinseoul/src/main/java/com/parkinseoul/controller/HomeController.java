@@ -37,6 +37,7 @@ public class HomeController {
     return "home.index";
   }
 
+
   @RequestMapping(value = "/getuser.htm")
   public View getuser(@RequestBody String id, Model model) {
     System.out.println(id.substring(3));
@@ -45,6 +46,7 @@ public class HomeController {
       MemberDto member = service.infoMember(decode);
       System.out.println("getuser end");
       model.addAttribute("dto", member);
+
     }
     return jsonview;
   }

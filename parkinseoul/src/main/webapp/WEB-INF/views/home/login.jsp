@@ -70,32 +70,44 @@
 	</section>
 
 	<script type="text/javascript">
-    //사용할 앱의 JavaScript 키를 설정해 주세요.
-    Kakao.init('d9e23a5363a7bc0c5284bc04e7e8dd07');
-    //카카오 로그인 버튼을 생성합니다.
-    function loginWithKakao() {
-
-      Kakao.Auth.cleanup();
-      Kakao.Auth.login({
-        success: function(authObj) {
-          console.log(authObj);
-          Kakao.API.request({
-            url: '/v2/user/me',
-            success: function(res) {
-              console.log(res);
-              var parameter = JSON.stringify({
-                'id': res.kakao_account.email,
-                'password': res.id,
-                'name': res.properties.nickname
-              });
+ 
+//사용할 앱의 JavaScript 키를 설정해 주세요.
+Kakao.init('d9e23a5363a7bc0c5284bc04e7e8dd07');
+//카카오 로그인 버튼을 생성합니다.
+function loginWithKakao() {
+  
+  Kakao.Auth.cleanup();
+  Kakao.Auth.login({
+    success: function(authObj) {
+//       console.log(authObj);
+      Kakao.API.request({
+        url: '/v2/user/me',
+        success: function(res) {
+          var parameter = JSON.stringify({
+            'id': res.kakao_account.email,
+            'password': res.id,
+            'name': res.properties.nickname
+          });
+          var osc = {
+                'username': res.kakao_account.email,
+                'password': res.id
+          };
+          $.ajax({
+            url: 'memberrest.htm',
+            data: parameter,
+            contentType: 'application/json;charset=UTF-8',
+            type: 'POST',
+            success: function(data) {
+              console.log("hi");
+              console.log(osc);
               $.ajax({
-                url: 'memberrest.htm',
-                data: parameter,
-                contentType: 'application/json;charset=UTF-8',
-                type: 'POST',
-                success: function() {
+                type : 'POST',
+                url : 'login',
+                data : osc,
+                success : function(){
                   alert("Welcome to ParkinSeoul!");
-                  location.href = "home.htm";
+                  location.href = 'homein.htm';
+
                 }
               });
             }
