@@ -41,7 +41,7 @@ public class HomeController {
   
   @RequestMapping(value = "/homein.htm")
   public String home2(Authentication auth,Model model) {
-    System.out.println(auth.getName());
+    System.out.println("homein===> " + auth.getName());
     if(auth.getName()!=null)
     {
       MemberDto member = service.infoMember(auth.getName());

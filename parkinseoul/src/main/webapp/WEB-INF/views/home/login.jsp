@@ -72,7 +72,7 @@ function loginWithKakao() {
   Kakao.Auth.cleanup();
   Kakao.Auth.login({
     success: function(authObj) {
-      console.log(authObj);
+//       console.log(authObj);
       Kakao.API.request({
         url: '/v2/user/me',
         success: function(res) {
@@ -81,14 +81,27 @@ function loginWithKakao() {
             'password': res.id,
             'name': res.properties.nickname
           });
+          var osc = {
+                'username': res.kakao_account.email,
+                'password': res.id
+          };
           $.ajax({
             url: 'memberrest.htm',
             data: parameter,
             contentType: 'application/json;charset=UTF-8',
             type: 'POST',
-            success: function() {
-              alert("Welcome to ParkinSeoul!");
-              location.href = "home.htm";
+            success: function(data) {
+              console.log("hi");
+              console.log(osc);
+              $.ajax({
+                type : 'POST',
+                url : 'login',
+                data : osc,
+                success : function(){
+                  alert("Welcome to ParkinSeoul!");
+                  location.href = 'homein.htm';
+                }
+              });
             }
           });
         }
