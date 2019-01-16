@@ -2,9 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="se" uri="http://www.springframework.org/security/tags"%>
+
 <script type="text/javascript">
   console.log('${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}');
- 
+  
 </script>
 <header id="header">
 	<div class="container">
@@ -14,12 +15,12 @@
 					<ul class="nav nav-pills">
 						<se:authentication property="name" var="loginuser" />
 						<se:authorize access="hasRole('ROLE_USER')">
-						<c:set var="dto" value="${sessionScope.dto}"/>
-							<li><a href="me.htm" id="username">${dto} &nbsp;회원님</a></li>
-							
-							<!-- 로그인 시 생기는 링크 -->
+							<li><a href="me.htm" id="username">${sessionScope.dto.name} &nbsp;회원님</a></li>
 							<li><a href="${pageContext.request.contextPath}/logout">로그아웃</a></li>
 						</se:authorize>
+						<se:authorize access="isAnonymous()">
+              &nbsp;
+            </se:authorize>
 					</ul>
 				</div>
 			</div>

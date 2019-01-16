@@ -12,11 +12,9 @@ import com.parkinseoul.service.MemberRestService;
 import com.parkinseoul.dto.MemberDto;
 
 
-
 public class LoginSuccessHandler implements AuthenticationSuccessHandler{
   private static int TIME = 60 * 60; // 1시간
- 
-  //MemberRestService service=new MemberRestServiceImpl();
+
   
   @Autowired
   private MemberRestService service;
@@ -25,17 +23,10 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler{
   public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication auth) throws IOException, ServletException {
     //세션타임아웃 수정 및 마지막 로그인 일시 기록하기
     request.getSession().setMaxInactiveInterval(TIME); 
-/*    System.out.println(auth.getName()+" loginsuccess");
     MemberDto member = service.infoMember(auth.getName());
-    System.out.println(member);*/
-    request.getSession().setAttribute("dto", auth.getName());
-    
-    //System.out.println(auth.getDetails());
-   // System.out.println(auth.getPrincipal().toString());
-  //  super.onAuthenticationSuccess(request, response, auth);
+    System.out.println(member);
+    request.getSession().setAttribute("dto", member);
     response.sendRedirect(request.getContextPath() +  "/home.htm");
    
-    
-
   }
 }

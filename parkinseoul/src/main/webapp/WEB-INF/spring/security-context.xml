@@ -29,7 +29,6 @@
 
 
 	</http>
-
   
 	<beans:bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
 	<beans:bean id="LoginSuccessHandler" class="com.parkinseoul.security.LoginSuccessHandler"></beans:bean>

@@ -32,7 +32,6 @@ public class MemberRestServiceImpl implements MemberRestService {
 
   @Override
   public MemberDto infoMember(String id) {
-    System.out.println("infoMember "+id);
     MemberDto member = sqlSession.getMapper(MemberDao.class).infoMember(id);
     System.out.println("infoMemberend");
     return member;

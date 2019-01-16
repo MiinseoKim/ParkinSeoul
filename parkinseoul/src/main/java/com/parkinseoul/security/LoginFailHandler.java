@@ -14,8 +14,7 @@ public class LoginFailHandler implements AuthenticationFailureHandler{
       AuthenticationException exception) throws IOException, ServletException {
     // TODO Auto-generated method stub
     
-    System.out.println("로그인 실패");
-    
+    System.out.println("로그인 실패");    
     response.sendRedirect(request.getContextPath() +  "/login.htm");
     
   }

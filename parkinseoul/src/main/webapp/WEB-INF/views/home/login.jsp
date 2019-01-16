@@ -83,6 +83,7 @@ function loginWithKakao() {
       Kakao.API.request({
         url: '/v2/user/me',
         success: function(res) {
+          console.log(res);
           var parameter = JSON.stringify({
             'id': res.kakao_account.email,
             'password': res.id,
@@ -93,31 +94,56 @@ function loginWithKakao() {
                 'password': res.id
           };
           $.ajax({
-            url: 'memberrest.htm',
-            data: parameter,
+            type:'POST',
+            url:'idcheck.htm',
+            data : {"id":res.kakao_account.email},
             contentType: 'application/json;charset=UTF-8',
-            type: 'POST',
-            success: function(data) {
-              console.log("hi");
-              console.log(osc);
-              $.ajax({
-                type : 'POST',
-                url : 'login',
-                data : osc,
-                success : function(){
-                  alert("Welcome to ParkinSeoul!");
-                  location.href = 'homein.htm';
-
-                }
-              });
+            dataType:"json",
+            success:function(data){
+              console.log(data.cnt);
+              if(data.cnt==0){
+                console.log("insert ajax");
+                $.ajax({
+                  type:'POST',
+                  contentType: 'application/json;charset=UTF-8',
+                  url:'memberrest.htm',
+                  data : parameter,
+                  success:function(){
+                    console.log("login");
+                    $.ajax({
+                      type:'post',
+                      url:'login',
+                      data : osc,
+                      success:function(data){
+                        location.href="home.htm"
+                      }
+                    });
+                  }
+                });
+              }else{
+                $.ajax({
+                  type:'post',
+                  url:'login',
+                  data : osc,
+                  success:function(){
+                    location.href="home.htm"
+                  }
+                });
+              }
+            },
+            error:function(error) {
+              console.log(error);
+              console.log(error.status);
             }
-          });
+          }); 
         },
         fail: function(err) {
           alert(JSON.stringify(err));
         }
       });
-    };
+    }
+  });
+};
 
    
   </script>
