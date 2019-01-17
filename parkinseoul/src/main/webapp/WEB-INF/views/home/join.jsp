@@ -130,65 +130,75 @@
 
 
 
-<section class="signup">
-            <div class="container">
-                <div class="signup-content">
-                    <div class="signup-form">
-                        <h2 class="form-title">Sign up</h2>
-                        <form class="register-form" >
-                            <div class="form-group">        
-                                <label for="id"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                <input type="text" name="id" id="id" placeholder="Your ID"/>
-                                <button id="idcheck" type="button" class="btn btn-common">중복확인</button>
-                            </div>
-                            <div class="form-group">
-                                <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                <input type="text" name="name" id="name" placeholder="Your Name"/>
-                            </div>
-                            <div class="form-group">
-                                <label for="pass"><i class="zmdi zmdi-lock"></i></label>
-                                <input type="password" name="pass" id="password" placeholder="Password"/>
-                            </div>
-                            <div class="form-group">
-                                <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
-                                <input type="password" name="re_pass" id="password2" placeholder="Repeat your password"/>
-                            </div>
-                           <!--  <div class="form-group">
+<section class="signup" id="body"><br><br><br>
+	<div class="container" id="container">
+		<div class="signup-content">
+			<div class="signup-form">
+				<h2 class="form-title">Sign up</h2>
+				<form class="register-form">
+					<div class="form-group">
+						<label for="id"><i
+							class="zmdi zmdi-account material-icons-name"></i></label> <input
+							type="text" name="id" id="id" placeholder="Your ID" />
+						<button id="idcheck" type="button" class="btn btn-common">중복확인</button>
+					</div>
+					<div class="form-group">
+						<label for="name"><i
+							class="zmdi zmdi-account material-icons-name"></i></label> <input
+							type="text" name="name" id="name" placeholder="Your Name" />
+					</div>
+					<div class="form-group">
+						<label for="pass"><i class="zmdi zmdi-lock"></i></label> <input
+							type="password" name="pass" id="password" placeholder="Password" />
+					</div>
+					<div class="form-group">
+						<label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
+						<input type="password" name="re_pass" id="password2"
+							placeholder="Repeat your password" />
+					</div>
+					<!--  <div class="form-group">
                                 <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
                                 <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
                             </div> -->
-                            <div class="form-group form-button">
-                                <input type="button" name="signup" id="insertBtn" class="form-submit" value="Register"/>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="signup-image">
-                        <figure><img src="images/signup-image.jpg" alt="sing up image"></figure>
-                        <a href="login.htm" class="signup-image-link">I am already member</a> 
-                    </div>
-                </div>
-            </div>
-        </section>
+					<div class="form-group form-button">
+						<input type="button" name="signup" id="insertBtn"
+							class="form-submit" value="Register" />
+					</div>
+				</form>
+			</div>
+			<div class="signup-image">
+				<figure>
+					<img src="images/signup-image.jpg" alt="sing up image">
+				</figure>
+				<a href="login.htm" class="signup-image-link">I am already
+					member</a>
+			</div>
+		</div>
+	</div><br><br><br>
+</section>
 
 
 
 
 
 <!-- modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-lg modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-      </div>
-      <div class="modal-body">
-        ...
-      </div><!-- 
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel">
+	<div class="modal-lg modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel">Modal title</h4>
+			</div>
+			<div class="modal-body">...</div>
+			<!-- 
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary">Save changes</button>
       </div> -->
-    </div>
-  </div>
+		</div>
+	</div>
 </div>

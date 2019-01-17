@@ -8,8 +8,8 @@
 <link rel="stylesheet" href="css/join.css">
 
 <body>
-	<section class="sign-in">
-		<div class="container">
+	<section class="sign-in" id="body"><br><br><br>
+		<div class="container" id="container">
 			<div class="signin-content">
 				<div class="signin-image">
 					<figure>
@@ -66,10 +66,10 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div><br><br><br>
 	</section>
 
-	<script type="text/javascript">
+<script type="text/javascript">
  
 //사용할 앱의 JavaScript 키를 설정해 주세요.
 Kakao.init('d9e23a5363a7bc0c5284bc04e7e8dd07');

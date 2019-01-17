@@ -36,7 +36,7 @@
   </style>
 </head>
 <body>
-  <div id="map" style="width:1000px;height:450px;"></div>
+  <div id="map" style="width:1000px;height:450px;"></div><br><br><br><br>
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d9e23a5363a7bc0c5284bc04e7e8dd07"></script>
 	<script>
     var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
