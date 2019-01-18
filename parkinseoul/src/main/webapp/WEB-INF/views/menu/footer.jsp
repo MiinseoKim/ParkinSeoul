@@ -3,11 +3,11 @@
  <footer id="footer">
         <div class="container">
             <div class="row">
-                <div class="col-sm-12 text-center bottom-separator">
+                <div class="col-sm-12 text-center ">
                     <img src="images/home/under.png" class="img-responsive inline" alt="">
                 </div>
                
-                <div class="col-sm-6">
+               <!--  <div class="col-sm-6">
                     <div class="contact-info bottom">
                         <h2>Contacts</h2>
                         <address>
@@ -31,7 +31,7 @@
                         United Kingdom <br> 
                         </address>
                     </div>
-                </div>
+                </div> -->
                 
                 <div class="col-sm-12">
                     <div class="copyright-text text-center">

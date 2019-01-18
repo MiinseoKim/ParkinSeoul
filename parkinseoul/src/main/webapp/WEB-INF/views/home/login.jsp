@@ -3,8 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
-<link rel="stylesheet"
-	href="fonts/material-icon/css/material-design-iconic-font.min.css">
+<link rel="stylesheet"href="fonts/material-icon/css/material-design-iconic-font.min.css">
 <link rel="stylesheet" href="css/join.css">
 
 <body>
