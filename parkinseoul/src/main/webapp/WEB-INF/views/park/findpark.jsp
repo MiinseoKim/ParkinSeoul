@@ -35,7 +35,7 @@
     .info .link {color: #5085BB;}
     
     .close {position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;background: url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
-    .title {padding: 5px 0 0 10px;height: 30px;background: #eee;border-bottom: 1px solid #ddd;font-size: 18px;font-weight: bold;}
+/*     .title {padding: 5px 0 0 10px;height: 30px;background: #eee;border-bottom: 1px solid #ddd;font-size: 18px;font-weight: bold;} */
     
     .overlay {
     position:absolute;
@@ -55,7 +55,9 @@
   </style>
 </head>
 <body>
-  <div id="map" style="width:1000px;height:450px;"></div><br><br><br><br>
+
+  
+  <div id="map" style="width:100%;height:450px;"></div><br><br><br><br>
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d9e23a5363a7bc0c5284bc04e7e8dd07"></script>
 	<script>
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
@@ -69,7 +71,7 @@
 	//마커를 표시할 위치와 내용을 가지고 있는 객체 배열입니다 
 	var positions = [
 	  {
-	      latlng: new daum.maps.LatLng(33.450705, 126.570677)
+      latlng: new daum.maps.LatLng(33.450705, 126.570677)
 	  },
 	  {
 	      latlng: new daum.maps.LatLng(33.450936, 126.569477)
@@ -78,6 +80,7 @@
 	      latlng: new daum.maps.LatLng(33.450879, 126.569940)
 	  },
 	  {
+      content: '<div>텃밭</div>', 
 	      latlng: new daum.maps.LatLng(33.451393, 126.570738)
 	  }
 	];
@@ -88,65 +91,30 @@
         position: pos.latlng
       });
       
-      var customOverlay = new daum.maps.CustomOverlay({
+      var overlay = new daum.maps.CustomOverlay({
         position: pos.latlng
       });
       
       var content = document.createElement('div');
       content.className = 'overlay';
       content.innerHTML = '파크 :D';
-      
+
       var closeBtn = document.createElement('button');
       closeBtn.src = "close.png";
-//       closeBtn.className = 'close';
-      closeBtn.onclick = function() { customOverlay.setMap(null); };
+//       closeBtn.className += ' close';
+      closeBtn.onclick = function() { overlay.setMap(null); };
       content.appendChild(closeBtn);
       
-      customOverlay.setContent(content);
-      customOverlay.setMap(map);
+      overlay.setContent(content);
       
+	    daum.maps.event.addListener(marker, 'click', function() {
+	      overlay.setMap(map);
+	    });
       
     });
+    
 
-	
-	
-	
-/* 
-    for (var i = 0; i < positions.length; i++) {
-      var marker = new daum.maps.Marker({
-        map: map, // 마커를 표시할 지도
-        position: positions[i].latlng
-      });
-      
-      var infowindow = new daum.maps.InfoWindow({
-        content: positions[i].content
-      });
 
-      // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
-      // 이벤트 리스너로는 클로저를 만들어 등록합니다 
-      // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
-      daum.maps.event.addListener(marker, 'mouseover', makeOverListener(map,
-              marker, infowindow));
-      daum.maps.event.addListener(marker, 'mouseout',
-              makeOutListener(infowindow));
-    }
- */     
-     
-     
-     
-    //인포윈도우를 표시하는 클로저를 만드는 함수입니다 
-    function makeOverListener(map, marker, infowindow) {
-      return function() {
-        infowindow.open(map, marker);
-      };
-    }
-
-    //인포윈도우를 닫는 클로저를 만드는 함수입니다 
-    function makeOutListener(infowindow) {
-      return function() {
-        infowindow.close();
-      };
-    }
 
     /* 아래와 같이도 할 수 있습니다 */
     /*
