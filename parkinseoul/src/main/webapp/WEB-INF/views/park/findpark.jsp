@@ -57,13 +57,13 @@
 <body>
 
   
-  <div id="map" style="width:100%;height:450px;"></div><br><br><br><br>
+  <div id="map" style="width:100%;height:550px;"></div><br><br><br><br>
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d9e23a5363a7bc0c5284bc04e7e8dd07"></script>
 	<script>
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
   mapOption = { 
       center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-      level: 3 // 지도의 확대 레벨
+      level: 4 // 지도의 확대 레벨
   };
 
 	var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
@@ -96,8 +96,16 @@
       });
       
       var content = document.createElement('div');
-      content.className = 'overlay';
-      content.innerHTML = '파크 :D';
+      content.className = 'wrap';
+//       content.appendChild(document.createTextNode("파크 :D"));
+
+      var info = document.createElement('div');
+      info.className = 'info';
+      content.appendChild(info);
+      
+      var title = document.createElement('div');
+      info.className = 'title';
+//       info.appendChild(title);
 
       var closeBtn = document.createElement('button');
       closeBtn.src = "close.png";
