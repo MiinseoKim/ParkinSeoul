@@ -17,7 +17,8 @@
 <html>
 <head>
   <meta charset="utf-8"/>
-  <title>Daum 지도 시작하기</title>
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d9e23a5363a7bc0c5284bc04e7e8dd07"></script>
+  <title>공원찾기</title>
   <style type="text/css">
     .wrap {position: absolute;left: 0;bottom: 40px;width: 288px;height: 132px;margin-left: -144px;text-align: left;overflow: hidden;font-size: 12px;font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;line-height: 1.5;}
     .wrap * {padding: 0;margin: 0;}
@@ -33,36 +34,24 @@
     .info .img {position: absolute;top: 6px;left: 5px;width: 73px;height: 71px;border: 1px solid #ddd;color: #888;overflow: hidden;}
     .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
     .info .link {color: #5085BB;}
-    
-/*     .close {position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;background: url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');} */
-/*     .title {padding: 5px 0 0 10px;height: 30px;background: #eee;border-bottom: 1px solid #ddd;font-size: 18px;font-weight: bold;} */
-    
-    .overlay {
-    position:absolute;
-    left: -50px;
-    top:0;
-    width:100px;
-    height: 100px;
-    background: #fff;
-    border:1px solid #ccc;
-    border-radius: 5px;
-    padding:5px;
-    font-size:12px;
-    text-align: center;
-    white-space: pre;
-    word-wrap: break-word;
-    }
   </style>
+  
 </head>
 <body>
 
   
+  
+  
   <div id="map" style="width:100%;height:550px;"></div><br><br><br><br>
-  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d9e23a5363a7bc0c5284bc04e7e8dd07"></script>
-	<script>
+  
+<script>
+
+
+  
+  
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
   mapOption = { 
-      center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+      center: new daum.maps.LatLng(37.5501402, 126.9903773), // 지도의 중심좌표
       level: 4 // 지도의 확대 레벨
   };
 
@@ -74,97 +63,124 @@
       latlng: new daum.maps.LatLng(33.450705, 126.570677)
 	  },
 	  {
-	      latlng: new daum.maps.LatLng(33.450936, 126.569477)
+      latlng: new daum.maps.LatLng(33.450936, 126.569477)
 	  },
 	  {
-	      latlng: new daum.maps.LatLng(33.450879, 126.569940)
+      latlng: new daum.maps.LatLng(33.450879, 126.569940)
 	  },
 	  {
-      content: '<div>텃밭</div>', 
-	      latlng: new daum.maps.LatLng(33.451393, 126.570738)
+      latlng: new daum.maps.LatLng(37.5501402, 126.9903773) //남산
+	  },
+	  {
+      latlng: new daum.maps.LatLng(33.451393, 126.570738)
 	  }
   ];
+  
+//  P_PARK
+//  LATITUDE    x
+//  LONGITUDE    y
+//  P_ADDR 주소
 
-    positions.forEach(function(pos) {
-      var marker = new daum.maps.Marker({
-        map: map, 
-        position: pos.latlng
-      });
+  $(function(){
+    var api = "http://openapi.seoul.go.kr:8088/627576684361736434307777707870/json/SearchParkInfoService/1/3/";
+    $.getJSON(api, function(data) {
+      park = data.SearchParkInfoService.row;
+//       console.log(park);
+      var label = new Array();
+      var addr = new Array();
+      var lat = new Array();
+      var lng = new Array();
       
-      var overlay = new daum.maps.CustomOverlay({
-        position: pos.latlng
-      });
-      
-      var content = document.createElement('div');
-      content.className = 'wrap';
-
-      var info = document.createElement('div');
-      info.className = 'info';
-      
-      var title = document.createElement('div');
-      title.className = 'title';
-      title.appendChild(document.createTextNode("파크 :D"));
-      document.createe
-
-      var closeBtn = document.createElement('button');
-      closeBtn.className = 'close';
-      
-      var body = document.createElement('div');
-      body.className = 'body';
-      
-      var imgDiv = document.createElement('div');
-      imgDiv.className = 'img';
-      
-      var img = document.createElement('img');
-//       img.src = 'k.png';
-      img.src = 'http://cfile181.uf.daum.net/image/250649365602043421936D';
-      img.setAttribute('width', '73');
-      img.setAttribute('height', '70');
-      
-      var desc = document.createElement('div');
-      desc.className = 'desc';
-      
-      var ellipsis = document.createElement('div');
-      ellipsis.className = 'ellipsis';
-      ellipsis.appendChild(document.createTextNode("샘성전자"));
-      
-      var jibun = document.createElement('div');
-      jibun.className = 'jibun ellipsis';
-      jibun.appendChild(document.createTextNode("(우) 63309 (지번) 영평동 2181"));
-      
-      var div = document.createElement('div');
-      
-      var at = document.createElement('a');
-      at.setAttribute('href', "http://www.kakaocorp.com/main");
-      at.setAttribute('target', "_blank");
-      at.className = 'link';
-      at.appendChild(document.createTextNode("홈페이지"));
-      
-      
-      content.appendChild(info);
-      info.appendChild(title);
-      title.appendChild(closeBtn);
-      info.appendChild(body);
-      body.appendChild(imgDiv);
-      imgDiv.appendChild(img);
-      body.appendChild(desc);
-      desc.appendChild(ellipsis);
-      desc.appendChild(jibun);
-      desc.appendChild(div);
-      div.appendChild(at);
-      
-      
-      closeBtn.onclick = function() {
-        overlay.setMap(null);
-      };
-
-      overlay.setContent(content);
-
-      daum.maps.event.addListener(marker, 'click', function() {
-        overlay.setMap(map);
-      });
-
-    });
+      $(park).each(function(key, item) {
+        label[key] = item.P_PARK;
+        addr = item.P_ADDR;
+        lat = item.LATITUDE;
+        lng = item.LONGITUDE;
+        
+        
+			  positions.forEach(function(pos) {
+			    var marker = new daum.maps.Marker({
+			      map: map, 
+			      position: pos.latlng
+			    });
+			    
+			    var overlay = new daum.maps.CustomOverlay({
+			      position: pos.latlng
+			    });
+			    
+			    var content = document.createElement('div');
+			    content.className = 'wrap';
+			
+			    var info = document.createElement('div');
+			    info.className = 'info';
+			    
+			    var title = document.createElement('div');
+			    title.className = 'title';
+			    title.appendChild(document.createTextNode("파크 :D"));
+			    document.createe
+			
+			    var closeBtn = document.createElement('button');
+			    closeBtn.className = 'close';
+			    
+			    var body = document.createElement('div');
+			    body.className = 'body';
+			    
+			    var imgDiv = document.createElement('div');
+			    imgDiv.className = 'img';
+			    
+			    var img = document.createElement('img');
+			//     img.src = 'k.png';
+			    img.src = 'http://cfile181.uf.daum.net/image/250649365602043421936D';
+			    img.setAttribute('width', '73');
+			    img.setAttribute('height', '70');
+			    
+			    var desc = document.createElement('div');
+			    desc.className = 'desc';
+			    
+			    var ellipsis = document.createElement('div');
+			    ellipsis.className = 'ellipsis';
+			    ellipsis.appendChild(document.createTextNode("샘성전자"));
+			    
+			    var jibun = document.createElement('div');
+			    jibun.className = 'jibun ellipsis';
+			    jibun.appendChild(document.createTextNode("(우) 63309 (지번) 영평동 2181"));
+			    
+			    var div = document.createElement('div');
+			    
+			    var at = document.createElement('a');
+			    at.setAttribute('href', "http://www.kakaocorp.com/main");
+			    at.setAttribute('target', "_blank");
+			    at.className = 'link';
+			    at.appendChild(document.createTextNode("홈페이지"));
+			    
+			    
+			    content.appendChild(info);
+			    info.appendChild(title);
+			    title.appendChild(closeBtn);
+			    info.appendChild(body);
+			    body.appendChild(imgDiv);
+			    imgDiv.appendChild(img);
+			    body.appendChild(desc);
+			    desc.appendChild(ellipsis);
+			    desc.appendChild(jibun);
+			    desc.appendChild(div);
+			    div.appendChild(at);
+			    
+			    
+			    closeBtn.onclick = function() {
+			      overlay.setMap(null);
+			    };
+			
+			    overlay.setContent(content);
+			
+			    daum.maps.event.addListener(marker, 'click', function() {
+			      overlay.setMap(map);
+			    });
+			  });
+	    });
+	  });
+  
+});
     
     
   </script>
