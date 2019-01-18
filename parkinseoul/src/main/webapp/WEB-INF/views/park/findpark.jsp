@@ -83,7 +83,7 @@
       content: '<div>텃밭</div>', 
 	      latlng: new daum.maps.LatLng(33.451393, 126.570738)
 	  }
-	];
+  ];
 
     positions.forEach(function(pos) {
       var marker = new daum.maps.Marker({
@@ -141,13 +141,10 @@
       at.appendChild(document.createTextNode("홈페이지"));
       
       
-      
       content.appendChild(info);
       info.appendChild(title);
       title.appendChild(closeBtn);
       info.appendChild(body);
-//       body.appendChild(img);
-
       body.appendChild(imgDiv);
       imgDiv.appendChild(img);
       body.appendChild(desc);
@@ -157,11 +154,9 @@
       div.appendChild(at);
       
       
-
       closeBtn.onclick = function() {
         overlay.setMap(null);
       };
-//       content.appendChild(closeBtn);
 
       overlay.setContent(content);
 
@@ -170,36 +165,8 @@
       });
 
     });
-
-    /* 아래와 같이도 할 수 있습니다 */
-    /*
-     for (var i = 0; i < positions.length; i ++) {
-     // 마커를 생성합니다
-     var marker = new daum.maps.Marker({
-     map: map, // 마커를 표시할 지도
-     position: positions[i].latlng // 마커의 위치
-     });
-
-     // 마커에 표시할 인포윈도우를 생성합니다 
-     var infowindow = new daum.maps.InfoWindow({
-     content: positions[i].content // 인포윈도우에 표시할 내용
-     });
-
-     // 마커에 이벤트를 등록하는 함수 만들고 즉시 호출하여 클로저를 만듭니다
-     // 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
-     (function(marker, infowindow) {
-     // 마커에 mouseover 이벤트를 등록하고 마우스 오버 시 인포윈도우를 표시합니다 
-     daum.maps.event.addListener(marker, 'mouseover', function() {
-     infowindow.open(map, marker);
-     });
-
-     // 마커에 mouseout 이벤트를 등록하고 마우스 아웃 시 인포윈도우를 닫습니다
-     daum.maps.event.addListener(marker, 'mouseout', function() {
-     infowindow.close();
-     });
-     })(marker, infowindow);
-     }
-     */
+    
+    
   </script>
 </body>
 </html>
