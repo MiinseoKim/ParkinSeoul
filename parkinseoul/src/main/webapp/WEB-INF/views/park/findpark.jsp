@@ -32,7 +32,26 @@
     .desc .jibun {font-size: 11px;color: #888;margin-top: -2px;}
     .info .img {position: absolute;top: 6px;left: 5px;width: 73px;height: 71px;border: 1px solid #ddd;color: #888;overflow: hidden;}
     .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
-    .info .link {color: #5085BB;}</style>
+    .info .link {color: #5085BB;}
+    
+    .close {position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;background: url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
+    .title {padding: 5px 0 0 10px;height: 30px;background: #eee;border-bottom: 1px solid #ddd;font-size: 18px;font-weight: bold;}
+    
+    .overlay {
+    position:absolute;
+    left: -50px;
+    top:0;
+    width:100px;
+    height: 100px;
+    background: #fff;
+    border:1px solid #ccc;
+    border-radius: 5px;
+    padding:5px;
+    font-size:12px;
+    text-align: center;
+    white-space: pre;
+    word-wrap: break-word;
+    }
   </style>
 </head>
 <body>
@@ -50,19 +69,15 @@
 	//마커를 표시할 위치와 내용을 가지고 있는 객체 배열입니다 
 	var positions = [
 	  {
-	      content: '<div>카카오</div>', 
 	      latlng: new daum.maps.LatLng(33.450705, 126.570677)
 	  },
 	  {
-	      content: '<div>생태연못</div>', 
 	      latlng: new daum.maps.LatLng(33.450936, 126.569477)
 	  },
 	  {
-	      content: '<div>텃밭</div>', 
 	      latlng: new daum.maps.LatLng(33.450879, 126.569940)
 	  },
 	  {
-	      content: '<div>근린공원</div>',
 	      latlng: new daum.maps.LatLng(33.451393, 126.570738)
 	  }
 	];
@@ -72,6 +87,23 @@
         map: map, 
         position: pos.latlng
       });
+      
+      var customOverlay = new daum.maps.CustomOverlay({
+        position: pos.latlng
+      });
+      
+      var content = document.createElement('div');
+      content.className = 'overlay';
+      content.innerHTML = '파크 :D';
+      
+      var closeBtn = document.createElement('button');
+      closeBtn.src = "close.png";
+//       closeBtn.className = 'close';
+      closeBtn.onclick = function() { customOverlay.setMap(null); };
+      content.appendChild(closeBtn);
+      
+      customOverlay.setContent(content);
+      customOverlay.setMap(map);
       
       
     });
