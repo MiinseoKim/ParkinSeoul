@@ -1,13 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
- <footer id="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12 text-center ">
-                    <img src="images/home/under.png" class="img-responsive inline" alt="">
-                </div>
-               
-               <!--  <div class="col-sm-6">
+	pageEncoding="UTF-8"%>
+<style>
+footer {
+	margin-top:100px;
+}
+</style>
+<footer id="footer">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12 text-center ">
+				<img src="images/home/under.png" class="img-responsive inline"
+					alt="">
+			</div>
+
+			<!--  <div class="col-sm-6">
                     <div class="contact-info bottom">
                         <h2>Contacts</h2>
                         <address>
@@ -32,13 +38,13 @@
                         </address>
                     </div>
                 </div> -->
-                
-                <div class="col-sm-12">
-                    <div class="copyright-text text-center">
-                        <p>&copy; Park in Seoul 2019. All Rights Reserved.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!--/#footer-->
+
+			<div class="col-sm-12">
+				<div class="copyright-text text-center">
+					<p>&copy; Park in Seoul 2019. All Rights Reserved.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+<!--/#footer-->
