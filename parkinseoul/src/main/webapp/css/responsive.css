@@ -10,7 +10,7 @@
         left: 0;
         background: #fff;
         padding: 10px 0;
-        width: 240px;
+        width: 130px;
         -webkit-box-shadow: none;
         box-shadow: none;
         display: none;
@@ -72,6 +72,9 @@
     }
     h1 {
         font-size: 25px;
+    }
+    .navbar-brand h1{
+        font-size:29px
     }
     #header .navbar-nav.navbar-right li {
         padding: 0;
@@ -184,6 +187,9 @@
     h1 {
         font-size: 22px;
     }
+    .navbar-brand h1{
+        font-size:26px
+    }
     h2 {
         font-size: 20px;
     }
@@ -196,6 +202,7 @@
     }
     .social-icons.pull-right {
         float: left !important;
+        padding-left:15px;
     }
     #header .navbar-inverse .navbar-toggle,
     #header .navbar-inverse .navbar-toggle:focus {
@@ -254,6 +261,7 @@
         top: 0;
         width: 100%;
         text-align: center;
+        margin-left:0px;
     }
     #home-slider .slider-hill {
         right: 50%;
