@@ -67,14 +67,25 @@
 	  }
 	];
 
+    positions.forEach(function(pos) {
+      var marker = new daum.maps.Marker({
+        map: map, 
+        position: pos.latlng
+      });
+      
+      
+    });
+
+	
+	
+	
+/* 
     for (var i = 0; i < positions.length; i++) {
-      // 마커를 생성합니다
       var marker = new daum.maps.Marker({
         map: map, // 마커를 표시할 지도
         position: positions[i].latlng
-      // 마커의 위치
       });
-
+      
       var infowindow = new daum.maps.InfoWindow({
         content: positions[i].content
       });
@@ -87,7 +98,10 @@
       daum.maps.event.addListener(marker, 'mouseout',
               makeOutListener(infowindow));
     }
-
+ */     
+     
+     
+     
     //인포윈도우를 표시하는 클로저를 만드는 함수입니다 
     function makeOverListener(map, marker, infowindow) {
       return function() {
