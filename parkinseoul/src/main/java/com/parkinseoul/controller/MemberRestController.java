@@ -1,6 +1,7 @@
 package com.parkinseoul.controller;
 
 import java.net.URLDecoder;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,8 +33,9 @@ public class MemberRestController {
   @RequestMapping(value = "idcheck.htm", method = RequestMethod.POST)
   public View idcheck(@RequestBody String id,Model model) {
     int count = 0;
-    //Map<Object, Object> map = new HashMap<Object, Object>();
+    System.out.println(id);
     String decode=URLDecoder.decode(id).substring(3);
+    System.out.println(decode);
     count = memberRestService.idcheck(decode);
     model.addAttribute("cnt", count);
    // map.put("cnt", count);

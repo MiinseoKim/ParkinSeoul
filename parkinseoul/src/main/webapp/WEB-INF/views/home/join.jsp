@@ -12,9 +12,6 @@
     $("#idcheck").click(function() {
       //userid 를 param.
       var memberid = $("#id").val();
-      var parameter = JSON.stringify({
-        'id' : memberid
-      });
       if (memberid.trim() == '') {
         $('#myModalLabel').text("아이디 중복체크");
         
@@ -33,7 +30,7 @@
         $.ajax({
           async: true,
           type: 'POST',
-          data: parameter,
+          data: {'id' : memberid},
           url: "idcheck.htm",
           dataType: "json",
           contentType: "application/json; charset=UTF-8",
