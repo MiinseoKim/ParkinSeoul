@@ -13,7 +13,7 @@ import com.parkinseoul.dto.MemberDto;
 
 
 public class LoginSuccessHandler implements AuthenticationSuccessHandler{
-  private static int TIME = 60 * 60; // 1시간
+  private static int TIME = 60 * 30; // 30
 
   
   @Autowired

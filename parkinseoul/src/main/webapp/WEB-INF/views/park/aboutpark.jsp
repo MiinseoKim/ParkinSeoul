@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="pname" value="${requestScope.parkname}"></c:set>
+<c:set var="park" value="${requestScope.dto}"></c:set>
 <section id="page-breadcrumb">
 	<div class="vertical-center sun">
 		<div class="container">
@@ -9,7 +9,7 @@
 				<div class="action">
 					<div class="col-sm-12">
 						<h1 class="title">About Park</h1>
-						<p>${pname}&nbsp; 상세 페이지 입니다.</p>
+						<p>${park.p_PARK }&nbsp;상세페이지입니다.</p>
 					</div>
 				</div>
 			</div>
@@ -23,355 +23,110 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-12 text-center">
-				<img src="images/aboutus/5.png" class="margin-bottom" alt="">
-				<h1 class="margin-bottom">${pname }</h1>
-				<p>
-					Pork chop duis eu pig, labore sausage venison. Shankle fugiat duis,
-					filet mignon tri-tip venison beef shank ribeye<br /> aliqua cillum
-					dolore sed do in.
-				</p>
+				<img src="${park.p_IMG }" class="margin-bottom" alt="">
+				<h1 class="margin-bottom">${park.p_PARK }<br> <br>
+					<button type="button" class="btn btn-default">
+						<i class="fa fa-heart"></i>&nbsp;12 LIKE
+					</button>
+				</h1>
+				<p>${park.p_LIST_CONTENT}</p>
 			</div>
 		</div>
 	</div>
 </section>
 <!--/#about-company-->
 
-<section id="services">
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-4 text-center padding wow fadeIn"
-				data-wow-duration="1000ms" data-wow-delay="300ms">
-				<div class="single-service">
-					<div class="wow scaleIn" data-wow-duration="500ms"
-						data-wow-delay="300ms">
-						<img src="images/home/icon1.png" alt="">
-					</div>
-					<h2>Incredibly Responsive</h2>
-					<p>Ground round tenderloin flank shank ribeye. Hamkevin
-						meatball swine. Cow shankle beef sirloin chicken ground round.</p>
-				</div>
-			</div>
-			<div class="col-sm-4 text-center padding wow fadeIn"
-				data-wow-duration="1000ms" data-wow-delay="600ms">
-				<div class="single-service">
-					<div class="wow scaleIn" data-wow-duration="500ms"
-						data-wow-delay="600ms">
-						<img src="images/home/icon2.png" alt="">
-					</div>
-					<h2>Superior Typography</h2>
-					<p>Hamburger ribeye drumstick turkey, strip steak sausage
-						ground round shank pastrami beef brisket pancetta venison.</p>
-				</div>
-			</div>
-			<div class="col-sm-4 text-center padding wow fadeIn"
-				data-wow-duration="1000ms" data-wow-delay="900ms">
-				<div class="single-service">
-					<div class="wow scaleIn" data-wow-duration="500ms"
-						data-wow-delay="900ms">
-						<img src="images/home/icon3.png" alt="">
-					</div>
-					<h2>Swift Page Builder</h2>
-					<p>Venison tongue, salami corned beef ball tip meatloaf bacon.
-						Fatback pork belly bresaola tenderloin bone pork kevin shankle.</p>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-<!--/#services-->
 
-<section id="action">
-	<div class="vertical-center">
-		<div class="container">
-			<div class="row">
-				<div class="action count">
-					<div class="col-sm-3 text-center wow bounceIn"
-						data-wow-duration="1000ms" data-wow-delay="300ms">
-						<h1 class="timer bold" data-to="7000" data-speed="3000"
-							data-from="0"></h1>
-						<h3>Happy Clients</h3>
-					</div>
-					<div class="col-sm-3 text-center wow bounceIn"
-						data-wow-duration="1000ms" data-wow-delay="300ms">
-						<h1 class="timer bold" data-to="12" data-speed="3000"
-							data-from="0"></h1>
-						<h3>Years in Business</h3>
-					</div>
-					<div class="col-sm-3 text-center wow bounceIn"
-						data-wow-duration="1000ms" data-wow-delay="300ms">
-						<h1 class="timer bold" data-to="432" data-speed="3000"
-							data-from="0"></h1>
-						<h3>Cups of Coffee</h3>
-					</div>
-					<div class="col-sm-3 text-center wow bounceIn"
-						data-wow-duration="1000ms" data-wow-delay="300ms">
-						<h1 class="timer bold" data-to="145" data-speed="3000"
-							data-from="0"></h1>
-						<h3>Total Project</h3>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-<!--/#action-->
 
-<section id="company-information" class="padding-top">
+
+<section id="company-information" class="padding-top" >
 	<div class="container">
 		<div class="row">
 			<div class="about-us">
-				<div class="col-sm-7 wow fadeInLeft" data-wow-duration="1000ms"
+				<div class="col-sm-12 wow fadeInLeft" data-wow-duration="1000ms"
 					data-wow-delay="300ms">
-					<h2 class="bold">About Triangle</h2>
+					<h2 class="bold" style="margin-left:42.5%;">기본 정보</h2>
 					<div class="row">
-						<div class="col-sm-5">
-							<img src="images/aboutus/6.png" class="img-responsive" alt="">
-						</div>
-						<div class="col-sm-7">
-							<h3 class="top-zero">Who we are</h3>
-							<p>
-								Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
-								diam nonummy nibh euismod tincidunt ut laoreet dolore magna
-								aliquam erat volutpat. <br> <br> Ut wisi enim ad minim
-								veniam, quis nostrud exerci tation ullamcorper suscipit lobortis
-								nisl ut aliquip ex ea commodo consequat.
-							</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-5 wow fadeInRight" data-wow-duration="1000ms"
-					data-wow-delay="300ms">
-					<div class="our-skills">
-						<h2 class="bold">Our Skills</h2>
-						<div class="single-skill">
-							<h3>Design</h3>
-							<div class="progress">
-								<div
-									class="progress-bar progress-bar-primary six-sec-ease-in-out"
-									role="progressbar" data-transition="35">35%</div>
-							</div>
-						</div>
-						<div class="single-skill">
-							<h3>HTML</h3>
-							<div class="progress">
-								<div
-									class="progress-bar progress-bar-primary six-sec-ease-in-out"
-									role="progressbar" data-transition="80">80%</div>
-							</div>
-						</div>
-						<div class="single-skill">
-							<h3>PHP</h3>
-							<div class="progress">
-								<div
-									class="progress-bar progress-bar-primary six-sec-ease-in-out"
-									role="progressbar" data-transition="60">60%</div>
-							</div>
+						<div class="col-sm-5 wow scaleIn" data-wow-duration="500ms"
+							data-wow-delay="600ms">
+							<img src="${park.guidance }" class="img-responsive" alt="">
+						</div>						
+						<div class="col-sm-7">							
+							<h5 class="top-zero">면적</h5>
+							<p>${park.area }</p><br>
+								<h5 class="top-zero">개원일</h5>
+								<p>${park.open_dt }</p><br>
+								<h5 class="top-zero">주요 시설</h5>
+								<p>${park.main_equip }</p><br>
+								<h5 class="top-zero">주요 식물</h5>
+								 <p>${park.main_plants }</p>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+		<br> <br> <br> <br> <br>
+		<div class="row">
+			<div class="about-us">
+				<div class="col-sm-12 wow fadeInLeft" data-wow-duration="1000ms"
+					data-wow-delay="300ms">
+					<h2 class="bold">공원 찾기</h2>
+					<div class="row">
+						<div class="col-sm-7">
+							<h4 class="top-zero">주소</h4>
+							<p>
+								${park.p_ADDR }<br>${park.p_ADMINTEL }<br><a href="${park.template_url }"></a>
+							</p>
+							<br>
+							<h4 class="top-zero">오시는 길</h4>
+							<p>${park.visit_road }</p>
+							<br>
+							<h4 class="top-zero">이용 안내</h4>
+							<p>${park.use_reffer}</p>
+						</div>
+						<div class="col-sm-5 wow scaleIn" id="map"></div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
+
 </section>
 <!--/#company-information-->
+<style>
+#map{
+width: 41%;
+ height: 430px;
+}
+</style>
 
-<section id="team">
-	<div class="container">
-		<div class="row">
-			<h1 class="title text-center wow fadeInDown"
-				data-wow-duration="500ms" data-wow-delay="300ms">Meet the Team</h1>
-			<p class="text-center wow fadeInDown" data-wow-duration="400ms"
-				data-wow-delay="400ms">
-				Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <br>
-				Ut enim ad minim veniam, quis nostrud
-			</p>
-			<div id="team-carousel" class="carousel slide wow fadeIn"
-				data-ride="carousel" data-wow-duration="400ms"
-				data-wow-delay="400ms">
-				<!-- Indicators -->
-				<ol class="carousel-indicators visible-xs">
-					<li data-target="#team-carousel" data-slide-to="0" class="active"></li>
-					<li data-target="#team-carousel" data-slide-to="1"></li>
-				</ol>
-				<!-- Wrapper for slides -->
-				<div class="carousel-inner">
-					<div class="item active">
-						<div class="col-sm-3 col-xs-6">
-							<div class="team-single-wrapper">
-								<div class="team-single">
-									<div class="person-thumb">
-										<img src="images/aboutus/1.jpg" class="img-responsive" alt="">
-									</div>
-									<div class="social-profile">
-										<ul class="nav nav-pills">
-											<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-											<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-											<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="person-info">
-									<h2>John Doe</h2>
-									<p>CEO &amp; Developer</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-3 col-xs-6">
-							<div class="team-single-wrapper">
-								<div class="team-single">
-									<div class="person-thumb">
-										<img src="images/aboutus/2.jpg" class="img-responsive" alt="">
-									</div>
-									<div class="social-profile">
-										<ul class="nav nav-pills">
-											<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-											<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-											<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="person-info">
-									<h2>John Doe</h2>
-									<p>CEO &amp; Developer</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-3 col-xs-6">
-							<div class="team-single-wrapper">
-								<div class="team-single">
-									<div class="person-thumb">
-										<img src="images/aboutus/3.jpg" class="img-responsive" alt="">
-									</div>
-									<div class="social-profile">
-										<ul class="nav nav-pills">
-											<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-											<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-											<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="person-info">
-									<h2>John Doe</h2>
-									<p>CEO &amp; Developer</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-3 col-xs-6">
-							<div class="team-single-wrapper">
-								<div class="team-single">
-									<div class="person-thumb">
-										<img src="images/aboutus/1.jpg" class="img-responsive" alt="">
-									</div>
-									<div class="social-profile">
-										<ul class="nav nav-pills">
-											<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-											<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-											<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="person-info">
-									<h2>John Doe</h2>
-									<p>CEO &amp; Developer</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="item">
-						<div class="col-sm-3 col-xs-6">
-							<div class="team-single-wrapper">
-								<div class="team-single">
-									<div class="person-thumb">
-										<img src="images/aboutus/4.jpg" class="img-responsive" alt="">
-									</div>
-									<div class="social-profile">
-										<ul class="nav nav-pills">
-											<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-											<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-											<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="person-info">
-									<h2>John Doe</h2>
-									<p>CEO &amp; Developer</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-3 col-xs-6">
-							<div class="team-single-wrapper">
-								<div class="team-single">
-									<div class="person-thumb">
-										<img src="images/aboutus/3.jpg" class="img-responsive" alt="">
-									</div>
-									<div class="social-profile">
-										<ul class="nav nav-pills">
-											<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-											<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-											<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="person-info">
-									<h2>John Doe</h2>
-									<p>CEO &amp; Developer</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-3 col-xs-6">
-							<div class="team-single-wrapper">
-								<div class="team-single">
-									<div class="person-thumb">
-										<img src="images/aboutus/2.jpg" class="img-responsive" alt="">
-									</div>
-									<div class="social-profile">
-										<ul class="nav nav-pills">
-											<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-											<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-											<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="person-info">
-									<h2>John Doe</h2>
-									<p>CEO &amp; Developer</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-3 col-xs-6">
-							<div class="team-single-wrapper">
-								<div class="team-single">
-									<div class="person-thumb">
-										<img src="images/aboutus/1.jpg" class="img-responsive" alt="">
-									</div>
-									<div class="social-profile">
-										<ul class="nav nav-pills">
-											<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-											<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-											<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="person-info">
-									<h2>John Doe</h2>
-									<p>CEO &amp; Developer</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<!-- Controls -->
-				<a class="left team-carousel-control hidden-xs"
-					href="#team-carousel" data-slide="prev">left</a> <a
-					class="right team-carousel-control hidden-xs" href="#team-carousel"
-					data-slide="next">right</a>
-			</div>
-		</div>
-	</div>
-</section>
-<!--/#team-->
-
+<script type="text/javascript"
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d9e23a5363a7bc0c5284bc04e7e8dd07"></script>
 <script type="text/javascript">
-console.log(${pname});
+var longitude=${park.longitude};
+var latitude=${park.latitude};
+console.log(longitude, latitude);
+  var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+  mapOption = {
+    center: new daum.maps.LatLng(${park.latitude}, ${park.longitude}), // 지도의 중심좌표
+    level: 3
+  // 지도의 확대 레벨
+  };
+
+  var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+  //마커를 표시할 위치와 내용을 가지고 있는 객체 배열입니다 
+  var positions = [{
+    latlng: new daum.maps.LatLng(${park.latitude}, ${park.longitude})
+  }];
+  
+  positions.forEach(function(pos) {
+    var marker = new daum.maps.Marker({
+      map: map,
+      position: pos.latlng
+    });
+
+    
+
+  });
 </script>

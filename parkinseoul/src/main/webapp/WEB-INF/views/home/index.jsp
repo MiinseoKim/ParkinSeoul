@@ -1,24 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="se" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="se"
+	uri="http://www.springframework.org/security/tags"%>
 <script type="text/javascript">
-$(document).ready(function(){
-  $('#test').click(function(){
-    $.ajax({
-      type: 'GET',
-      url: "tes/test1.htm",
-      dataType: 'text',
-      success: function() {
-         alert("dd"); 
-       
-      },
-      error: function(error) {
-        console.log("error : " + JSON.stringify(error));
-      }
-    });
-  });
-});
+  $(document).ready(function() {
+    $('#test').click(function() {
+      $.ajax({
+        type: 'GET',
+        url: "tes/test1.htm",
+        dataType: 'text',
+        success: function() {
+          alert("dd");
 
+        },
+        error: function(error) {
+          console.log("error : " + JSON.stringify(error));
+        }
+      });
+    });
+    
+  });
 </script>
 
 <section id="home-slider">
@@ -28,10 +29,10 @@ $(document).ready(function(){
 				<h1>오늘 공원 어디가지?</h1>
 				<p>서울시에 있는 공원 정보를 한눈에 확인하세요!</p>
 				<!-- Spring security가 제공하는 SPEL :jsp에서 사용할 수 있는 script언어 -->
-        <se:authorize access="isAnonymous()">
-				<a href="join.htm" class="btn btn-common">SIGN UP</a>&nbsp; <a
-					href="login.htm" class="btn btn-common">SIGN IN</a>
-				<!-- 	&nbsp; <a id="test" class="btn btn-common">test</a> -->
+				<se:authorize access="isAnonymous()">
+					<a href="join.htm" class="btn btn-common">SIGN UP</a>&nbsp; <a
+						href="login.htm" class="btn btn-common">SIGN IN</a>
+					<!-- 	&nbsp; <a id="test" class="btn btn-common">test</a> -->
 				</se:authorize>
 			</div>
 			<img src="images/home/slider/hill.png" class="slider-hill"
@@ -54,14 +55,8 @@ $(document).ready(function(){
 	<div class="container">
 		<div class="row">
 			<h1>날씨 정보, 인기 공원 순위, 인기글 순위 들어갈 곳(contents)</h1>
-			<br> <br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
+			<br> <br> <br> <br> <br>
+			<br> <br> <br> <br>
 
 
 			<div class="col-sm-4 text-center padding wow fadeIn"

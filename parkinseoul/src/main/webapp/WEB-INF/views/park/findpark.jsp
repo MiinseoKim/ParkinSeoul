@@ -7,7 +7,7 @@
 				<div class="action">
 					<div class="col-sm-12">
 						<h1 class="title">Find Park</h1>
-						<p>각종 공원 정보를 공유하는 자유 게시판 입니다.</p>
+						<p>서울시 공원을 찾아보세요!</p>
 					</div>
 				</div>
 			</div>
@@ -33,9 +33,9 @@
   .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
   .info .link {color: #5085BB;}
 </style>
+
   
-  
-  <div id="map" style="width:100%;height:550px;"></div><br><br><br>
+  <div id="map" style="width:100%;height:700px;"></div><br><br><br><br>
   
   <script>
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
