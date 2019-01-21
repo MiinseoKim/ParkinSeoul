@@ -101,11 +101,12 @@
 <link href="css/map.css" rel="stylesheet">
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d9e23a5363a7bc0c5284bc04e7e8dd07"></script>
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script type="text/javascript">
 var longitude=${park.longitude};
 var latitude=${park.latitude};
 console.log(longitude, latitude);
-$(function(){
+
   var mapContainer = document.getElementById('detailmap'), // 지도를 표시할 div
   mapOption = {
     center: new daum.maps.LatLng(${park.latitude}, ${park.longitude}), // 지도의 중심좌표
@@ -166,7 +167,7 @@ $(function(){
   var div = document.createElement('div');
   
   var at = document.createElement('a');
-  //at.setAttribute('href', "#");
+  at.setAttribute('id', "navi");
   at.setAttribute('onclick', 'navi()');
   at.appendChild(document.createTextNode("찾아 가기"));
   
@@ -199,16 +200,6 @@ $(function(){
   }); 
   
   
-  function navi(){
-    Kakao.Navi.start({
-      name: "${park.p_PARK }",
-      x: ${park.longitude}, 
-      y: ${park.latitude},
-      coordType: 'wgs84'
-      });
-    
-  }
-  
   $("#likebtn").click(function(){
     if('${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}'!=""){
       $.ajax({
@@ -226,8 +217,20 @@ $(function(){
           console.log("error : " + JSON.stringify(error));
         }
       });
+    }else{
+      alert("로그인 후 이용 가능합니다.");
     }
   });
   
-});
+ Kakao.init('d9e23a5363a7bc0c5284bc04e7e8dd07');
+
+function navi(){
+  Kakao.Navi.start({
+    name: "${park.p_PARK }",
+    x: ${park.longitude}, 
+    y: ${park.latitude},
+    coordType: 'wgs84'
+    });
+  
+}
 </script>

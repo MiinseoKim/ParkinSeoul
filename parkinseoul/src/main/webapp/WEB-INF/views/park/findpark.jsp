@@ -113,15 +113,23 @@
         jibun.className = 'jibun ellipsis';
         jibun.appendChild(document.createTextNode(addr));
 
-        /* 
+        
         var div = document.createElement('div');
         
-        var at = document.createElement('a');
-        at.setAttribute('href', "http://www.kakaocorp.com/main");
-        at.setAttribute('target', "_blank");
-        at.className = 'link';
-        at.appendChild(document.createTextNode("홈페이지"));
-         */
+        var form = document.createElement('form');
+        form.setAttribute('action', "park.htm");
+        form.setAttribute('method', "post");
+       
+        var at= document.createElement('input');
+        at.setAttribute('type',"submit");
+        at.setAttribute('value',' 공원 상세 정보 보기 ');
+     //   at.appendChild(document.createTextNode("상세 정보 보기"));
+        
+        var input =document.createElement('input');
+        input.setAttribute('type',"hidden");
+        input.setAttribute('name','P_PARK');
+        input.setAttribute('value',label);
+         
 
         content.appendChild(info);
         info.appendChild(title);
@@ -132,8 +140,10 @@
         body.appendChild(desc);
         desc.appendChild(ellipsis);
         desc.appendChild(jibun);
-        // 		    desc.appendChild(div);
-        // 		    div.appendChild(at);
+        desc.appendChild(div);
+        div.appendChild(form);
+        form.appendChild(at);
+        form.appendChild(input);
 
         closeBtn.onclick = function() {
           overlay.setMap(null);
