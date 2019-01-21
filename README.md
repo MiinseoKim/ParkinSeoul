@@ -1,1 +1,2 @@
-# parkinseoul
+# ParkinSeoul
+- 서울시공공데이터를 사용해서 서울시에 있는 공원을 찾아주는 웹프로젝트
