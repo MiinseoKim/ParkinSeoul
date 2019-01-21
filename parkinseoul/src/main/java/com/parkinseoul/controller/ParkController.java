@@ -6,25 +6,63 @@ import javax.servlet.http.HttpServletRequest;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.View;
 import com.parkinseoul.dto.ParkDto;
+import com.parkinseoul.service.HeartService;
+import com.parkinseoul.service.MemberRestService;
 
 
 @Controller
 public class ParkController {
 
+  @Autowired
+  HeartService heartService;
+  
+  @Autowired
+  private View jsonview;
+  
+  @Autowired
+  MemberRestService memberService;
+  
+  public ParkDto dto =new ParkDto();
   
   @RequestMapping(value = "findpark.htm")
   public String list() {
       return "park.findpark";
   }
   
+  @RequestMapping(value = "likeproc.htm", method = RequestMethod.POST)
+  public View like(HttpServletRequest request,Model model) {
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    System.out.println(authentication.getName());
+    System.out.println(dto.getP_PARK());
+    dto.setId(authentication.getName());
+    if(heartService.checkLiked(dto)>0) {      
+      heartService.deleteLike(dto);
+      dto.setLikecount(dto.getLikecount()-1);
+      model.addAttribute("updown", "minus");
+    }else {
+      heartService.insertLike(dto);
+      dto.setLikecount(dto.getLikecount()+1);
+      model.addAttribute("updown", "plus");
+    }
+    model.addAttribute("cnt", dto.getLikecount());
+    request.setAttribute("dto", dto);
+    return jsonview;
+  }
+  
+  
   @RequestMapping(value = "park.htm", method = RequestMethod.POST)
-  public String detailproc(@RequestParam String P_PARK, HttpServletRequest request) throws Exception {
-    ParkDto dto =new ParkDto();
+  public String detail(@RequestParam String P_PARK, HttpServletRequest request) throws Exception {
+    request.setCharacterEncoding("UTF-8");
     JSONParser parser=new JSONParser();
     JSONObject obj=(JSONObject)parser.parse(readUrl());
     JSONObject json =  (JSONObject) obj.get("SearchParkInfoService");
@@ -52,6 +90,7 @@ public class ParkController {
           dto.setLongitude((String)entity.get("LONGITUDE"));
           dto.setLatitude((String)entity.get("LATITUDE"));
           dto.setTemplate_url((String)entity.get("TEMPLATE_URL"));
+          dto.setLikecount(heartService.getLikeCnt(dto.getP_IDX()));
           break;
         }          
     }
@@ -59,6 +98,7 @@ public class ParkController {
     request.setAttribute("dto", dto);
       return "park.aboutpark";
   }
+  
   
   public String readUrl() throws Exception{
     BufferedInputStream reader = null;
@@ -78,4 +118,10 @@ public class ParkController {
             reader.close();
     }
   }
+  
+  
+  
+  
+  
+  
 }

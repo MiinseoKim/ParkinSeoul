@@ -23,6 +23,10 @@ public class ParkDto {
   private String template_url;      //홈페이지 바로가기
   
   
+  /*like 기능용 변수 */
+  private int likecount;           //해당 공원 좋아요수
+  private String id;               //회원 id
+  
   
   public int getP_IDX() {
     return P_IDX;
@@ -145,6 +149,20 @@ public class ParkDto {
     this.template_url = template_url;
   }
   
+  /*for likes*/
+  public int getLikecount() {
+    return likecount;
+  }
+  public void setLikecount(int likecount) {
+    this.likecount = likecount;
+  }
+  public String getId() {
+    return id;
+  }
+  public void setId(String id) {
+    this.id = id;
+  }
+  
   @Override
   public String toString() {
     return "ParkDto [P_IDX=" + P_IDX + ", P_PARK=" + P_PARK + ", P_LIST_CONTENT=" + P_LIST_CONTENT
@@ -153,9 +171,10 @@ public class ParkDto {
         + ", use_reffer=" + use_reffer + ", P_IMG=" + P_IMG + ", P_ZONE=" + P_ZONE + ", P_ADDR="
         + P_ADDR + ", P_NAME=" + P_NAME + ", P_ADMINTEL=" + P_ADMINTEL + ", G_LONGITUDE="
         + G_LONGITUDE + ", G_LATITUDE=" + G_LATITUDE + ", longitude=" + longitude + ", latitude="
-        + latitude + ", template_url=" + template_url + "]";
+        + latitude + ", template_url=" + template_url + ", likecount=" + likecount + ", id=" + id
+        + "]";
   }
   
   
-
+  
 }

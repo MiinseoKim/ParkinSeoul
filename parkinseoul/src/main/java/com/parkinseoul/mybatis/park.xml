@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.parkinseoul.dao.ParkDao">
+  
+  
+  <select id="getLikeCnt" resultType="int">
+    select count(*)
+    from hearts
+    where park_num = #{P_IDX}
+  </select>
+  
+  <select id="checkLiked" parameterType="parkDto" resultType="int">
+     select count(*)
+     from hearts
+     where park_num= #{P_IDX} and id=#{id}
+  </select>
+  
+  <insert id="insertLike" parameterType="parkDto" >
+     insert into hearts (park_num,park_name, id, name,seq)
+     select #{P_IDX},#{P_PARK},id,name, seq
+     from user
+     where id=#{id};
+
+  </insert>
+  
+  <delete id="deleteLike" parameterType="parkDto">
+  delete
+  from hearts
+  where park_num=#{P_IDX} and id=#{id}  
+  </delete>
+  
+  </mapper>
