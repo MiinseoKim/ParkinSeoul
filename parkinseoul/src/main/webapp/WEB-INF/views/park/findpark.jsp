@@ -47,6 +47,9 @@
 	var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 	
   var clickedOverlay = null;
+	
+  var cLat;
+  var cLng;
   
 //  P_PARK
 //  LATITUDE    x
@@ -157,9 +160,15 @@
 	        }
 		      overlay.setMap(map);
 			    clickedOverlay = overlay;
-		    }); 
+			    
+			    var pos = marker.getPosition();
+			    map.panTo(pos);
+	        
+		    });
+			 
 		  });
     });
+    
   });
   
 </script>
