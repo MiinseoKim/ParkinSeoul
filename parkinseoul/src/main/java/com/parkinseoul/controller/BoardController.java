@@ -1,13 +1,13 @@
 package com.parkinseoul.controller;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.View;
 
-@Controller
+@RestController
 public class BoardController {
 
-  @RequestMapping(value = "boardlist.htm")
-  public String list() {
-    return "board.list";
-  }
+  @Autowired
+  private View jsonview;
+  
 }

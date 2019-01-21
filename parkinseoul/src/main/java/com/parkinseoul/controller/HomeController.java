@@ -76,6 +76,9 @@ public class HomeController {
     return "home.login";
   }
 
-
+  @RequestMapping(value = "boardlist.htm")
+  public String list() {
+    return "board.list";
+  }
 
 }

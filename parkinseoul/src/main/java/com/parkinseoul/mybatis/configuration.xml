@@ -8,6 +8,7 @@
 	<typeAliases>
 		<typeAlias type="com.parkinseoul.dto.MemberDto" alias="memberDto" />
 		<typeAlias type="com.parkinseoul.dto.MemberDto" alias="parkDto" />
+		<typeAlias type="com.parkinseoul.dto.MemberDto" alias="boardkDto" />
 		<!-- 
 		<typeAlias type="com.bit.board.admin.model.BoardListDto" alias="boardListDto" />
 		<typeAlias type="com.bit.board.admin.model.BoardTypeDto" alias="boardTypeDto" />
