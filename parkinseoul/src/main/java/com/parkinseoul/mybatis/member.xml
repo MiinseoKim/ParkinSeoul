@@ -44,11 +44,11 @@
     from user
     where id = #{id}  
   </select>
-  
+
   <update id="updateMember" parameterType="memberDto">
     update user 
-		set name = #{name}, password = #{password}
-		where seq = #{seq}
+		set name = #{name}, pwd = #{password}
+		where id = #{id}
   </update>
   
   
