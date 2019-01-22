@@ -5,7 +5,6 @@ public class BoardDto {
   private String b_title;
   private String b_comment;
   private int b_view;
-  private int b_up;
   private String b_regdate;
   private String id;
   private String name;
@@ -37,12 +36,6 @@ public class BoardDto {
   public void setB_view(int b_view) {
     this.b_view = b_view;
   }
-  public int getB_up() {
-    return b_up;
-  }
-  public void setB_up(int b_up) {
-    this.b_up = b_up;
-  }
   public String getB_regdate() {
     return b_regdate;
   }
@@ -70,7 +63,7 @@ public class BoardDto {
   @Override
   public String toString() {
     return "BoardDto [b_no=" + b_no + ", b_title=" + b_title + ", b_comment=" + b_comment
-        + ", b_view=" + b_view + ", b_up=" + b_up + ", b_regdate=" + b_regdate + ", id=" + id
+        + ", b_view=" + b_view +  ", b_regdate=" + b_regdate + ", id=" + id
         + ", name=" + name + ", seq=" + seq + "]";
   }
   

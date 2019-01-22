@@ -35,7 +35,9 @@
     <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 <!--   sweetalet -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  
+  <!-- table -->
+  <link href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"  rel="stylesheet">
+<script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 
     <!--[if lt IE 9]>
       <script src="js/html5shiv.js"></script>

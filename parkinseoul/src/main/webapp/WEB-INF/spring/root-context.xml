@@ -18,6 +18,9 @@
       <list>
         <value>classpath:com/parkinseoul/mybatis/member.xml</value>
         <value>classpath:com/parkinseoul/mybatis/park.xml</value>
+        <value>classpath:com/parkinseoul/mybatis/board.xml</value>
+        <value>classpath:com/parkinseoul/mybatis/boardup.xml</value>
+        <value>classpath:com/parkinseoul/mybatis/reply.xml</value>
       </list>
     </property>
   </bean>

@@ -39,13 +39,13 @@
 		</div>
 
 		<div class="col-md-3 col-sm-12" style="margin: 70px; float: left;">
-			<div class="contact-form bottom">
+			<div class=" bottom">
 				<h2 align="left">회원 정보 수정</h2>
-				<form id="main-contact-form" name="contact-form" method="post"
-					action="sendemail.php">
+				<form id="form" name="contact-form" method="post"
+					action="javascript:submit()">
 					<div class="form-group" style="width: 300px">
 						<input type="text" id="name" style="width: 210px; float: left;"
-							class="form-control" required="required" placeholder="닉네임">
+							class="form-control" required="required" placeholder="닉네임" value="${sessionScope.dto.name}">
 						<input type="button" id="idcheck" class="check"
 							style="font-size: 13px;" value="중복확인">
 					</div>
@@ -54,7 +54,7 @@
 							required="required" placeholder="비밀번호">
 					</div>
 					<div class="form-group" style="width: 300px">
-						<input type="email" name="email" class="form-control"
+						<input type="password" name="email" class="form-control"
 							required="required" placeholder="비밀번호확인">
 					</div>
 					<div class="form-group" style="width: 300px">
@@ -73,7 +73,6 @@
 	//idck 버튼을 클릭했을 때 
 	$("#idcheck").click(function() {
 	  var name = $("#name").val();
-	  
 	  if (name.trim() == '') {
 	    swal(
            'Oops...',
@@ -112,6 +111,11 @@
       });
 	  }
 	});
+	
+	function submit(){
+	  var name = $("#name").val();
+    console.log(name);
+	}
   
 </script>
 

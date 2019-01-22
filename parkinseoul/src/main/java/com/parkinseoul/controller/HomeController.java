@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.View;
+import com.parkinseoul.service.BoardRestService;
 import com.parkinseoul.service.MemberRestService;
 import com.parkinseoul.dto.MemberDto;
 
@@ -29,7 +30,10 @@ public class HomeController {
   private View jsonview;
 
   @Autowired
-  private MemberRestService service;
+  private MemberRestService mservice;
+  
+  @Autowired
+  private BoardRestService bservice;
 
 
   @RequestMapping(value = "/home.htm")
@@ -43,7 +47,7 @@ public class HomeController {
     System.out.println(id.substring(3));
     String decode=URLDecoder.decode(id).substring(3);
     if (!decode.equals("")) {
-      MemberDto member = service.infoMember(decode);
+      MemberDto member = mservice.infoMember(decode);
       System.out.println("getuser end");
       model.addAttribute("dto", member);
 

@@ -40,7 +40,7 @@
 		<authentication-provider>
 			<jdbc-user-service data-source-ref="ds"
 				users-by-username-query="select id, pwd,name, 1 enabled from user where id = ?;"
-				authorities-by-username-query="select u.id, a.authority from authorities a join user u on a.seq = u.auth_seq where id = ?;" />
+				authorities-by-username-query="select u.id, a.authority from authorities a join user u on a.a_seq = u.a_seq where id = ?;" />
 			<password-encoder ref="bcryptPasswordEncoder" />
 		</authentication-provider>
 	</authentication-manager>
