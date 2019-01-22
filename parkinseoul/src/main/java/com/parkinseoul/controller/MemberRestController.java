@@ -29,6 +29,11 @@ public class MemberRestController {
     memberRestService.insertMember(memberDto);
   }
   
+  @RequestMapping(value = "memberrest.htm", method = RequestMethod.PUT)
+  public void update(@RequestBody MemberDto memberDto) {
+    System.out.println("Hello update");
+    memberRestService.updateMember(memberDto);
+  }
 
   @RequestMapping(value = "idcheck.htm", method = RequestMethod.POST)
   public View idcheck(@RequestBody String id,Model model) {
@@ -42,16 +47,24 @@ public class MemberRestController {
 
     return jsonview;
   }
+  
+  @RequestMapping(value = "namecheck.htm", method = RequestMethod.POST)
+  public View namecheck(@RequestBody String name, Model model) {
+    int count = 0;
+    System.out.println(name);
+//    String decode = URLDecoder.decode(name).substring(3);
+//    System.out.println("decode " + decode);
+    count = memberRestService.namecheck(name);
+    System.out.println(count);
+    model.addAttribute("cnt", count);
+    
+    return jsonview;
+  }
 
   
   
   
   
-  
-  @RequestMapping(value = "memberrest.htm", method = RequestMethod.PUT)
-  public void update(@RequestBody MemberDto memberDto) {
-    memberRestService.updateMember(memberDto);
-  }
   
   @RequestMapping(value = "search.htm", method = RequestMethod.POST)
   public String search(@RequestBody String id) {
