@@ -29,6 +29,12 @@ public class MemberRestServiceImpl implements MemberRestService {
     System.out.println("insert done");
   }
 
+  @Transactional
+  @Override
+  public void updateMember(MemberDto memberDto) {
+    memberDto.setSeq(sqlSession.getMapper(MemberDao.class).getSeq(memberDto));
+    // sqlSession.getMapper(MemberDao.class).updateMember(memberDto);
+  }
 
   @Override
   public MemberDto infoMember(String id) {
@@ -42,6 +48,14 @@ public class MemberRestServiceImpl implements MemberRestService {
   public int idcheck(String id) {
     int count = 0;
     count = sqlSession.getMapper(MemberDao.class).idcheck(id);
+    return count;
+  }
+  
+  @Override
+  public int namecheck(String name) {
+    int count = 0;
+    count = sqlSession.getMapper(MemberDao.class).namecheck(name);
+//    System.out.println("service " + count);
     return count;
   }
   
@@ -68,13 +82,6 @@ public class MemberRestServiceImpl implements MemberRestService {
     }
 
     return array.toString();
-  }
-
-  @Transactional
-  @Override
-  public void updateMember(MemberDto memberDto) {
-    memberDto.setSeq(sqlSession.getMapper(MemberDao.class).getSeq(memberDto));
-    // sqlSession.getMapper(MemberDao.class).updateMember(memberDto);
   }
 
 

@@ -13,6 +13,8 @@ public interface MemberDao {
   
   int idcheck(String id);
   
+  int namecheck(String name);
+  
   MemberDto infoMember(String id);
   
   

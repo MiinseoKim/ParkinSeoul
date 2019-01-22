@@ -16,6 +16,8 @@ public interface MemberRestService {
   void deleteMember(MemberDto memberDto);
   
   int idcheck(String id);
+  
+  int namecheck(String name);
 
   String searchMember(MemberDto memberDto);
 

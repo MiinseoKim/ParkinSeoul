@@ -34,11 +34,22 @@
     WHERE id = #{id}
   </select>
   
+	<select id="namecheck" resultType="int">
+    SELECT COUNT(*) FROM user
+    WHERE name = #{name}
+  </select>
+  
   <select id="infoMember" parameterType="String" resultType="memberDto">
     select *
     from user
     where id = #{id}  
   </select>
+  
+  <update id="updateMember" parameterType="memberDto">
+    update user 
+		set name = #{name}, password = #{password}
+		where seq = #{seq}
+  </update>
   
   
   

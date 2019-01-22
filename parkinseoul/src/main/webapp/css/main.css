@@ -482,10 +482,29 @@ ul.sub-menu {
   -webkit-box-shadow: none;
   box-shadow: none;
   height: 40px;
+  width: ;
+}
+
+.name-form {
+  border: 1px solid #eaeaea;
+  font-weight: 300;
+  outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  height: 40px;
+  width: 200px;
 }
 
 .form-control:hover, 
 .form-control:focus{
+  border-color: #4fcccd;
+  outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.name-form:hover, 
+.name-form:focus{
   border-color: #4fcccd;
   outline: none;
   -webkit-box-shadow: none;
@@ -502,6 +521,22 @@ ul.sub-menu {
   text-transform: uppercase;
   border-radius: 3px;
   margin-top: 5px;
+  border-bottom: 3px solid #2f9697;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  padding: 10px;
+}
+
+.check {
+  width: 200;
+  height: 41px;
+  background-color: #4fcccd;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  border-radius: 3px;
   border-bottom: 3px solid #2f9697;
   -webkit-box-shadow: none;
   box-shadow: none;
@@ -2593,6 +2628,13 @@ span.stButton_gradient,
 }
 
 #subscribe .form-control {
+  background-color: transparent;
+  height: 52px;
+  color: #fff;
+  border:2px solid #00aeef;
+}
+
+#subscribe .name-form {
   background-color: transparent;
   height: 52px;
   color: #fff;
