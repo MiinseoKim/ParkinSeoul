@@ -11,6 +11,8 @@ public interface MemberDao {
   
   void insertUsers(MemberDto memberDto);
   
+  void updateMember(MemberDto memberDto);
+  
   int idcheck(String id);
   
   int namecheck(String name);
