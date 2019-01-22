@@ -22,7 +22,7 @@
 					<h3>Categories</h3>
 					<ul class="nav navbar-stacked">
 						<li><a href="#">회원 정보 수정</a></li>
-						<li><a href="#">좋아요 리스트</a></li>
+						<li><a href="hearts.htm">좋아요 리스트</a></li>
 					</ul>
 				</div>
 			</div>
@@ -45,20 +45,21 @@
 					action="sendemail.php">
 					<div class="form-group" style="width: 300px">
 						<input type="text" id="name" style="width: 210px; float: left;"
-							class="form-control" required="required" placeholder="닉네임">
+            class="form-control" required="required" 
+            placeholder="닉네임" value="${sessionScope.dto.name}">
 						<input type="button" id="idcheck" class="check"
 							style="font-size: 13px;" value="중복확인">
 					</div>
 					<div class="form-group" style="width: 300px">
-						<input type="password" name="email" class="form-control"
+						<input type="password" id="password" name="pass" class="form-control"
 							required="required" placeholder="비밀번호">
 					</div>
 					<div class="form-group" style="width: 300px">
-						<input type="email" name="email" class="form-control"
+						<input type="password" id="pwd" name="re-pass" class="form-control"
 							required="required" placeholder="비밀번호확인">
 					</div>
 					<div class="form-group" style="width: 300px">
-						<input type="submit" name="submit" class="btn btn-submit"
+						<input type="button" id="update" class="btn btn-submit"
 							value="수 정">
 					</div>
 				</form>
@@ -68,6 +69,38 @@
 </div>
 
 <script>
+var id = ('${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}');
+
+	$('#update').click(function(){
+	 
+	   var name = $("#name").val();
+	   var password = $("#password").val();
+	   
+	   var parameter = JSON.stringify({
+	     'id' : id,
+	     'name' : name,
+	     'password' : password
+	   });
+   
+   $.ajax({
+     type : 'PUT',
+     url : 'memberrest.htm',
+     data : parameter,
+     contentType : 'application/json;charset=UTF-8',
+     success : function() {
+       swal(
+             'ParkinSeoul',
+             '회원 정보가 수정되었습니다.',
+             'success'
+            )
+       $('#name').val('');
+       $('#password').val('');
+       $('#pwd').val('');
+     }
+   });
+ }); 
+
+
 	//아이디 체크여부 확인 (아이디 중복일 경우 = 0 , 중복이 아닐경우 = 1 )
 	var idck = 0;
 	//idck 버튼을 클릭했을 때 
@@ -98,7 +131,7 @@
                 )
           } else {
             swal({
-              title: "좋아요!",
+              title: "멋진 닉네임이네요!",
               text: "사용가능한 닉네임 입니다.",
               icon: "success",
             });

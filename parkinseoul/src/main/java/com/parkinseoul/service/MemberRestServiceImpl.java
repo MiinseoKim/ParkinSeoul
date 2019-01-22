@@ -32,8 +32,9 @@ public class MemberRestServiceImpl implements MemberRestService {
   @Transactional
   @Override
   public void updateMember(MemberDto memberDto) {
-    memberDto.setSeq(sqlSession.getMapper(MemberDao.class).getSeq(memberDto));
-    // sqlSession.getMapper(MemberDao.class).updateMember(memberDto);
+    System.out.println("service " + memberDto);
+    memberDto.setPassword(encoder.encode(memberDto.getPassword()));
+    sqlSession.getMapper(MemberDao.class).updateMember(memberDto);
   }
 
   @Override
