@@ -103,7 +103,6 @@ $(document).ready(function() {
   $("#likebtn").click(function(){
     if('${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}'==""){
       alert("로그인 후 이용 가능합니다.");
-      console.log("like");
     }else{      
       $.ajax({
         url:'likeproc.htm',
@@ -135,7 +134,6 @@ function navi(){
     });
   
 }
-
 </script>
 <section id="page-breadcrumb">
 	<div class="vertical-center sun">

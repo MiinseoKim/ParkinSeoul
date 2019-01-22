@@ -21,10 +21,10 @@ padding:5px;
 </style>
 <script type="text/javascript">
   console.log('${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}');
-  var api = "http://openAPI.seoul.go.kr:8088/4e495075516d6969373872544e4a6a/json/SearchParkInfoService/1/200/";
+  var parkapi = "http://openAPI.seoul.go.kr:8088/4e495075516d6969373872544e4a6a/json/SearchParkInfoService/1/200/";
   var label = new Array();
   var plant= new Array();
-  $.getJSON(api, function(data) {
+  $.getJSON(parkapi, function(data) {
     park = data.SearchParkInfoService.row;
     console.log(data.SearchParkInfoService.list_total_count);    
     $(park).each(function(key, element) {

@@ -75,10 +75,10 @@ public class HomeController {
     System.out.println("login end");
     return "home.login";
   }
-
+  
   @RequestMapping(value = "boardlist.htm")
   public String list() {
     return "board.list";
-  }
+  }  
 
 }
