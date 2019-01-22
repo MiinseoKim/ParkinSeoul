@@ -13,18 +13,11 @@
       //userid 를 param.
       var memberid = $("#id").val();
       if (memberid.trim() == '') {
-        $('#myModalLabel').text("아이디 중복체크");
-        
-        var str = '<div class="well row text-center">';
-        str += '<label class="col-xs-12 control-label">아이디를 입력해주세요.</label>'
-        str += '</div>';
-        $('.modal-body').html(str);
-        
-        str = '<button type="button" class="btn btn-default" id="modalClose">Close</button>';
-        
-        $('.modal-footer').html(str);
-        
-        $('#myModal').modal();
+        swal(
+                'Oops...',
+                '아이디를 입력해주세요.',
+                'error'
+               )
         
       } else { 
         $.ajax({
@@ -36,34 +29,18 @@
           contentType: "application/json; charset=UTF-8",
           success: function(data) {
             if (data.cnt > 0) {
-              $('#myModalLabel').text("아이디 중복체크");
-              
-              var str = '<div class="well row text-center">';
-              str += '<label class="col-xs-12 control-label">아이디가 존재합니다. 다른 아이디를 입력해주세요.</label>'
-              str += '</div>';
-              $('.modal-body').html(str);
-              
-              str = '<button type="button" class="btn btn-default" id="modalClose">Close</button>';
-              
-              $('.modal-footer').html(str);
-              
-              $('#myModal').modal();
-              $("#userid").focus();
+              swal(
+                      'Oops...',
+                      '닉네임이 존재합니다. 다른 닉네임을 입력해주세요.',
+                      'error'
+                    )
 
             } else {
-              $('#myModalLabel').text("아이디 중복체크");
-              
-              var str = '<div class="well row text-center">';
-              str += '<label class="col-xs-12 control-label">사용 가능한 아이디입니다.</label>'
-              str += '</div>';
-              $('.modal-body').html(str);
-              
-              str = '<button type="button" class="btn btn-default" id="modalClose">Close</button>';
-              
-              $('.modal-footer').html(str);
-              
-              $('#myModal').modal();
-              $("#userid").focus();
+              swal({
+                title: "좋아요!",
+                text: "사용가능한 닉네임 입니다.",
+                icon: "success",
+              });
               idck = 1;
             }
           },
@@ -81,28 +58,50 @@
       var name = $("#name").val();
       var password = $("#password").val();
       
-      var parameter = JSON.stringify({
-        'id' : id,
-        'name' : name,
-        'password' : password
-      });
+      if(id=="" || name==""|| password==""){
+        swal(
+                'Oops...',
+                '정보를 모두 입력해주세요.',
+                'error'
+              )
+      }else if(password!=$("#password2").val()){
+        swal(
+                'Oops...',
+                '비밀번호를 확인해주세요.',
+                'error'
+              )
+      }else if(idck==0){
+        swal(
+                'Oops...',
+                'ID 중복 확인을 해주세요.',
+                'error'
+              )
+      }else{
+        var parameter = JSON.stringify({
+          'id' : id,
+          'name' : name,
+          'password' : password
+        });
+        
+        console.log(parameter);
+        
+        $.ajax({
+          url:'memberrest.htm',
+          data: parameter,
+          contentType: 'application/json;charset=UTF-8',
+          type: 'POST',
+          success: function() {
+            console.log("success");
+            alert("Welcome to ParkinSeoul!");
+            location.href='home.htm'
+          },
+          error : function(error) {
+            console.log("no good "+JSON.stringify(error));
+          }
+        }); 
+      }
       
-      console.log(parameter);
-      
-      $.ajax({
-        url:'memberrest.htm',
-        data: parameter,
-        contentType: 'application/json;charset=UTF-8',
-        type: 'POST',
-        success: function() {
-          console.log("success");
-          alert("Welcome to ParkinSeoul!");
-          location.href='home.htm'
-        },
-        error : function(error) {
-          console.log("no good "+JSON.stringify(error));
-        }
-      });       
+            
     });
     
     
@@ -137,7 +136,7 @@
 						<label for="id"><i
 							class="zmdi zmdi-account material-icons-name"></i></label> <input
 							type="text" name="id" id="id" placeholder="Your ID" />
-						<button id="idcheck" type="button" class="btn btn-common">중복확인</button>
+						<button id="idcheck" type="button" class="btn btn-common">중복 확인</button>
 					</div>
 					<div class="form-group">
 						<label for="name"><i
@@ -174,28 +173,3 @@
 	</div><br><br><br>
 </section>
 
-
-
-
-
-<!-- modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-	aria-labelledby="myModalLabel">
-	<div class="modal-lg modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal"
-					aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-				<h4 class="modal-title" id="myModalLabel">Modal title</h4>
-			</div>
-			<div class="modal-body">...</div>
-			<!-- 
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div> -->
-		</div>
-	</div>
-</div>
