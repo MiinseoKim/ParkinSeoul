@@ -45,6 +45,11 @@ public class HeartService {
     sqlSession.getMapper(ParkDao.class).mydeletelike(likeDto);
   }
   
+  public void deleteuser(String id) {
+    System.out.println("serv "+id);
+    sqlSession.getMapper(ParkDao.class).deleteuser(id);
+  }
+  
   public List<LikeDto> myLikelist(String id) {
     List<LikeDto> list = sqlSession.getMapper(ParkDao.class).myLikelist(id);
     return list;

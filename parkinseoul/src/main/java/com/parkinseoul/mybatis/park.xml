@@ -39,6 +39,11 @@
 	  where park_num=#{park_num} and id=#{id}  
   </delete>
   
+  <delete id="deleteuser" parameterType="String">
+    delete from user 
+    where id = #{id}
+  </delete>
+  
   <select id="myLikelist" parameterType="hashmap" resultType="likeDto">
 	  select * from HEARTS
 	  WHERE id = #{id}

@@ -185,11 +185,7 @@
       
     });
     
-    /* 
-    if(!check(re2, email, "이메일 형식으로 입력해주세요.")){
-      return false;
-    }
-     */
+    
     function check(re, what, message) {
       if(re.test(what)) {
           return true;
@@ -199,7 +195,6 @@
               message,
               'error'
             )
-      //return false;
     }
     
     

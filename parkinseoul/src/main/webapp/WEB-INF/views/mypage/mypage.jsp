@@ -29,15 +29,12 @@
 		</div>
 
 
-		<div class="text-center col-md-4 col-sm-6">
-			<br>
-			<br>
+		<div class="text-center col-md-4 col-sm-6"><br><br>
 			<p>
 				<img width="350" height="300" src="images/home/clients.png"
 					style="margin: auto; float: unset;" class="img-responsive">
 			</p>
 		</div>
-
 		<div class="col-md-3 col-sm-12" style="margin: 70px; float: left;">
 			<div class="contact-form bottom">
 				<h2 align="left">회원 정보 수정</h2>
@@ -55,7 +52,7 @@
 							required="required" placeholder="비밀번호">
 					</div>
 					<div class="form-group" style="width: 300px">
-						<input type="password" id="pwd" name="re-pass" class="form-control"
+						<input type="password" id="password2" name="re-pass" class="form-control"
 							required="required" placeholder="비밀번호확인">
 					</div>
 					<div class="form-group" style="width: 300px">
@@ -66,15 +63,27 @@
 			</div>
 		</div>
 	</div>
+	<button id="delete" type="button" class="btn btn-xs btn-danger" style="float: right;margin-top: 200px;">회원탈퇴</button>
 </div>
 
 <script>
 var id = ('${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}');
+var re = /^[a-zA-Z0-9]{8,16}$/; // 아이디와 패스워드가 적합한지 검사할 정규식
+var re2 = /^[ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9]{2,16}$/; // 닉네임 패스워드가 적합한지 검사할 정규식
 
 	$('#update').click(function(){
 	 
 	   var name = $("#name").val();
 	   var password = $("#password").val();
+	   var password2 = $("#password2").val();
+	   
+	   if(!check(re, password, "비밀번호는 8~16자의 영문 대소문자와 숫자로만 입력해주세요")){
+       return false;
+     }
+     
+     if(!check(re, password2, "비밀번호는 8~16자의 영문 대소문자와 숫자로만 입력해주세요")){
+       return false;
+     }
 	   
 	   var parameter = JSON.stringify({
 	     'id' : id,
@@ -95,10 +104,21 @@ var id = ('${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.usern
             )
        $('#name').val('');
        $('#password').val('');
-       $('#pwd').val('');
+       $('#password2').val('');
      }
    });
  }); 
+ 
+	function check(re, what, message) {
+    if(re.test(what)) {
+        return true;
+    }
+    swal(
+            'Oops...',
+            message,
+            'error'
+          )
+  }
 
 
 	//아이디 체크여부 확인 (아이디 중복일 경우 = 0 , 중복이 아닐경우 = 1 )
@@ -106,6 +126,10 @@ var id = ('${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.usern
 	//idck 버튼을 클릭했을 때 
 	$("#idcheck").click(function() {
 	  var name = $("#name").val();
+	  
+	  if(!check(re2, name, "닉네임은 2~16자의 한글 영문 대소문자와 숫자로만 입력해주세요")){
+      return false;
+    }
 	  
 	  if (name.trim() == '') {
 	    swal(
@@ -145,6 +169,35 @@ var id = ('${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.usern
       });
 	  }
 	});
+	
+	$('#delete').click(function() {
+	  
+	  swal({
+	    title: "정말 회원 탈퇴 하시겠습니까?",
+	    icon: "warning",
+	    buttons: true,
+	    dangerMode: true,
+	  })
+	  .then((willDelete) => {
+	    if (willDelete) {
+	     $.ajax({
+	          url: 'deleteuser.htm',
+	          type: 'POST',
+	          data: id,
+	          success: function(data) {
+	            $.ajax({
+	              type:'post',
+	              url:'logout',
+	              success:function(){
+	                location.href="home.htm"
+	              }
+	            });
+	          }
+        });
+	    }
+    });
+    
+  });
   
 </script>
 

@@ -15,6 +15,8 @@ public interface ParkDao {
   
   int mydeletelike(LikeDto likeDto);
   
+  int deleteuser(String id);
+  
   List<LikeDto> myLikelist(String id);
   
 }
