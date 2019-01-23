@@ -19,7 +19,7 @@ public class MypageController {
   
   @Autowired
   HeartService heartService;
-
+  
   @RequestMapping(value = "me.htm")
   public String me() {
     return "mypage.mypage";
@@ -29,14 +29,23 @@ public class MypageController {
   public String hearts(Model model) {
     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     String id = authentication.getName();
-    
     List<LikeDto> list = heartService.myLikelist(id);
-    System.out.println("controller " + list);
-    
     model.addAttribute("list", list);
     
     return "mypage.hearts";
   }
 
+  @RequestMapping(value = "mydeletelike.htm")
+  public String mydeletelike(int park_num) {
+    LikeDto dto = new LikeDto();
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    dto.setId(authentication.getName());
+    dto.setPark_num(park_num);
+    
+    heartService.mydeletelike(dto);
+    
+    return "mypage.hearts";
+    
+  }
 
 }

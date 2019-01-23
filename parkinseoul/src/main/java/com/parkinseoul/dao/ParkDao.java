@@ -13,6 +13,8 @@ public interface ParkDao {
   
   int deleteLike(ParkDto dto);
   
+  int mydeletelike(LikeDto likeDto);
+  
   List<LikeDto> myLikelist(String id);
   
 }

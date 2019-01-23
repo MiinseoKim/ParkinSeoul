@@ -18,42 +18,69 @@
 <!--/#page-breadcrumb-->
 
 <div class="container text-center">
-  <div class="row">
-    <div class="col-md-3 col-sm-5"><br><br>
-      <div class="sidebar blog-sidebar">
-        <div class="sidebar-item categories">
-          <h3>Categories</h3>
-          <ul class="nav navbar-stacked">
-            <li><a href="me.htm">회원 정보 수정</a></li>
-            <li><a href="#">좋아요 리스트</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-<!--     </div> -->
-<!--     </div> -->
-    
-<div class="col-md-5 col-sm-5">
-<table class="table table-hover" style="width: 500px; margin: 45px;">
-  <thead>
-    <tr>
-      <th scope="col">공원 이름</th>
-      <th scope="col">좋아요</th>
-    </tr>
-  </thead>
-  <c:forEach var="l" items="${list}">
-    <tr>
-      <td>${l.park_name}</td>
-      <td>
-        <button type="button" class="btn btn-default" id="likebtn"><i class="fa fa-heart"></i>
-          좋아요
-        </button>
-      </td>
-    </tr>
-  </c:forEach>
-</table>
+	<div class="row">
+		<div class="col-md-3 col-sm-5">
+			<br>
+			<br>
+			<div class="sidebar blog-sidebar">
+				<div class="sidebar-item categories">
+					<h3>Categories</h3>
+					<ul class="nav navbar-stacked">
+						<li><a href="me.htm">회원 정보 수정</a></li>
+						<li><a href="#">좋아요 리스트</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-5 col-sm-5">
+			<table class="table table-hover" style="width: 500px; margin: 45px;">
+				<thead>
+					<tr>
+						<th scope="col">공원 이름</th>
+						<th scope="col">좋아요</th>
+					</tr>
+				</thead>
+				<c:forEach var="l" items="${list}">
+					<tr>
+						<td>${l.park_name}</td>
+						<td style="display: none;">${l.park_num}</td>
+						<td>
+							<button type="button" class="btn btn-default deletelike" id="likebtn">
+								<i class="fa fa-heart"></i>&nbsp;취소
+							</button>
+						</td>
+					</tr>
+				</c:forEach>
+			</table>
+		</div>
+	</div>
 </div>
-    </div>
-    </div>
-    
-    
+
+
+<script>
+
+
+$('.deletelike').click(function(){
+	var pno = $(this).parent().parent().children().eq(1).text();
+	var tr = $(this).parent().parent();
+	
+  $.ajax({
+    url:'mydeletelike.htm',
+    type:'POST',
+    data:{'park_num':pno},
+    success: function(data) {
+      tr.remove();
+    }
+  });
+  
+  
+});
+
+
+</script>
+
+
+
+
+

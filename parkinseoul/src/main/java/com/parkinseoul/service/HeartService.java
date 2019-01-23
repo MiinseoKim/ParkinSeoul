@@ -40,6 +40,11 @@ public class HeartService {
     sqlSession.getMapper(ParkDao.class).deleteLike(parkDto);
   }
   
+  @Transactional
+  public void mydeletelike(LikeDto likeDto) {
+    sqlSession.getMapper(ParkDao.class).mydeletelike(likeDto);
+  }
+  
   public List<LikeDto> myLikelist(String id) {
     List<LikeDto> list = sqlSession.getMapper(ParkDao.class).myLikelist(id);
     return list;

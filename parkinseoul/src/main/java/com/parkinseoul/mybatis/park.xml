@@ -28,13 +28,19 @@
   </insert>
   
   <delete id="deleteLike" parameterType="parkDto">
-  delete
-  from hearts
-  where park_num=#{P_IDX} and id=#{id}  
+	  delete
+	  from hearts
+	  where park_num=#{P_IDX} and id=#{id}  
   </delete>
   
-  <select id="myLikelist" parameterType="hashmap" resultType="LikeDto">
-	  select park_name from HEARTS
+  <delete id="mydeletelike" parameterType="likeDto">
+	  delete
+	  from hearts
+	  where park_num=#{park_num} and id=#{id}  
+  </delete>
+  
+  <select id="myLikelist" parameterType="hashmap" resultType="likeDto">
+	  select * from HEARTS
 	  WHERE id = #{id}
   </select>
   
