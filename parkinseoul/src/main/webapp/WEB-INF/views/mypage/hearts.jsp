@@ -41,12 +41,12 @@
 			</div>
 		</div>
 
-		<div class="table100 ver4 m-b-110 col-md-9 col-sm-7">
+		<div class="table100 ver4 m-b-110 col-md-9 col-sm-7" style="margin-top: 11px;width: 60%;margin-left: 30px;">
 			<div class="table100-head">
 				<table>
 					<thead>
-						<tr class="row100 head">
-							<th class="cell100 column1">공원 이름</th>
+						<tr class="row100 head" style="font-weight: initial;">
+							<th class="cell100 column5">공원 이름</th>
 							<th class="cell100 column2">좋아요</th>
 						</tr>
 					</thead>
@@ -57,7 +57,7 @@
 					<tbody>
 						<c:forEach var="l" items="${list}">
 							<tr class="row100 body">
-								<td class="cell100 column1">${l.park_name}</td>
+								<td class="cell100 column1"><a href=park.htm?P_PARK=${l.park_name}>${l.park_name}</a></td>
 								<td style="display: none;">${l.park_num}</td>
 								<td>
 									<button type="button" class="btn btn-default deletelike"
@@ -71,8 +71,10 @@
 				</table>
 			</div>
 		</div>
+	</div>
+</div>
 
-		<script>
+<script>
   $('.deletelike').click(function() {
     var pno = $(this).parent().parent().children().eq(1).text();
     var tr = $(this).parent().parent();

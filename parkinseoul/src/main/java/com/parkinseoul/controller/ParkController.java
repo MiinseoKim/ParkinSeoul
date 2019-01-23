@@ -60,7 +60,7 @@ public class ParkController {
   }
   
   
-  @RequestMapping(value = "park.htm", method = RequestMethod.POST)
+  @RequestMapping(value = "park.htm")
   public String detail(@RequestParam String P_PARK, HttpServletRequest request) throws Exception {
     request.setCharacterEncoding("UTF-8");
     JSONParser parser=new JSONParser();
