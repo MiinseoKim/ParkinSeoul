@@ -3,6 +3,7 @@ package com.parkinseoul.controller;
 
 
 import java.net.URLDecoder;
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.View;
-import com.parkinseoul.service.BoardService;
+import com.parkinseoul.service.HeartService;
+import com.parkinseoul.service.BoardRestService;
 import com.parkinseoul.service.MemberRestService;
+import com.parkinseoul.dto.LikeDto;
 import com.parkinseoul.dto.MemberDto;
 
 
@@ -30,14 +33,24 @@ public class HomeController {
   private View jsonview;
 
   @Autowired
+  private MemberRestService service;
+  
+  @Autowired
+  HeartService heartService;
+
   private MemberRestService mservice;
   
   @Autowired
-  private BoardService bservice;
+  private BoardRestService bservice;
 
 
   @RequestMapping(value = "/home.htm")
-  public String home() {
+  public String home(Model model) {
+    List<LikeDto> like = heartService.likerank();
+    System.out.println(like.get(0).getCount());
+    System.out.println(like.get(0).getPark_name());
+    model.addAttribute("like", like);
+    
     return "home.index";
   }
 
@@ -80,5 +93,9 @@ public class HomeController {
     return "home.login";
   }
   
+  @RequestMapping(value = "boardlist.htm")
+  public String list() {
+    return "board.list";
+  }  
 
 }

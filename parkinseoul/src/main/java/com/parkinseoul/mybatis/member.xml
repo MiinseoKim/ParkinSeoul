@@ -50,7 +50,6 @@
   </update>
   
   
-  
 <!--  <insert id="insertMember" parameterType="memberDto">
      insert into member (seq, name)
      values (#{seq}, #{name}) 

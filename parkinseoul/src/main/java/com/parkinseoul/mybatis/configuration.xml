@@ -7,6 +7,7 @@
 
 	<typeAliases>
 		<typeAlias type="com.parkinseoul.dto.MemberDto" alias="memberDto" />
+		<typeAlias type="com.parkinseoul.dto.LikeDto" alias="likeDto" />
 		<typeAlias type="com.parkinseoul.dto.ParkDto" alias="parkDto" />
 		<typeAlias type="com.parkinseoul.dto.BoardDto" alias="boardDto" />
 		<typeAlias type="com.parkinseoul.dto.BoardupDto" alias="boardupDto" />

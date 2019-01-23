@@ -6,19 +6,26 @@
 	 
 <script type="text/javascript">
   $(document).ready(function() {
+    var re = /^[a-zA-Z0-9]{8,16}$/; // 아이디와 패스워드가 적합한지 검사할 정규식
+    var re2 = /^[ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9]{2,16}$/; // 닉네임 패스워드가 적합한지 검사할 정규식
+    
     //아이디 체크여부 확인 (아이디 중복일 경우 = 0 , 중복이 아닐경우 = 1 )
     var idck = 0;
     //idck 버튼을 클릭했을 때 
     $("#idcheck").click(function() {
       //userid 를 param.
       var memberid = $("#id").val();
+      
+      if(!check(re, memberid, "아이디는 8~16자의 영문 대소문자와 숫자로만 입력해주세요")){
+        return false;
+      }
+      
       if (memberid.trim() == '') {
         swal(
                 'Oops...',
                 '아이디를 입력해주세요.',
                 'error'
-               )
-        
+             )
       } else { 
         $.ajax({
           async: true,
@@ -31,14 +38,14 @@
             if (data.cnt > 0) {
               swal(
                       'Oops...',
-                      '닉네임이 존재합니다. 다른 닉네임을 입력해주세요.',
+                      '아이디가 이미 존재합니다. 다른 아이디를 입력해주세요.',
                       'error'
                     )
 
             } else {
               swal({
                 title: "좋아요!",
-                text: "사용가능한 닉네임 입니다.",
+                text: "사용가능한 아이디 입니다.",
                 icon: "success",
               });
               idck = 1;
@@ -52,11 +59,64 @@
       }
     });
     
+    //아이디 체크여부 확인 (아이디 중복일 경우 = 0 , 중복이 아닐경우 = 1 )
+    var nameck = 0;
+    //idck 버튼을 클릭했을 때 
+    $("#namecheck").click(function() {
+      var name = $("#name").val();
+      
+      if(!check(re2, name, "닉네임은 2~16자의 한글 영문 대소문자와 숫자로만 입력해주세요")){
+        return false;
+      }
+      
+      if (name.trim() == '') {
+        swal(
+             'Oops...',
+             '닉네임을 입력해주세요.',
+             'error'
+            )
+      } else { 
+        $.ajax({
+          async: true,
+          type: 'POST',
+          data: name,
+          url: "namecheck.htm",
+          dataType: "json",
+          contentType: "application/json; charset=UTF-8",
+          success: function(data) {
+//             console.log("hello ajax", data.cnt);
+            if (data.cnt > 0) {
+              swal(
+                    'Oops...',
+                    '닉네임이 존재합니다. 다른 닉네임을 입력해주세요.',
+                    'error'
+                  )
+            } else {
+              swal({
+                title: "멋진 닉네임이네요!",
+                text: "사용가능한 닉네임 입니다.",
+                icon: "success",
+              });
+              nameck = 1;
+            }
+          },
+          error: function(error) {
+
+            console.log("error : " + JSON.stringify(error));
+          }
+        });
+      }
+    });
+    
+    
     $("#insertBtn").click(function() {
 
       var id = $("#id").val();
       var name = $("#name").val();
       var password = $("#password").val();
+      var password2 = $("#password2").val();
+      
+      
       
       if(id=="" || name==""|| password==""){
         swal(
@@ -76,7 +136,22 @@
                 'ID 중복 확인을 해주세요.',
                 'error'
               )
+      }else if(nameck==0){
+        swal(
+                'Oops...',
+                '닉네임 중복 확인을 해주세요.',
+                'error'
+              )
       }else{
+        
+        if(!check(re, password, "비밀번호는 8~16자의 영문 대소문자와 숫자로만 입력해주세요")){
+          return false;
+        }
+        
+        if(!check(re, password2, "비밀번호는 8~16자의 영문 대소문자와 숫자로만 입력해주세요")){
+          return false;
+        }
+        
         var parameter = JSON.stringify({
           'id' : id,
           'name' : name,
@@ -91,9 +166,16 @@
           contentType: 'application/json;charset=UTF-8',
           type: 'POST',
           success: function() {
-            console.log("success");
-            alert("Welcome to ParkinSeoul!");
-            location.href='home.htm'
+            swal({
+              title: "Welcome to ParkinSeoul!",
+              button: true,
+              icon: "success",
+            })
+            .then((willDelete) => {
+              if (willDelete) {
+                location.href='home.htm'
+              }
+            });
           },
           error : function(error) {
             console.log("no good "+JSON.stringify(error));
@@ -101,8 +183,19 @@
         }); 
       }
       
-            
     });
+    
+    
+    function check(re, what, message) {
+      if(re.test(what)) {
+          return true;
+      }
+      swal(
+              'Oops...',
+              message,
+              'error'
+            )
+    }
     
     
   });
@@ -133,14 +226,16 @@
 				<h2 class="form-title">Sign up</h2>
 				<form class="register-form">
 					<div class="form-group">
-						<label for="id"><i class="zmdi zmdi-account material-icons-name"></i></label> 
-							<input type="text" name="id" id="id" placeholder="Your ID" />
-						<button id="idcheck" type="button" class="btn btn-common">중복 확인</button>
+						<label for="id"><i
+							class="zmdi zmdi-account material-icons-name"></i></label> <input
+							type="text" name="id" id="id" placeholder="Your ID" style="width: 200px;float: left;">
+						<button id="idcheck" type="button" class="check-submit">중복 확인</button>
 					</div>
 					<div class="form-group">
 						<label for="name"><i
 							class="zmdi zmdi-account material-icons-name"></i></label> <input
-							type="text" name="name" id="name" placeholder="Your Name" />
+							type="text" name="name" id="name" placeholder="Your Name" style="width: 200px;float: left;">
+							<button id="namecheck" type="button" class="name-submit">닉네임확인</button>
 					</div>
 					<div class="form-group">
 						<label for="pass"><i class="zmdi zmdi-lock"></i></label> <input

@@ -16,9 +16,7 @@
 </section>
 <div class="container text-center">
 	<div class="row">
-		<div class="col-md-3 col-sm-5">
-			<br>
-			<br>
+		<div class="col-md-3 col-sm-5"><br><br>
 			<div class="sidebar blog-sidebar">
 				<div class="sidebar-item categories">
 					<h3>Categories</h3>
@@ -31,14 +29,12 @@
 		</div>
 
 
-		<div class="text-center col-md-4 col-sm-6">
-			<br> <br>
+		<div class="text-center col-md-4 col-sm-6"><br><br>
 			<p>
 				<img width="350" height="300" src="images/home/clients.png"
 					style="margin: auto; float: unset;" class="img-responsive">
 			</p>
 		</div>
-
 		<div class="col-md-3 col-sm-12" style="margin: 70px; float: left;">
 			<div class="contact-form bottom">
 				<h2 align="left">회원 정보 수정</h2>
@@ -46,17 +42,18 @@
 					action="sendemail.php">
 					<div class="form-group" style="width: 300px">
 						<input type="text" id="name" style="width: 210px; float: left;"
-							class="form-control" required="required" placeholder="닉네임"
-							value="${sessionScope.dto.name}"> <input type="button"
-							id="idcheck" class="check" style="font-size: 13px;" value="중복확인">
+            class="form-control" required="required" 
+            placeholder="닉네임" value="${sessionScope.dto.name}">
+						<input type="button" id="idcheck" class="check"
+							style="font-size: 13px;" value="중복확인">
 					</div>
 					<div class="form-group" style="width: 300px">
-						<input type="password" id="password" name="pass"
-							class="form-control" required="required" placeholder="비밀번호">
+						<input type="password" id="password" name="pass" class="form-control"
+							required="required" placeholder="비밀번호">
 					</div>
 					<div class="form-group" style="width: 300px">
-						<input type="password" id="pwd" name="re-pass"
-							class="form-control" required="required" placeholder="비밀번호확인">
+						<input type="password" id="password2" name="re-pass" class="form-control"
+							required="required" placeholder="비밀번호확인">
 					</div>
 					<div class="form-group" style="width: 300px">
 						<input type="button" id="update" class="btn btn-submit"
@@ -66,54 +63,81 @@
 			</div>
 		</div>
 	</div>
+	<button id="delete" type="button" class="btn btn-xs btn-danger" style="float: right;margin-top: 200px;">회원탈퇴</button>
 </div>
 
 <script>
-  var id = ('${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}');
-  //아이디 체크여부 확인 (아이디 중복일 경우 = 0 , 중복이 아닐경우 = 1 )
-  var idck = 0;
-  $('#update').click(function() {
-    var name = $("#name").val();
-    var password = $("#password").val();
-    if("${sessionScope.dto.name}"==name){
-      idck=1;
+var id = ('${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}');
+var re = /^[a-zA-Z0-9]{8,16}$/; // 아이디와 패스워드가 적합한지 검사할 정규식
+var re2 = /^[ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9]{2,16}$/; // 닉네임 패스워드가 적합한지 검사할 정규식
+
+	$('#update').click(function(){
+	 
+	   var name = $("#name").val();
+	   var password = $("#password").val();
+	   var password2 = $("#password2").val();
+	   
+	   if(!check(re, password, "비밀번호는 8~16자의 영문 대소문자와 숫자로만 입력해주세요")){
+       return false;
+     }
+     
+     if(!check(re, password2, "비밀번호는 8~16자의 영문 대소문자와 숫자로만 입력해주세요")){
+       return false;
+     }
+	   
+	   var parameter = JSON.stringify({
+	     'id' : id,
+	     'name' : name,
+	     'password' : password
+	   });
+   
+   $.ajax({
+     type : 'PUT',
+     url : 'memberrest.htm',
+     data : parameter,
+     contentType : 'application/json;charset=UTF-8',
+     success : function() {
+       swal(
+             'ParkinSeoul',
+             '회원 정보가 수정되었습니다.',
+             'success'
+            )
+       $('#name').val('');
+       $('#password').val('');
+       $('#password2').val('');
+     }
+   });
+ }); 
+ 
+	function check(re, what, message) {
+    if(re.test(what)) {
+        return true;
     }
-    
-    if ($("#pwd").val() == "" || password == "" || name == "") {
-      swal('Oops...', '정보를 모두 입력해주세요.', 'error')
-    } else if (password != $("#pwd").val()) {
-      swal('Oops...', '비밀번호를 확인해주세요.', 'error')
-    } else if (idck == 0) {
-      swal('Oops...', 'ID 중복 확인을 해주세요.', 'error')
-    } else {
-      var parameter = JSON.stringify({
-        'id': id,
-        'name': name,
-        'password': password
-      });
+    swal(
+            'Oops...',
+            message,
+            'error'
+          )
+  }
 
-      $.ajax({
-        type: 'PUT',
-        url: 'memberrest.htm',
-        data: parameter,
-        contentType: 'application/json;charset=UTF-8',
-        success: function() {
-          swal('ParkinSeoul', '회원 정보가 수정되었습니다.', 'success')
-          $('#name').val('');
-          $('#password').val('');
-          $('#pwd').val('');
-        }
-      });
+
+	//아이디 체크여부 확인 (아이디 중복일 경우 = 0 , 중복이 아닐경우 = 1 )
+	var idck = 0;
+	//idck 버튼을 클릭했을 때 
+	$("#idcheck").click(function() {
+	  var name = $("#name").val();
+	  
+	  if(!check(re2, name, "닉네임은 2~16자의 한글 영문 대소문자와 숫자로만 입력해주세요")){
+      return false;
     }
-  });
-
-  //idck 버튼을 클릭했을 때 
-  $("#idcheck").click(function() {
-    var name = $("#name").val();
-
-    if (name.trim() == '') {
-      swal('Oops...', '아이디를 입력해주세요.', 'error')
-    } else {
+	  
+	  if (name.trim() == '') {
+	    swal(
+           'Oops...',
+           '아이디를 입력해주세요.',
+           'error'
+	        )
+	  } else { 
       $.ajax({
         async: true,
         type: 'POST',
@@ -122,9 +146,13 @@
         dataType: "json",
         contentType: "application/json; charset=UTF-8",
         success: function(data) {
-          //           console.log("hello ajax", data.cnt);
+//           console.log("hello ajax", data.cnt);
           if (data.cnt > 0) {
-            swal('Oops...', '닉네임이 존재합니다. 다른 닉네임을 입력해주세요.', 'error')
+            swal(
+                  'Oops...',
+                  '닉네임이 존재합니다. 다른 닉네임을 입력해주세요.',
+                  'error'
+                )
           } else {
             swal({
               title: "멋진 닉네임이네요!",
@@ -139,8 +167,38 @@
           console.log("error : " + JSON.stringify(error));
         }
       });
-    }
+	  }
+	});
+	
+	$('#delete').click(function() {
+	  
+	  swal({
+	    title: "정말 회원 탈퇴 하시겠습니까?",
+	    icon: "warning",
+	    buttons: true,
+	    dangerMode: true,
+	  })
+	  .then((willDelete) => {
+	    if (willDelete) {
+	     $.ajax({
+	          url: 'deleteuser.htm',
+	          type: 'POST',
+	          data: id,
+	          success: function(data) {
+	            $.ajax({
+	              type:'post',
+	              url:'logout',
+	              success:function(){
+	                location.href="home.htm"
+	              }
+	            });
+	          }
+        });
+	    }
+    });
+    
   });
+  
 </script>
 
 

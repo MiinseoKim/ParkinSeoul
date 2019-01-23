@@ -1,5 +1,7 @@
 package com.parkinseoul.dao;
 
+import java.util.List;
+import com.parkinseoul.dto.LikeDto;
 import com.parkinseoul.dto.ParkDto;
 
 public interface ParkDao {
@@ -10,4 +12,13 @@ public interface ParkDao {
   int insertLike(ParkDto dto);
   
   int deleteLike(ParkDto dto);
+  
+  int mydeletelike(LikeDto likeDto);
+  
+  int deleteuser(String id);
+  
+  List<LikeDto> myLikelist(String id);
+  
+  List<LikeDto> likerank();
+  
 }

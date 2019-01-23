@@ -28,9 +28,31 @@
   </insert>
   
   <delete id="deleteLike" parameterType="parkDto">
-  delete
-  from hearts
-  where park_num=#{P_IDX} and id=#{id}  
+	  delete
+	  from hearts
+	  where park_num=#{P_IDX} and id=#{id}  
   </delete>
+  
+  <delete id="mydeletelike" parameterType="likeDto">
+	  delete
+	  from hearts
+	  where park_num=#{park_num} and id=#{id}  
+  </delete>
+  
+  <delete id="deleteuser" parameterType="String">
+    delete from user 
+    where id = #{id}
+  </delete>
+  
+  <select id="myLikelist" parameterType="hashmap" resultType="likeDto">
+	  select * from HEARTS
+	  WHERE id = #{id}
+  </select>
+  
+  <select id="likerank" parameterType="hashmap" resultType="likeDto">
+	  select park_num, park_name, count(*) count from hearts 
+		group by park_num order by count desc
+		limit 5
+  </select>
   
   </mapper>
