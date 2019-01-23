@@ -62,7 +62,7 @@
 														<span><i class="fa fa-user"></i>Posted by&nbsp;<a>${a.name }</a></span>
 														<p>${a.r_content }</p>
 														<ul class="nav navbar-nav post-nav">
-															<li><a><i class="fa fa-clock-o"></i>${a.r_regdate }</a>
+															<li><a><i class="fa fa-clock-o"></i>${a.r_regdate }<img src="images/lightbox/close.png" width="auto" height="auto"></a>
 															</li>
 														</ul>
 													</div>
