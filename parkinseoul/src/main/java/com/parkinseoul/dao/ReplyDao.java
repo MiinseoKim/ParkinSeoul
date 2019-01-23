@@ -10,5 +10,5 @@ public interface ReplyDao {
   
   int writeReply(ReplyDto dto);
   
-  int deleteReply(int c_no);
+  int deleteReply(int r_no);
 }

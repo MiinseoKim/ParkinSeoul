@@ -15,12 +15,12 @@ public interface BoardDao {
   
   int editBoard(BoardDto dto);
   
-  int deleteBoard(BoardDto dto);
+  int deleteBoard(int b_no);
   
   int getViewCnt(int b_no);
   
   int viewPlus(int b_no);
   
-  
+  //int getArticleSeq()
   
 }

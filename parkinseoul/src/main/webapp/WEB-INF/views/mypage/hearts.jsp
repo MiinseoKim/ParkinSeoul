@@ -17,15 +17,19 @@
 <!--/#page-breadcrumb-->
 
 <div class="container text-center">
-  <div class="row">
-    <div class="col-md-3 col-sm-5"><br><br>
-      <div class="sidebar blog-sidebar">
-        <div class="sidebar-item categories">
-          <h3>Categories</h3>
-          <ul class="nav navbar-stacked">
-            <li><a href="me.htm">회원 정보 수정</a></li>
-            <li><a href="#">좋아요 리스트</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
+	<div class="row">
+		<div class="col-md-3 col-sm-5">
+			<br>
+			<br>
+			<div class="sidebar blog-sidebar">
+				<div class="sidebar-item categories">
+					<h3>Categories</h3>
+					<ul class="nav navbar-stacked">
+						<li><a href="me.htm">회원 정보 수정</a></li>
+						<li><a href="#">좋아요 리스트</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

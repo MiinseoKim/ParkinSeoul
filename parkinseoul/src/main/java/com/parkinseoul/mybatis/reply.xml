@@ -5,5 +5,23 @@
 
 <mapper namespace="com.parkinseoul.dao.ReplyDao">
 
+<select id="getReply" resultType="replyDto" parameterType="int">
+select r_no, r_content, DATE_FORMAT(r_regdate, '%Y-%m-%d %H:%i:%s') AS r_regdate, b_no,id,name,seq
+from reply
+where b_no=#{b_no}
+order by r_regdate desc
+</select>
 
+<insert id="writeReply" parameterType="replyDto">
+insert into reply (r_content,r_regdate,b_no,id,name,seq)
+select #{r_content},now(),#{b_no},id,name,seq
+from user
+where seq=#{seq}
+</insert>
+
+<delete id="deleteReply" parameterType="int">
+delete
+from reply
+where r_no=#{r_no}
+</delete>
 </mapper>

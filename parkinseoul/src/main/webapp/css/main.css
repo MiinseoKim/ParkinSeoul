@@ -1840,6 +1840,7 @@ Blog Details
 
 .single-blog.blog-details .post-bottom{
   margin-top: 55px;
+  margin-bottom: 55px;
 }
 
 .blog-share{
@@ -1891,7 +1892,7 @@ span.stButton_gradient,
 
 .post-comment{
   padding-left: 70px;
-  padding-top: 36px;
+  padding-top: 10px;
   border-top: 1px solid #f1e8dd;
 }
 
@@ -1903,7 +1904,7 @@ span.stButton_gradient,
 .post-comment .media-body{
   padding-top: 6px;
   border-bottom: 0;
-  padding-bottom: 50px;
+  padding-bottom: 0px;
 }
 
 .post-comment .media-body p{

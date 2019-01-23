@@ -39,14 +39,14 @@ ALTER TABLE `HEARTS`
 
 -- 게시판
 CREATE TABLE `BOARD` (
-  `b_no`      INT         NOT NULL COMMENT '글번호', -- 글번호
-  `b_title`   VARCHAR(20) NOT NULL COMMENT '제목', -- 제목
-  `b_content` VARCHAR(50) NOT NULL COMMENT '내용', -- 내용
-  `b_view`    INT         NOT NULL DEFAULT 0 COMMENT '조회수', -- 조회수
-  `b_regdate` DATETIME    NOT NULL COMMENT '작성일자', -- 작성일자
-  `ID`        VARCHAR(20) NOT NULL COMMENT '아이디', -- 아이디
-  `NAME`      VARCHAR(10) NOT NULL COMMENT '닉네임', -- 닉네임
-  `SEQ`       INT         NULL     COMMENT '회원번호' -- 회원번호
+  `b_no`      INT            NOT NULL COMMENT '글번호', -- 글번호
+  `b_title`   VARCHAR(20)    NOT NULL COMMENT '제목', -- 제목
+  `b_content` VARCHAR(20000) NOT NULL COMMENT '내용', -- 내용
+  `b_view`    INT            NOT NULL DEFAULT 0 COMMENT '조회수', -- 조회수
+  `b_regdate` DATETIME       NOT NULL COMMENT '작성일자', -- 작성일자
+  `ID`        VARCHAR(20)    NOT NULL COMMENT '아이디', -- 아이디
+  `NAME`      VARCHAR(10)    NOT NULL COMMENT '닉네임', -- 닉네임
+  `SEQ`       INT            NULL     COMMENT '회원번호' -- 회원번호
 )
 COMMENT '게시판';
 
@@ -215,5 +215,5 @@ ALTER TABLE `BOARDUP`
     ON UPDATE CASCADE;
 
 
-INSERT INTO AUTHORITIES (auth_seq, AUTHORITY) VALUES (1,"ROLE_USER");
+INSERT INTO AUTHORITIES (a_seq, AUTHORITY) VALUES (1,"ROLE_USER");
 commit;

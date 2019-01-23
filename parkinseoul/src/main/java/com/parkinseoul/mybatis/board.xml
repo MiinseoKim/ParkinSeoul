@@ -7,19 +7,22 @@
 
 
 	<select id="getBoardList" resultType="boardDto">
-		select b_no,b_title, b_comment, b_view,DATE_FORMAT(b_regdate, '%Y-%m-%d %H:%i:%s'),id,name,seq
+		select b_no,b_title, b_content, b_view,DATE_FORMAT(b_regdate, '%Y-%m-%d %H:%i:%s') AS b_regdate,id,name,seq
 		from board
+		order by b_regdate desc
 	</select>
 	
-	<select id="getBoardDetail" parameterType="boardDto" resultType="boardDto">
-    select b_no,b_title, b_comment, b_view,DATE_FORMAT(b_regdate, '%Y-%m-%d %H:%i:%s'),id,name,seq
+	<select id="getBoardDetail" parameterType="int" resultType="boardDto">
+    select b_no,b_title, b_content, b_view,DATE_FORMAT(b_regdate, '%Y-%m-%d %H:%i:%s'),id,name,seq
     from board
     where b_no=#{b_no}
   </select>
 	
 	<insert id="writeBoard" parameterType="boardDto">
-		insert into board (b_no,b_title, b_comment, b_view,b_regdate,id,name,seq)
-		values (#{b_no}, #{b_title},#{b_comment}, #{b_view},now(), #{id},#{name}, #{seq})
+		insert into board (b_title, b_content, b_view,b_regdate,id,name,seq)
+		select #{b_title},#{b_content}, 0,now(),id,name,seq
+    from user
+    where seq=#{seq}
 	</insert>
 
 
@@ -30,7 +33,7 @@
 	</update>
 
 
-	<delete id="deleteBoard" parameterType="boardDto" >
+	<delete id="deleteBoard" parameterType="int" >
 		delete
 		from board
 		where b_no=#{b_no} 
@@ -38,7 +41,7 @@
 	
 	
 	<select id="getViewCnt" resultType="int">
-    select b_no,b_title, b_comment, b_view,DATE_FORMAT(b_regdate, '%Y-%m-%d %H:%i:%s'),id,name,seq
+    select b_no,b_title, b_content, b_view,DATE_FORMAT(b_regdate, '%Y-%m-%d %H:%i:%s'),id,name,seq
     from board
   </select>
   

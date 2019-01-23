@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.View;
-import com.parkinseoul.service.BoardRestService;
+import com.parkinseoul.service.BoardService;
 import com.parkinseoul.service.MemberRestService;
 import com.parkinseoul.dto.MemberDto;
 
@@ -33,7 +33,7 @@ public class HomeController {
   private MemberRestService mservice;
   
   @Autowired
-  private BoardRestService bservice;
+  private BoardService bservice;
 
 
   @RequestMapping(value = "/home.htm")
@@ -80,9 +80,5 @@ public class HomeController {
     return "home.login";
   }
   
-  @RequestMapping(value = "boardlist.htm")
-  public String list() {
-    return "board.list";
-  }  
 
 }

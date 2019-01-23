@@ -24,9 +24,9 @@ var guPos = {
   "서초구": [37.4837121, 127.03241120000007],
   "강남구": [37.5172363, 127.04732480000007],
   "송파구": [37.5145437, 127.10659710000004],
-  "강동구": [37.5301251, 127.12376199999994]
+  "강동구": [37.5301251, 127.12376199999994],
+  "과천시":[37.429246, 126.98744510000006]
 };
-
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 mapOption = {
   center: new daum.maps.LatLng(guPos["전체"][0], guPos["전체"][1]), // 지도의
@@ -127,18 +127,13 @@ function mapHandle(key, item, marker) {
 
   var div = document.createElement('div');
 
-  var form = document.createElement('form');
-  form.setAttribute('action', "park.htm");
-  form.setAttribute('method', "post");
+  
+  var a=document.createElement('a');
+  a.setAttribute('href',"park.htm?P_PARK="+item.P_PARK);
+  a.appendChild(document.createTextNode("공원 상세 정보 보기"));
+  
 
-  var at = document.createElement('input');
-  at.setAttribute('type', "submit");
-  at.setAttribute('value', ' 공원 상세 정보 보기 ');
-
-  var input = document.createElement('input');
-  input.setAttribute('type', "hidden");
-  input.setAttribute('name', 'P_PARK');
-  input.setAttribute('value', item.P_PARK);
+  
 
   content.appendChild(info);
   info.appendChild(title);
@@ -150,9 +145,8 @@ function mapHandle(key, item, marker) {
   desc.appendChild(ellipsis);
   desc.appendChild(jibun);
   desc.appendChild(div);
-  div.appendChild(form);
-  form.appendChild(at);
-  form.appendChild(input);
+  div.appendChild(a);   
+  
 
   closeBtn.onclick = function() {
     overlay[key].setMap(null);

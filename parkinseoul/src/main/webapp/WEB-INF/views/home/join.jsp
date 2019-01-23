@@ -133,9 +133,8 @@
 				<h2 class="form-title">Sign up</h2>
 				<form class="register-form">
 					<div class="form-group">
-						<label for="id"><i
-							class="zmdi zmdi-account material-icons-name"></i></label> <input
-							type="text" name="id" id="id" placeholder="Your ID" />
+						<label for="id"><i class="zmdi zmdi-account material-icons-name"></i></label> 
+							<input type="text" name="id" id="id" placeholder="Your ID" />
 						<button id="idcheck" type="button" class="btn btn-common">중복 확인</button>
 					</div>
 					<div class="form-group">
