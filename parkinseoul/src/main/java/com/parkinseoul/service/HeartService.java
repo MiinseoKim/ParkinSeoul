@@ -17,7 +17,7 @@ public class HeartService {
   
   
   public int getLikeCnt(int pnum) {
-    int count = 0;
+    int count = 0; 
     count = sqlSession.getMapper(ParkDao.class).getLikeCnt(pnum);
     return count;
   }

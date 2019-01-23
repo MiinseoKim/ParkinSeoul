@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.parkinseoul.dao.BoardupDao">
+
+<select id="getUpCnt" resultType="int">
+selcet count(*)
+from boardup
+where b_no=#{b_no}
+</select>
+
+<select id="chkUp" resultType="int" parameterType="boardupDto">
+select count(*)
+from boardup
+where b_no=#{b_no} and seq=#{seq}
+</select>
+
+<insert id="upPlus" parameterType="boardupDto" >
+insert into boardup values (#{b_no},#{seq})
+</insert>
+
+<delete id="upMinus" parameterType="boardupDto">
+delete 
+from boardup 
+where b_no=#{b_no} and seq=#{seq}
+</delete>
+
+
+</mapper>

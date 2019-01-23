@@ -7,19 +7,11 @@
 
 	<typeAliases>
 		<typeAlias type="com.parkinseoul.dto.MemberDto" alias="memberDto" />
-		<typeAlias type="com.parkinseoul.dto.MemberDto" alias="parkDto" />
-		<typeAlias type="com.parkinseoul.dto.MemberDto" alias="boardkDto" />
 		<typeAlias type="com.parkinseoul.dto.LikeDto" alias="likeDto" />
-		<!-- 
-		<typeAlias type="com.bit.board.admin.model.BoardListDto" alias="boardListDto" />
-		<typeAlias type="com.bit.board.admin.model.BoardTypeDto" alias="boardTypeDto" />
-		<typeAlias type="com.bit.board.admin.model.CategoryDto" alias="categoryDto" />
-		<typeAlias type="com.bit.board.model.AlbumDto" alias="albumDto" />
-		<typeAlias type="com.bit.board.model.BbsDto" alias="bbsDto" />
-		<typeAlias type="com.bit.board.model.BoardDto" alias="boardDto" />
-		<typeAlias type="com.bit.board.model.MemoDto" alias="memoDto" />
-		<typeAlias type="com.bit.board.model.ReboardDto" alias="reboardDto" />
-		 -->
+		<typeAlias type="com.parkinseoul.dto.ParkDto" alias="parkDto" />
+		<typeAlias type="com.parkinseoul.dto.BoardDto" alias="boardDto" />
+		<typeAlias type="com.parkinseoul.dto.BoardupDto" alias="boardupDto" />
+		<typeAlias type="com.parkinseoul.dto.ReplyDto" alias="replyDto" />
 	</typeAliases>
 
 </configuration>

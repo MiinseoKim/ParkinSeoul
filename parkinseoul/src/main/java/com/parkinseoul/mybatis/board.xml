@@ -5,4 +5,49 @@
 
 <mapper namespace="com.parkinseoul.dao.BoardDao">
 
+
+	<select id="getBoardList" resultType="boardDto">
+		select b_no,b_title, b_comment, b_view,DATE_FORMAT(b_regdate, '%Y-%m-%d %H:%i:%s'),id,name,seq
+		from board
+	</select>
+	
+	<select id="getBoardDetail" parameterType="boardDto" resultType="boardDto">
+    select b_no,b_title, b_comment, b_view,DATE_FORMAT(b_regdate, '%Y-%m-%d %H:%i:%s'),id,name,seq
+    from board
+    where b_no=#{b_no}
+  </select>
+	
+	<insert id="writeBoard" parameterType="boardDto">
+		insert into board (b_no,b_title, b_comment, b_view,b_regdate,id,name,seq)
+		values (#{b_no}, #{b_title},#{b_comment}, #{b_view},now(), #{id},#{name}, #{seq})
+	</insert>
+
+
+	<update id="editBoard" parameterType="boardDto">
+		update board
+		set b_title = #{b_title}, b_content = #{b_content}
+		where b_no = #{b_no}
+	</update>
+
+
+	<delete id="deleteBoard" parameterType="boardDto" >
+		delete
+		from board
+		where b_no=#{b_no} 
+	</delete>
+	
+	
+	<select id="getViewCnt" resultType="int">
+    select b_no,b_title, b_comment, b_view,DATE_FORMAT(b_regdate, '%Y-%m-%d %H:%i:%s'),id,name,seq
+    from board
+  </select>
+  
+  
+  <update id="viewPlus" parameterType="int">
+    update board
+    set b_view=b_view+1
+    where b_no = #{b_no}
+  </update>
+	
+
 </mapper>
