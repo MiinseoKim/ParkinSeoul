@@ -54,5 +54,10 @@ public class HeartService {
     List<LikeDto> list = sqlSession.getMapper(ParkDao.class).myLikelist(id);
     return list;
   }
+  
+  public List<LikeDto> likerank() {
+    List<LikeDto> list = sqlSession.getMapper(ParkDao.class).likerank();
+    return list;
+  }
 
 }

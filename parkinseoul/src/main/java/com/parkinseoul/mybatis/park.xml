@@ -49,4 +49,10 @@
 	  WHERE id = #{id}
   </select>
   
+  <select id="likerank" parameterType="hashmap" resultType="likeDto">
+	  select park_num, park_name, count(*) count from hearts 
+		group by park_num order by count desc
+		limit 5
+  </select>
+  
   </mapper>

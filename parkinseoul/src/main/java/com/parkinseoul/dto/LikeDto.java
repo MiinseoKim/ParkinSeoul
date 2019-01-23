@@ -5,8 +5,17 @@ public class LikeDto {
   private int park_num;
   private String park_name;
   private String id;
+
+  // 좋아요 순위 
+  private int count;
   
   
+  public int getCount() {
+    return count;
+  }
+  public void setCount(int count) {
+    this.count = count;
+  }
   public int getPark_num() {
     return park_num;
   }

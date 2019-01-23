@@ -48,6 +48,7 @@
 						<tr class="row100 head" style="font-weight: initial;">
 							<th class="cell100 column5">공원 이름</th>
 							<th class="cell100 column2">좋아요</th>
+							<th class="cell100 column2"></th>
 						</tr>
 					</thead>
 				</table>

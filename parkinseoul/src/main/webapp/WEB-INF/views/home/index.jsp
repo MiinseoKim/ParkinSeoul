@@ -2,6 +2,15 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="se"
 	uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<link rel="stylesheet" type="text/css" href="css/select2.min.css">
+<link rel="stylesheet" type="text/css" href="css/perfect-scrollbar.css">
+<link rel="stylesheet" type="text/css" href="css/likeutil.css">
+<link rel="stylesheet" type="text/css" href="css/like.css">
+<script src="js/popper.js"></script>
+<script src="js/select2.min.js"></script>
+<script src="js/likemain.js"></script>
+
 <script type="text/javascript">
   $(document).ready(function() {
     $('#test').click(function() {
@@ -83,18 +92,32 @@
 						ground round shank pastrami beef brisket pancetta venison.</p>
 				</div>
 			</div>
-			<div class="col-sm-4 text-center padding wow fadeIn"
-				data-wow-duration="1000ms" data-wow-delay="900ms">
-				<div class="single-service">
-					<div class="wow scaleIn" data-wow-duration="500ms"
-						data-wow-delay="900ms">
-						<img src="images/home/icon3.png" alt="">
-					</div>
-					<h2>Swift Page Builder</h2>
-					<p>Venison tongue, salami corned beef ball tip meatloaf bacon.
-						Fatback pork belly bresaola tenderloin bone pork kevin shankle.</p>
-				</div>
-			</div>
+			<div class="table100 ver4 m-b-110 col-sm-4">
+      <div class="table100-head">
+        <table>
+          <thead>
+            <tr class="row100 head" style="font-weight: initial;">
+              <th width="20%" class="cell100 column2">#</th>
+              <th width="60%" class="cell100 column5">공원 이름</th>
+              <th class="cell100 column2">좋아요</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+      <div class="table100-body js-pscroll">
+        <table>
+          <tbody>
+            <c:forEach var="l" items="${like}" begin="0" end="4" step="1" varStatus="status">
+              <tr class="row100 body">
+                <td width="20%">${status.count}</td>
+                <td width="60%"><a href=park.htm?P_PARK=${l.park_name}>${l.park_name}</a></td>
+                <td class="cell100 column1">${l.count}</td>
+              </tr>
+            </c:forEach>
+          </tbody>
+        </table>
+      </div>
+    </div>
 		</div>
 	</div>
 </section>

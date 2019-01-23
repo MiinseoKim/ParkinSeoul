@@ -19,4 +19,6 @@ public interface ParkDao {
   
   List<LikeDto> myLikelist(String id);
   
+  List<LikeDto> likerank();
+  
 }
