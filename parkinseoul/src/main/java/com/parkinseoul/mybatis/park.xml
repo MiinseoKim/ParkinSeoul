@@ -33,4 +33,9 @@
   where park_num=#{P_IDX} and id=#{id}  
   </delete>
   
+  <select id="myLikelist" parameterType="hashmap" resultType="LikeDto">
+	  select park_name from HEARTS
+	  WHERE id = #{id}
+  </select>
+  
   </mapper>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <section id="page-breadcrumb">
 	<div class="vertical-center sun">
 		<div class="container">
@@ -29,3 +30,30 @@
         </div>
       </div>
     </div>
+<!--     </div> -->
+<!--     </div> -->
+    
+<div class="col-md-5 col-sm-5">
+<table class="table table-hover" style="width: 500px; margin: 45px;">
+  <thead>
+    <tr>
+      <th scope="col">공원 이름</th>
+      <th scope="col">좋아요</th>
+    </tr>
+  </thead>
+  <c:forEach var="l" items="${list}">
+    <tr>
+      <td>${l.park_name}</td>
+      <td>
+        <button type="button" class="btn btn-default" id="likebtn"><i class="fa fa-heart"></i>
+          좋아요
+        </button>
+      </td>
+    </tr>
+  </c:forEach>
+</table>
+</div>
+    </div>
+    </div>
+    
+    

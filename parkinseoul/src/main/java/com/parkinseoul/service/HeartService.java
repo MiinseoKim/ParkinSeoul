@@ -1,10 +1,12 @@
 package com.parkinseoul.service;
 
+import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.parkinseoul.dao.ParkDao;
+import com.parkinseoul.dto.LikeDto;
 import com.parkinseoul.dto.ParkDto;
 
 @Service
@@ -36,6 +38,11 @@ public class HeartService {
   @Transactional
   public void deleteLike(ParkDto parkDto) {
     sqlSession.getMapper(ParkDao.class).deleteLike(parkDto);
+  }
+  
+  public List<LikeDto> myLikelist(String id) {
+    List<LikeDto> list = sqlSession.getMapper(ParkDao.class).myLikelist(id);
+    return list;
   }
 
 }
