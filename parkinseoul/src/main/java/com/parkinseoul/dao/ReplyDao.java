@@ -6,9 +6,11 @@ import com.parkinseoul.dto.ReplyDto;
 public interface ReplyDao {
   
   //댓글 처리
-  List<ReplyDto> getReply(int b_no);
+  List<ReplyDto> getReplyList(int b_no);
   
   int writeReply(ReplyDto dto);
   
   int deleteReply(int r_no);
+  
+  int getReplyCnt(int b_no);
 }

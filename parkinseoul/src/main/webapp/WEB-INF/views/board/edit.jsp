@@ -15,7 +15,7 @@ $(document).ready(function() {
       contentType: 'application/json;charset=UTF-8',
       type: 'POST',
       success: function(data) {
-        location.href='article.htm?no=${article.b_no }';
+        location.href='article.htm?no='+${article.b_no };
       },
       error : function(error) {
         console.log("no good "+JSON.stringify(error));

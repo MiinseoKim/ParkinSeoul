@@ -1,14 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<link rel="stylesheet" type="text/css" href="css/select2.min.css">
-<link rel="stylesheet" type="text/css" href="css/perfect-scrollbar.css">
-<link rel="stylesheet" type="text/css" href="css/likeutil.css">
-<link rel="stylesheet" type="text/css" href="css/like.css">
-<script src="js/popper.js"></script>
-<script src="js/select2.min.js"></script>
-<script src="js/likemain.js"></script>
-<script src="js/perfect-scrollbar.min.js"></script>
 
 <section id="page-breadcrumb">
 	<div class="vertical-center sun">
@@ -28,6 +20,7 @@
 
 <div class="container text-center">
 	<div class="row">
+
 		<div class="col-md-3 col-sm-5">
 			<br> <br>
 			<div class="sidebar blog-sidebar">
@@ -40,40 +33,49 @@
 				</div>
 			</div>
 		</div>
-
-		<div class="table100 ver4 m-b-110 col-md-9 col-sm-7" style="margin-top: 11px;width: 60%;margin-left: 30px;">
-			<div class="table100-head">
-				<table>
-					<thead>
-						<tr class="row100 head" style="font-weight: initial;">
-							<th class="cell100 column5">공원 이름</th>
-							<th class="cell100 column2">좋아요</th>
-							<th class="cell100 column2"></th>
-						</tr>
-					</thead>
-				</table>
-			</div>
-			<div class="table100-body js-pscroll">
-				<table>
-					<tbody>
-						<c:forEach var="l" items="${list}">
-							<tr class="row100 body">
-								<td class="cell100 column1"><a href=park.htm?P_PARK=${l.park_name}>${l.park_name}</a></td>
-								<td style="display: none;">${l.park_num}</td>
-								<td>
-									<button type="button" class="btn btn-default deletelike"
-										id="likebtn">
-										<i class="fa fa-heart"></i>&nbsp;취소
-									</button>
-								</td>
+		
+		<div class="col-md-9 col-sm-7" style="height: 500px;">
+			<div class="table100 ver4 m-b-110 "
+				style="margin-top: 5%; width: 55%; margin-left: 10%;">
+				
+				<div class="table100-head">
+					<table>
+						<thead>
+							<tr class="row100 head" style="font-weight: initial;">
+								<th class="cell100 column1" style="text-align: center;">공원
+									목록</th>
+								<th class="cell100 column2" style="text-align: center;">좋아요</th>
 							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
+						</thead>
+					</table>
+				</div>
+				
+				<div class="table100-body js-pscroll" style="height: 500px;">
+					<table>
+						<tbody>
+							<c:forEach var="l" items="${list}">
+								<tr class="row100 body">
+									<td class="cell100 column1"><a
+										href=park.htm?P_PARK=${l.park_name}>${l.park_name}</a></td>
+									<td style="display: none;">${l.park_num}</td>
+									<td class="cell100 column2">
+										<button type="button" class="btn btn-default deletelike"
+											id="likebtn">
+											<i class="fa fa-heart"></i>&nbsp;취소
+										</button>
+									</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
+				
 			</div>
 		</div>
+		
+		
 	</div>
-</div>
+</div><br><br><br><br>
 
 <script>
   $('.deletelike').click(function() {

@@ -21,6 +21,6 @@ public interface BoardDao {
   
   int viewPlus(int b_no);
   
-  //int getArticleSeq()
+  List<BoardDto> boardRank();
   
 }

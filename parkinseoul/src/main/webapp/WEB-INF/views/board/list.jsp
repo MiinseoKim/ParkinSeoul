@@ -56,7 +56,7 @@
 								<tr>
 									<td>${a.b_no }</td>
 									<td>${a.name }</td>
-									<td><a href="article.htm?no=${a.b_no }">${a.b_title }</a></td>
+									<td class="title"><a href="article.htm?no=${a.b_no }">${a.b_title }</a></td>
 									<td>${a.b_regdate }</td>
 									<td>${a.b_view }</td>
 								</tr>
@@ -73,4 +73,11 @@
 	</div>
 
 </section>
+<style>
+.title, a{
+color: #000;
+text-align : left;
+padding-left:5px;
+}
 
+</style>
