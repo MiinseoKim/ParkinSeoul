@@ -168,6 +168,7 @@
           success: function() {
             swal({
               title: "Welcome to ParkinSeoul!",
+              text: "가입하신 아이디로 로그인 해주세요.",
               button: true,
               icon: "success",
             })
