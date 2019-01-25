@@ -3,7 +3,6 @@ package com.parkinseoul.dao;
 import java.util.List;
 import com.parkinseoul.dto.BoardDto;
 import com.parkinseoul.dto.BoardupDto;
-import com.parkinseoul.dto.ReplyDto;
 
 public interface BoardDao {
 
@@ -21,6 +20,6 @@ public interface BoardDao {
   
   int viewPlus(int b_no);
   
-  List<BoardDto> boardRank();
+  List<BoardupDto> boardRank();
   
 }

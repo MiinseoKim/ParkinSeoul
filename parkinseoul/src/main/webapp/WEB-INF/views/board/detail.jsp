@@ -32,9 +32,9 @@
 						</h2><br>
 						<p>${article.b_content }</p>
 						<div class="post-bottom overflow">
-							<ul class="nav navbar-nav post-nav">
+							<ul class="nav navbar-nav post-nav" style="float: left;">
 								<li><a id="repcnt"><i class="fa fa-comments"></i>댓글 ${repcnt } </a></li>
-								<li><a href="#"><i class="fa fa-heart"></i>추천 32 </a></li>
+								<li><a id="upcnt" href="javascript:bup(${article.b_no })"><i class="fa fa-heart"></i>추천 ${upcnt }</a></li>
 								<li><a href="boardlist.htm">목록으로</a></li>
 							</ul>
 							<c:if
@@ -85,7 +85,7 @@
 										rows="2" placeholder="댓글을 작성해 주세요"></textarea>
 								</div>
 								<div class="col-sm-2">
-									<a class="btn btn-submit" href="javascript:writerep();">댓글
+									<a class="btn btn-submit" href="javascript:writerep(${article.b_no},${dto.seq});">댓글
 										등록</a>
 								</div>
 							</div>
@@ -96,6 +96,7 @@
 		</div>
 	</div>
 </section>
+
 <style>
 #replist {
 	margin-bottom: 60px;
@@ -107,7 +108,7 @@ padding: 5px;
 </style>
 
 <script type="text/javascript">
-function writerep(){
+function writerep(no, seq){
   var content=$("#comment").val();
   if(content==""){
     swal(
@@ -118,8 +119,8 @@ function writerep(){
   }else{
     var data= JSON.stringify({
           "r_content":content,
-          "b_no":${article.b_no},
-          "seq":${dto.seq}
+          "b_no":no,
+          "seq":seq
           });
     $.ajax({
     url:'reply.htm',
@@ -256,4 +257,27 @@ function deleteReply(no){
     }
   });
 }
+
+function bup(no){
+  if('${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}'==""){
+    swal(
+            'Oops...',
+            '로그인 후 이용 가능합니다.',
+            'error'
+         )
+  }else{      
+    $.ajax({
+      url:'budproc.htm?bno='+no,
+      type:'POST',
+      success: function(data) {
+        document.getElementById("upcnt").innerHTML='<i class="fa fa-heart"></i>';
+        $("#upcnt").append('추천 '+data.upcnt);
+      },
+      error: function(error) {
+        console.log("error : " + JSON.stringify(error));
+      }
+    });
+  }
+}
+
 </script>

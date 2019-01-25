@@ -103,7 +103,7 @@
 							<tr class="row100 head" style="font-weight: initial;">
 								<th class="cell100 column1" style="width: 33%;">인기 글 #</th>
 								<th class="cell100 column2" style="width: 47%;">제목</th>
-								<th class="cell100 column3" style="text-align: center;">조회수</th>
+								<th class="cell100 column3" style="text-align: center;">추천수</th>
 							</tr>
 						</thead>
 					</table>
@@ -118,7 +118,7 @@
 										style="width: 33%; text-align: center;">${status.count}</td>
 									<td class="cell100 column2" style="width: 47%;"><a
 										href="article.htm?no=${b.b_no }">${b.b_title}</a></td>
-									<td class="cell100 column3" style="text-align: center;">${b.b_view}</td>
+									<td class="cell100 column3" style="text-align: center;">${b.count}</td>
 								</tr>
 							</c:forEach>
 						</tbody>

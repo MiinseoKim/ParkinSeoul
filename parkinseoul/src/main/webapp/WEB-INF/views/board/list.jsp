@@ -35,7 +35,7 @@
 						<th>글번호</th>
 						<th>닉네임</th>
 						<th style="width:50%;">제목</th>
-						<th>날짜</th>
+						<th>작성일</th>
 						<th>조회수</th>
 					</tr>
 				</thead>

@@ -53,11 +53,15 @@
   </update>
 	
 	
-	<select id="boardRank" resultType="boardDto">
-    select b_no,b_title, b_view from board
-    where b_view!=0
-    order by b_view desc
-    limit 5;
+	<select id="boardRank" resultType="boardupDto">
+    SELECT  b.b_no, a.b_title, b.count
+    FROM    board a
+        INNER JOIN
+        (
+            SELECT b_no, count(*) count
+            FROM bupdown
+            GROUP BY b_no order by count desc limit 5
+        ) b ON a.b_no = b.b_no ;
   </select>
 
 </mapper>

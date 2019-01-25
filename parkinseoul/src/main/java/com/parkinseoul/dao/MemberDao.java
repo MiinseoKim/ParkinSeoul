@@ -5,7 +5,7 @@ import com.parkinseoul.dto.MemberDto;
 
 public interface MemberDao {
  
-  int getSeq(MemberDto memberDto);
+  int getSeq(String id);
   
   int getAuthority(String string);
   
@@ -21,13 +21,5 @@ public interface MemberDao {
   
   
   
-  
-  List<MemberDto> selectMember();
-  
-  void deleteUsers(int seq);
-  
-  
-
-  List<MemberDto> searchMember(MemberDto memberDto);
   
 }

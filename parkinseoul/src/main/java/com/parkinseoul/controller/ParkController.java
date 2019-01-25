@@ -42,6 +42,7 @@ public class ParkController {
   @RequestMapping(value = "likeproc.htm")
   public View like(HttpServletRequest request,Model model) {
     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    int a=0;
     if(request.getParameter("name")!=null) {
       dto.setP_IDX(Integer.parseInt(request.getParameter("no")));
       dto.setP_PARK(request.getParameter("name"));
@@ -49,14 +50,12 @@ public class ParkController {
     dto.setId(authentication.getName());
     if(heartService.checkLiked(dto)>0) {      
       heartService.deleteLike(dto);
-      dto.setLikecount(dto.getLikecount()-1);
       model.addAttribute("updown", "minus");
     }else {
       heartService.insertLike(dto);
-      dto.setLikecount(dto.getLikecount()+1);
       model.addAttribute("updown", "plus");
     }
-    model.addAttribute("cnt", dto.getLikecount());
+    model.addAttribute("cnt", heartService.getLikeCnt(dto.getP_IDX()));
     request.setAttribute("dto", dto);
     return jsonview;
   }

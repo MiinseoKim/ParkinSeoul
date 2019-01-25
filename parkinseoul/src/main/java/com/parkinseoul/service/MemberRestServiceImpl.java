@@ -43,7 +43,6 @@ public class MemberRestServiceImpl implements MemberRestService {
     System.out.println("infoMemberend");
     return member;
   }
-
   
   @Override
   public int idcheck(String id) {
@@ -59,55 +58,19 @@ public class MemberRestServiceImpl implements MemberRestService {
 //    System.out.println("service " + count);
     return count;
   }
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  @Override
-  public String selectMember() {
-    List<MemberDto> list = sqlSession.getMapper(MemberDao.class).selectMember();
-    JSONArray array = new JSONArray();
-    for (MemberDto memberDto : list) {
-      JSONObject mem = new JSONObject();
-      mem.put("seq", memberDto.getSeq());
-      mem.put("id", memberDto.getId());
-      mem.put("name", memberDto.getName());
-      // mem.put("phone", memberDto.getPhone());
-      // mem.put("email", memberDto.getEmail());
-      array.put(mem);
-    }
-
-    return array.toString();
-  }
-
-
-  @Transactional
-  @Override
-  public void deleteMember(MemberDto memberDto) {
-    memberDto.setSeq(sqlSession.getMapper(MemberDao.class).getSeq(memberDto));
-    // sqlSession.getMapper(MemberDao.class).deleteMember(memberDto.getSeq());
-    sqlSession.getMapper(MemberDao.class).deleteUsers(memberDto.getSeq());
-  }
-
-  
 
   @Override
-  public String searchMember(MemberDto memberDto) {
-    List<MemberDto> list = sqlSession.getMapper(MemberDao.class).searchMember(memberDto);
-    JSONArray array = new JSONArray();
-    for (MemberDto member : list) {
-      JSONObject mem = new JSONObject();
-      mem.put("seq", member.getSeq());
-      mem.put("id", member.getId());
-      mem.put("name", member.getName());
-      array.put(mem);
-    }
-    System.out.println(array.toString());
-    return array.toString();
-  }
+  public int getSeq(String id) {
+    int seq=sqlSession.getMapper(MemberDao.class).getSeq(id);
+    return seq;
+  } 
+  
+  
+  
+   
+  
+  
+  
+  
+
 }

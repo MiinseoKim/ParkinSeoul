@@ -102,7 +102,7 @@ $(document).ready(function() {
   
   $("#likebtn").click(function(){
     if('${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}'==""){
-      (
+      swal(
               'Oops...',
               '로그인 후 이용 가능합니다.',
               'error'
@@ -112,12 +112,8 @@ $(document).ready(function() {
         url:'likeproc.htm',
         type:'POST',
         success: function(data) {
-          document.getElementById("likebtn").innerHTML='<i class="fa fa-heart">';
-          if(data.updown=="plus"){       
-            $("#likebtn").append(' '+data.cnt+' LIKE');
-          }else{
-            $("#likebtn").append(' '+data.cnt+' LIKE');
-          }
+          document.getElementById("likebtn").innerHTML='<i class="fa fa-heart"></i>'; 
+          $("#likebtn").append(' '+data.cnt+' LIKE');
         },
         error: function(error) {
           console.log("error : " + JSON.stringify(error));
