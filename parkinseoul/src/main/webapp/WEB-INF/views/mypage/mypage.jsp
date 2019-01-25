@@ -43,7 +43,7 @@
 					<div class="form-group" style="width: 300px">
 						<input type="text" id="name" style="width: 210px; float: left;"
             class="form-control" required="required" 
-            placeholder="닉네임" value="${sessionScope.dto.name}">
+            placeholder="닉네임">
 						<input type="button" id="idcheck" class="check"
 							style="font-size: 13px;" value="중복확인">
 					</div>
@@ -76,7 +76,7 @@ var re2 = /^[ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9]{2,16}$/; // 닉네임 패스워드�
 	   var name = $("#name").val();
 	   var password = $("#password").val();
 	   var password2 = $("#password2").val();
-	   
+	   /* 
 	   if(!check(re, password, "비밀번호는 8~16자의 영문 대소문자와 숫자로만 입력해주세요")){
        return false;
      }
@@ -84,7 +84,7 @@ var re2 = /^[ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9]{2,16}$/; // 닉네임 패스워드�
      if(!check(re, password2, "비밀번호는 8~16자의 영문 대소문자와 숫자로만 입력해주세요")){
        return false;
      }
-	   
+	    */
 	   var parameter = JSON.stringify({
 	     'id' : id,
 	     'name' : name,
