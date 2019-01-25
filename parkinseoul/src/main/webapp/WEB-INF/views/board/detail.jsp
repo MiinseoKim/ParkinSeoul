@@ -33,7 +33,7 @@
 						<p>${article.b_content }</p>
 						<div class="post-bottom overflow">
 							<ul class="nav navbar-nav post-nav">
-								<li><a><i class="fa fa-comments"></i>댓글 ${repcnt } </a></li>
+								<li><a id="repcnt"><i class="fa fa-comments"></i>댓글 ${repcnt } </a></li>
 								<li><a href="#"><i class="fa fa-heart"></i>추천 32 </a></li>
 								<li><a href="boardlist.htm">목록으로</a></li>
 							</ul>
@@ -131,6 +131,7 @@ function writerep(){
       var name='${sessionScope.dto.name}';
       var li = document.createElement('li');
       li.className = 'media';
+      li.setAttribute('id', data.insertrep.r_no);
       var div1 = document.createElement('div');
       div1.className = 'post-comment';
       var div2 = document.createElement('div');
@@ -183,6 +184,11 @@ function writerep(){
       list.appendChild(li);
       
       document.getElementById("comment").value="";
+      
+      /* var com =document.getElementById("repcnt");
+      com.innerHTML='<i class="fa fa-comments"></i>';
+      var cnt=${repcnt }+1;
+      com.appendChild(document.createTextNode("댓글 "+cnt)); */
     },
     error: function(error) {
       console.log("error : " + JSON.stringify(error));
@@ -238,6 +244,12 @@ function deleteReply(no){
       var ul =document.getElementById("replist");
       var li =document.getElementById(no);
       ul.removeChild(li);
+      
+     /*  var com =document.getElementById("repcnt");
+      com.innerHTML='<i class="fa fa-comments"></i>';
+      var cnt=${repcnt }-1;
+      console.log(cnt);
+      com.appendChild(document.createTextNode("댓글 "+cnt)); */
     },
     error: function(error) {
       console.log("error : " + JSON.stringify(error));
