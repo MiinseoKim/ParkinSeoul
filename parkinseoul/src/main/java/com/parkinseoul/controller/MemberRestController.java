@@ -67,29 +67,9 @@ public class MemberRestController {
   
   
   
-  @RequestMapping(value = "search.htm", method = RequestMethod.POST)
-  public String search(@RequestBody String id) {
-    MemberDto memberDto = new MemberDto();
-    memberDto.setName(id);
-   // memberDto.setId(id);
-    String list = memberRestService.searchMember(memberDto);
-    return list;
-  }
-  
-  @RequestMapping(value = "memberrest.htm", method = RequestMethod.GET)
-  public String list() {
-    String list = memberRestService.selectMember();
-    return list;
-  }
-  
   @RequestMapping(value = "memberrest/{id}", method = RequestMethod.GET)
   public String detail(@PathVariable(value="id") String id) {
     return memberRestService.infoMember(id).toString();
   }
   
-  @RequestMapping(value="memberrest/{id}", method=RequestMethod.DELETE)
-  public void delete(@PathVariable(value="id") String id, MemberDto meberDto) {
-    meberDto.setId(id);
-    memberRestService.deleteMember(meberDto);
-  }
 }

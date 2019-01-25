@@ -2,7 +2,7 @@
 DROP TABLE IF EXISTS HEARTS RESTRICT;
 
 -- 게시물 좋아요
-DROP TABLE IF EXISTS BOARDUP RESTRICT;
+DROP TABLE IF EXISTS BUPDOWN RESTRICT;
 
 -- 댓글
 DROP TABLE IF EXISTS COMMENT RESTRICT;
@@ -118,19 +118,11 @@ ALTER TABLE `AUTHORITIES`
     );
 
 -- 게시물 좋아요
-CREATE TABLE `BOARDUP` (
-  `SEQ`  INT NOT NULL COMMENT '회원 번호', -- 회원 번호
-  `b_no` INT NOT NULL COMMENT '글번호' -- 글번호
+CREATE TABLE `BUPDOWN` (
+  `SEQ`  INT NULL COMMENT '회원번호', -- 회원번호
+  `b_no` INT NULL COMMENT '글번호' -- 글번호
 )
 COMMENT '게시물 좋아요';
-
--- 게시물 좋아요
-ALTER TABLE `BOARDUP`
-  ADD CONSTRAINT `PK_BOARDUP` -- 게시물 좋아요 기본키
-    PRIMARY KEY (
-      `SEQ`,  -- 회원 번호
-      `b_no`  -- 글번호
-    );
 
 -- 공원 좋아요
 ALTER TABLE `HEARTS`
@@ -191,10 +183,10 @@ ALTER TABLE `USER`
     );
 
 -- 게시물 좋아요
-ALTER TABLE `BOARDUP`
-  ADD CONSTRAINT `FK_USER_TO_BOARDUP` -- 멤버 -> 게시물 좋아요
+ALTER TABLE `BUPDOWN`
+  ADD CONSTRAINT `FK_USER_TO_BUPDOWN` -- 멤버 -> 게시물 좋아요
     FOREIGN KEY (
-      `SEQ` -- 회원 번호
+      `SEQ` -- 회원번호
     )
     REFERENCES `USER` ( -- 멤버
       `SEQ` -- 회원번호
@@ -203,8 +195,8 @@ ALTER TABLE `BOARDUP`
     ON UPDATE CASCADE;
 
 -- 게시물 좋아요
-ALTER TABLE `BOARDUP`
-  ADD CONSTRAINT `FK_BOARD_TO_BOARDUP` -- 게시판 -> 게시물 좋아요
+ALTER TABLE `BUPDOWN`
+  ADD CONSTRAINT `FK_BOARD_TO_BUPDOWN` -- 게시판 -> 게시물 좋아요
     FOREIGN KEY (
       `b_no` -- 글번호
     )

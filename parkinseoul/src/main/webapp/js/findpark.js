@@ -96,7 +96,7 @@ function mapHandle(key, item, marker) {
   var info = document.createElement('div');
   info.className = 'info';
 
-  var a2=document.createElement('a')
+  var a2=document.createElement('a');
   a2.setAttribute('href',"javascript:maplike("+item.P_IDX+",'"+item.P_PARK+"')");
   a2.setAttribute('style',"display:inline;padding:10px;");
 
@@ -179,38 +179,4 @@ function mapHandle(key, item, marker) {
 
 }
 
-function maplike(no,name){
-  console.log(no);
-  if('${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}'==""){
-    (
-            'Oops...',
-            '로그인 후 이용 가능합니다.',
-            'error'
-    )
-  }else{      
-    $.ajax({
-      url:'likeproc.htm?no='+no+'&name='+name,
-      type:'POST',
-      success: function(data) {
-        if(data.updown=="plus"){       
-          swal({
-            title: "좋아요 추가!",
-            text:"마이페이지 좋아요 리스트에서 확인하세요.",
-            icon: "success",
-            button: "닫기",
-          });
-        }else{
-          swal({
-            title: "좋아요 취소!",
-            text: "마이페이지 좋아요 리스트에서 확인하세요.",
-            icon: "success",
-            button: "닫기",
-          });
-        }
-      },
-      error: function(error) {
-        console.log("error : " + JSON.stringify(error));
-      }
-    });
-  }
-}
+

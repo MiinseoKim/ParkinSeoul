@@ -6,24 +6,24 @@
 <mapper namespace="com.parkinseoul.dao.BoardupDao">
 
 <select id="getUpCnt" resultType="int">
-selcet count(*)
-from boardup
+select count(*)
+from bupdown
 where b_no=#{b_no}
 </select>
 
 <select id="chkUp" resultType="int" parameterType="boardupDto">
 select count(*)
-from boardup
+from bupdown
 where b_no=#{b_no} and seq=#{seq}
 </select>
 
 <insert id="upPlus" parameterType="boardupDto" >
-insert into boardup values (#{b_no},#{seq})
+insert into bupdown values (#{seq},#{b_no})
 </insert>
 
 <delete id="upMinus" parameterType="boardupDto">
 delete 
-from boardup 
+from bupdown 
 where b_no=#{b_no} and seq=#{seq}
 </delete>
 

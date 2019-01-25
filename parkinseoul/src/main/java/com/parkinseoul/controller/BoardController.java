@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.View;
 import com.parkinseoul.service.BoardService;
+import com.parkinseoul.service.MemberRestService;
 import com.parkinseoul.service.ReplyRestService;
 import com.parkinseoul.dto.BoardDto;
+import com.parkinseoul.dto.BoardupDto;
 import com.parkinseoul.dto.ReplyDto;
 
 @Controller
@@ -30,6 +32,8 @@ public class BoardController {
   @Autowired
   private ReplyRestService rservice;
   
+  @Autowired
+  private MemberRestService mservice;
   
   
   @RequestMapping(value = "/boardlist.htm")
@@ -58,6 +62,7 @@ public class BoardController {
     BoardDto article=service.getBoardDetail(bnum);
     List<ReplyDto> reply= rservice.getReplyList(bnum);
     int repcnt=rservice.getrepCnt(bnum);
+    int upcnt=service.getUpCnt(bnum);
     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     if(!article.getId().equals(authentication.getName())) {
       service.updateView(bnum);
@@ -66,6 +71,7 @@ public class BoardController {
     model.addAttribute("article", article);
     model.addAttribute("replylist", reply);
     model.addAttribute("repcnt", repcnt);
+    model.addAttribute("upcnt", upcnt);
     return "board.detail";
   }
   
@@ -88,6 +94,22 @@ public class BoardController {
   @RequestMapping(value = "/editproc.htm" )
   public View editproc(@RequestBody BoardDto dto) {
     int a=service.updateBoard(dto);
+    return jsonview;
+  }
+  
+  
+  @RequestMapping(value = "/budproc.htm" )
+  public View upproc(HttpServletRequest request,Model model) {
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    BoardupDto dto=new BoardupDto();
+    dto.setB_no(Integer.parseInt(request.getParameter("bno")));
+    dto.setSeq(mservice.getSeq(authentication.getName()));
+    if(service.upChk(dto)>0) {
+      service.deleteUp(dto);
+    }else {
+      service.insertUp(dto);
+    }
+    model.addAttribute("upcnt", service.getUpCnt(dto.getB_no()));
     return jsonview;
   }
   

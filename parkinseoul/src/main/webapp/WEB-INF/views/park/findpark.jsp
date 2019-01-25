@@ -31,7 +31,43 @@
 <link href="css/map.css" rel="stylesheet">
 <script type="text/javascript" src="js/findpark.js" ></script>
 
-
+<script type="text/javascript">
+function maplike(no,name){
+  if('${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}'==""){
+    swal(
+            'Oops...',
+            '로그인 후 이용 가능합니다.',
+            'error'
+    )
+  }else{      
+    $.ajax({
+      url:'likeproc.htm?no='+no+'&name='+name,
+      type:'POST',
+      success: function(data) {
+        console.log(data);
+        if(data.updown=="plus"){       
+          swal({
+            title: "좋아요 추가!",
+            text:"마이페이지 좋아요 리스트에서 확인하세요.",
+            icon: "success",
+            button: "닫기",
+          });
+        }else{
+          swal({
+            title: "좋아요 취소!",
+            text: "마이페이지 좋아요 리스트에서 확인하세요.",
+            icon: "success",
+            button: "닫기",
+          });
+        }
+      },
+      error: function(error) {
+        console.log("error : " + JSON.stringify(error));
+      }
+    });
+  }
+}
+</script>
 
 
 
