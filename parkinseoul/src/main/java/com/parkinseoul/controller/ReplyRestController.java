@@ -26,12 +26,15 @@ public class ReplyRestController {
     service.writeReply(dto);
     SimpleDateFormat format1 = new SimpleDateFormat ( "yyyy-MM-dd HH:mm:ss");
     dto.setR_regdate(format1.format (System.currentTimeMillis()));
+    model.addAttribute("repcnt", service.getrepCnt(dto.getB_no()));
     model.addAttribute("insertrep", dto);
     return jsonview;
   }
   //등록 삭제 추천up down
   @RequestMapping(value = "reply.htm", method = RequestMethod.DELETE)
-  public void deleterep(@RequestBody ReplyDto dto) {
+  public View deleterep(@RequestBody ReplyDto dto,Model model) {
     service.deleteReply(dto.getR_no());
+    model.addAttribute("repcnt", service.getrepCnt(dto.getB_no()));
+    return jsonview;
   }
 }

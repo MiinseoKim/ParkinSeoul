@@ -106,8 +106,29 @@ display :inline;
 padding: 5px;
 }
 </style>
-
+<script type="text/javascript" src="js/boarddetail.js"></script>
 <script type="text/javascript">
+function bup(no){
+  if('${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}'==""){
+    swal(
+            'Oops...',
+            '로그인 후 이용 가능합니다.',
+            'error'
+         )
+  }else{      
+    $.ajax({
+      url:'budproc.htm?bno='+no,
+      type:'POST',
+      success: function(data) {
+        document.getElementById("upcnt").innerHTML='<i class="fa fa-heart"></i>';
+        $("#upcnt").append('추천 '+data.upcnt);
+      },
+      error: function(error) {
+        console.log("error : " + JSON.stringify(error));
+      }
+    });
+  }
+}
 function writerep(no, seq){
   var content=$("#comment").val();
   if(content==""){
@@ -186,10 +207,9 @@ function writerep(no, seq){
       
       document.getElementById("comment").value="";
       
-      /* var com =document.getElementById("repcnt");
+      var com =document.getElementById("repcnt");
       com.innerHTML='<i class="fa fa-comments"></i>';
-      var cnt=${repcnt }+1;
-      com.appendChild(document.createTextNode("댓글 "+cnt)); */
+      com.appendChild(document.createTextNode("댓글 "+data.repcnt)); 
     },
     error: function(error) {
       console.log("error : " + JSON.stringify(error));
@@ -198,86 +218,4 @@ function writerep(no, seq){
   }
   
 }
-
-function deleteArticle(no){
-  var data= JSON.stringify({
-    "no" :no
-  })
-  swal({
-  title: '삭제 하겠습니까?',
-  text: "삭제된 게시물은 복구할 수 없습니다.",
-  icon: 'warning',
-  buttons: {
-    cancel: "취소",
-    confirm: "삭제"
-  }
-}).then(function(isConfirm) {
-  if (isConfirm) {
-    console.log(no);
-    $.ajax({
-      async: true,
-      url:'delete.htm',
-      type:'POST',
-      data: {
-        "no" :no
-      },
-      success: function(data) {
-        location.href="boardlist.htm";
-      },
-      error: function(error) {
-        console.log("error : " + JSON.stringify(error));
-      }
-    });
-  }
-})  
-}
-
-
-function deleteReply(no){
-  var param=JSON.stringify({'r_no':no});
-  $.ajax({
-    async: true,
-    url:'reply.htm',
-    type:'DELETE',
-    data: param,
-    contentType: "application/json; charset=UTF-8",
-    success: function() {
-      var ul =document.getElementById("replist");
-      var li =document.getElementById(no);
-      ul.removeChild(li);
-      
-     /*  var com =document.getElementById("repcnt");
-      com.innerHTML='<i class="fa fa-comments"></i>';
-      var cnt=${repcnt }-1;
-      console.log(cnt);
-      com.appendChild(document.createTextNode("댓글 "+cnt)); */
-    },
-    error: function(error) {
-      console.log("error : " + JSON.stringify(error));
-    }
-  });
-}
-
-function bup(no){
-  if('${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}'==""){
-    swal(
-            'Oops...',
-            '로그인 후 이용 가능합니다.',
-            'error'
-         )
-  }else{      
-    $.ajax({
-      url:'budproc.htm?bno='+no,
-      type:'POST',
-      success: function(data) {
-        document.getElementById("upcnt").innerHTML='<i class="fa fa-heart"></i>';
-        $("#upcnt").append('추천 '+data.upcnt);
-      },
-      error: function(error) {
-        console.log("error : " + JSON.stringify(error));
-      }
-    });
-  }
-}
-
 </script>
