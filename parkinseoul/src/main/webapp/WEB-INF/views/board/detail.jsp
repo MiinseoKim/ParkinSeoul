@@ -152,6 +152,8 @@ function writerep(){
       
       var list=document.getElementById("replist");
       list.appendChild(li);
+      
+      $("#comment").val("");
     },
     error: function(error) {
       console.log("error : " + JSON.stringify(error));

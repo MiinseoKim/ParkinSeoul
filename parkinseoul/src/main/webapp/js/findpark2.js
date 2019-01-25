@@ -31,7 +31,7 @@ var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 mapOption = {
   center: new daum.maps.LatLng(guPos["전체"][0], guPos["전체"][1]), // 지도의
                                                                             // 중심좌표
-  level: 7
+  level: 6
 // 지도의 확대 레벨
 };
 
