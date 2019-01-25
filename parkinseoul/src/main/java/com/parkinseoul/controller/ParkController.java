@@ -39,11 +39,13 @@ public class ParkController {
       return "park.findpark";
   }
   
-  @RequestMapping(value = "likeproc.htm", method = RequestMethod.POST)
+  @RequestMapping(value = "likeproc.htm")
   public View like(HttpServletRequest request,Model model) {
     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-    System.out.println(authentication.getName());
-    System.out.println(dto.getP_PARK());
+    if(request.getParameter("name")!=null) {
+      dto.setP_IDX(Integer.parseInt(request.getParameter("no")));
+      dto.setP_PARK(request.getParameter("name"));
+    }
     dto.setId(authentication.getName());
     if(heartService.checkLiked(dto)>0) {      
       heartService.deleteLike(dto);

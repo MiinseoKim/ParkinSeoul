@@ -1,39 +1,39 @@
 var guPos = {
-  "전체": [37.566535, 126.97796919999996],
-  "종로구": [37.5729503, 126.97935789999997],
-  "중구": [37.5640907, 126.99794029999998],
-  "용산구": [37.5384272, 126.96544419999998],
-  "성동구": [37.5633415, 127.03710249999995],
-  "광진구": [37.5384843, 127.0822938],
-  "동대문구": [37.57436819999999, 127.04001889999995],
-  "중랑구": [37.6065602, 127.09265189999996],
-  "성북구": [37.589116, 127.01821459999996],
-  "강북구": [37.6396099, 127.02565749999997],
-  "도봉구": [37.6687738, 127.04707059999998],
-  "노원구": [37.6541917, 127.05679299999997],
-  "은평구": [37.6026957, 126.92911189999995],
-  "서대문구": [37.5791158, 126.93677890000004],
-  "마포구": [37.5637561, 126.90842109999994],
-  "양천구": [37.5168721, 126.86639850000006],
-  "강서구": [37.5509786, 126.84953819999998],
-  "구로구": [37.4954031, 126.88736900000004],
-  "금천구": [37.4518527, 126.90203580000002],
-  "영등포구": [37.5263715, 126.89622830000008],
-  "동작구": [37.512402, 126.93925250000007],
-  "관악구": [37.4784063, 126.95161329999996],
-  "서초구": [37.4837121, 127.03241120000007],
-  "강남구": [37.5172363, 127.04732480000007],
-  "송파구": [37.5145437, 127.10659710000004],
-  "강동구": [37.5301251, 127.12376199999994],
-  "과천시":[37.429246, 126.98744510000006]
-};
+        "전체": [37.566535, 126.97796919999996],
+        "종로구": [37.5729503, 126.97935789999997],
+        "중구": [37.5640907, 126.99794029999998],
+        "용산구": [37.5384272, 126.96544419999998],
+        "성동구": [37.5633415, 127.03710249999995],
+        "광진구": [37.5384843, 127.0822938],
+        "동대문구": [37.57436819999999, 127.04001889999995],
+        "중랑구": [37.6065602, 127.09265189999996],
+        "성북구": [37.589116, 127.01821459999996],
+        "강북구": [37.6396099, 127.02565749999997],
+        "도봉구": [37.6687738, 127.04707059999998],
+        "노원구": [37.6541917, 127.05679299999997],
+        "은평구": [37.6026957, 126.92911189999995],
+        "서대문구": [37.5791158, 126.93677890000004],
+        "마포구": [37.5637561, 126.90842109999994],
+        "양천구": [37.5168721, 126.86639850000006],
+        "강서구": [37.5509786, 126.84953819999998],
+        "구로구": [37.4954031, 126.88736900000004],
+        "금천구": [37.4518527, 126.90203580000002],
+        "영등포구": [37.5263715, 126.89622830000008],
+        "동작구": [37.512402, 126.93925250000007],
+        "관악구": [37.4784063, 126.95161329999996],
+        "서초구": [37.4837121, 127.03241120000007],
+        "강남구": [37.5172363, 127.04732480000007],
+        "송파구": [37.5145437, 127.10659710000004],
+        "강동구": [37.5301251, 127.12376199999994],
+        "과천시":[37.429246, 126.98744510000006]
+      }
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div
-mapOption = {
-  center: new daum.maps.LatLng(guPos["전체"][0], guPos["전체"][1]), // 지도의
-                                                                            // 중심좌표
-  level: 7
-// 지도의 확대 레벨
-};
+      mapOption = {
+        center: new daum.maps.LatLng(guPos["전체"][0], guPos["전체"][1]), // 지도의
+                                                                                  // 중심좌표
+        level: 7
+      // 지도의 확대 레벨
+      };
 
 var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
@@ -62,14 +62,14 @@ $("#gu").change(function () {
   mapOption.center = new daum.maps.LatLng(guPos[$("#gu option:selected").text()][0], guPos[$("#gu option:selected").text()][1]);
   map = new daum.maps.Map(mapContainer, mapOption);
   $.getJSON(parkapi, function (data) {
-      park = data.SearchParkInfoService.row;
-      $(park).each(function (key, item) {
-          if ($("#gu option:selected").text() == "전체") {
-              mapHandle(key,item,marker);
-          } else if (item.P_ZONE == $("#gu option:selected").text()) {
-              mapHandle(key,item,marker);
-          }
-      });
+    park = data.SearchParkInfoService.row;
+    $(park).each(function (key, item) {
+      if ($("#gu option:selected").text() == "전체") {
+        mapHandle(key,item,marker);
+      } else if (item.P_ZONE == $("#gu option:selected").text()) {
+        mapHandle(key,item,marker);
+      }
+    });
   });
 });
 
@@ -77,7 +77,7 @@ function mapHandle(key, item, marker) {
   // 오버레이&마커 위치
 
   pos[key] = {
-    latlng: new daum.maps.LatLng(item.LATITUDE, item.LONGITUDE)
+          latlng: new daum.maps.LatLng(item.LATITUDE, item.LONGITUDE)
   };
 
   marker[key] = new daum.maps.Marker({
@@ -96,15 +96,15 @@ function mapHandle(key, item, marker) {
   info.className = 'info';
 
   var a2=document.createElement('a')
-  a2.setAttribute('href',"javascript:maplike()");
+  a2.setAttribute('href',"javascript:maplike("+item.P_IDX+",'"+item.P_PARK+"')");
   a2.setAttribute('style',"display:inline;padding:10px;");
-  
+
   var i =document.createElement('i')
   i.className="fa fa-heart";
   a2.appendChild(i);
   a2.appendChild(document.createTextNode(" LIKE"));
-  
-  
+
+
   var title = document.createElement('div');
   title.className = 'title';
   title.appendChild(document.createTextNode(item.P_PARK));
@@ -138,12 +138,12 @@ function mapHandle(key, item, marker) {
 
   var div = document.createElement('div');
 
-  
+
   var a=document.createElement('a');
   a.setAttribute('href',"park.htm?P_PARK="+item.P_PARK);
   a.appendChild(document.createTextNode("공원 상세 정보 보기"));
-  
- 
+
+
 
   content.appendChild(info);
   info.appendChild(title);
@@ -156,7 +156,7 @@ function mapHandle(key, item, marker) {
   desc.appendChild(jibun);
   desc.appendChild(div);
   div.appendChild(a);  
-  
+
 
   closeBtn.onclick = function() {
     overlay[key].setMap(null);
@@ -178,16 +178,17 @@ function mapHandle(key, item, marker) {
 
 }
 
-function maplike(){
+function maplike(no,name){
+  console.log(no);
   if('${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}'==""){
     (
             'Oops...',
             '로그인 후 이용 가능합니다.',
             'error'
-         )
+    )
   }else{      
     $.ajax({
-      url:'likeproc.htm',
+      url:'likeproc.htm?no='+no+'&name='+name,
       type:'POST',
       success: function(data) {
         if(data.updown=="plus"){       

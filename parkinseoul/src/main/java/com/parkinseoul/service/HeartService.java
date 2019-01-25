@@ -31,7 +31,6 @@ public class HeartService {
   @Transactional
   public int insertLike(ParkDto parkDto) {
     int a=sqlSession.getMapper(ParkDao.class).insertLike(parkDto);
-    System.out.println(a);
     return a;
   }
   

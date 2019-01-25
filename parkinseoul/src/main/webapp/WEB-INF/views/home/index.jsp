@@ -175,5 +175,3 @@
     s.parentNode.insertBefore(script, s);
   })();
 </script>
-<!-- weather widget end -->
-<!-- <link rel="stylesheet" href="css/weather.css"> -->
