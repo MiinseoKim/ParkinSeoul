@@ -59,13 +59,8 @@
 			<br> <br> <br> <br>
 
 
-			<div class="col-sm-4 text-center padding wow fadeIn"
-				data-wow-duration="1000ms" data-wow-delay="300ms">
-				<div class="single-service">
-					<a target="_blank" href="https://booked.kr/weather/seoul-18406"><img
-						src="https://w.bookcdn.com/weather/picture/32_18406_1_24_3498db_250_2980b9_ffffff_ffffff_1_2071c9_ffffff_0_6.png?scode=2&domid=593&anc_id=10573"
-						alt="booked.net" /></a>
-				</div>
+			<div class="col-sm-4 text-center padding wow fadeIn"	data-wow-duration="1000ms" data-wow-delay="300ms">
+				<div id="openweathermap-widget-12" style="margin-left:15%;"></div>
 			</div>
 
 			<div class="col-sm-4">
@@ -162,7 +157,23 @@
     }
   }
 </script>
-<script type="text/javascript" charset="UTF-8"
-	src="https://widgets.booked.net/weather/info?action=get_weather_info&ver=6&cityID=18406&type=4&scode=2&ltid=3457&domid=593&anc_id=5105&cmetric=1&wlangID=24&color=137AE9&wwidth=160&header_color=ffffff&text_color=333333&link_color=08488D&border_form=1&footer_color=ffffff&footer_text_color=333333&transparent=0"></script>
+<script>
+  window.myWidgetParam ? window.myWidgetParam : window.myWidgetParam = [];
+  window.myWidgetParam.push({
+    id: 12,
+    cityid: '1835848',
+    appid: '070d6d3bce73ebf47c54303d4179f6d3',
+    units: 'metric',
+    containerid: 'openweathermap-widget-12',
+  });
+  (function() {
+    var script = document.createElement('script');
+    script.async = true;
+    script.charset = "utf-8";
+    script.src = "//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js";
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(script, s);
+  })();
+</script>
 <!-- weather widget end -->
 <!-- <link rel="stylesheet" href="css/weather.css"> -->
