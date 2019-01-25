@@ -54,14 +54,14 @@
 	
 	
 	<select id="boardRank" resultType="boardupDto">
-    SELECT  b.b_no, a.b_title, b.count
+    SELECT  b.b_no, a.b_title, count
     FROM    board a
         INNER JOIN
         (
             SELECT b_no, count(*) count
             FROM bupdown
-            GROUP BY b_no order by count desc limit 5
-        ) b ON a.b_no = b.b_no ;
+            GROUP BY b_no 
+        ) b ON a.b_no = b.b_no order by count desc limit 5;
   </select>
 
 </mapper>
