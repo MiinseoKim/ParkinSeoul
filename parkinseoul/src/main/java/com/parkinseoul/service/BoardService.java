@@ -52,4 +52,11 @@ public class BoardService {
     int a=sqlSession.getMapper(BoardDao.class).editBoard(dto);
     return a;
   }
+  
+  
+  public List<BoardDto> boardRank() {
+    List<BoardDto> board=new ArrayList<BoardDto>();
+    board=sqlSession.getMapper(BoardDao.class).boardRank();
+    return board;
+  }
 }

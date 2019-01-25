@@ -3,6 +3,13 @@
 <script type="text/javascript">
 $(document).ready(function() {
   $("#submit").click(function() {
+    if($("#b_title").val=="" || $("#b_content").val==""){
+      swal(
+              'Oops...',
+              '항목을 모두 채워주세요.',
+              'error'
+           )
+    }else{
     var param = JSON.stringify({
       "b_title" : $("#b_title").val(),
       "b_content":$("#b_content").val(),
@@ -14,13 +21,15 @@ $(document).ready(function() {
       contentType: 'application/json;charset=UTF-8',
       type: 'POST',
       success: function(data) {
-        location.href='boardlist.htm';
+        location.href='article.htm?no='+String(data.article.b_no);
       },
       error : function(error) {
         console.log("no good "+JSON.stringify(error));
       }
     });
+    }
   });
+  
   
 })
 
@@ -45,10 +54,10 @@ $(document).ready(function() {
 			<div class="col-sm-12 text-center display">
 				<div class="contact-form bottom">
 					<h2></h2>
-					<form id="write" name="contact-form" >
+					<form id="write" name="contact-form">
 						<div class="form-group">
 							<input type="hidden" name="seq" value="${sessionScope.dto.seq}">
-							<input type="text"  id="b_title" class="form-control"
+							<input type="text" id="b_title" class="form-control"
 								required="required" placeholder="글 제목">
 						</div>
 						<div class="form-group">
@@ -57,9 +66,9 @@ $(document).ready(function() {
 						</div>
 						<div class="form-group">
 							<a class="btn btn-submit" style="width: auto;"
-								href="boardlist.htm">&nbsp;취소&nbsp;</a>&nbsp; <input type="button"
-								id="submit" class="btn btn-submit" style="width: auto;"
-								value="등록하기">
+								href="boardlist.htm">&nbsp;취소&nbsp;</a>&nbsp; <input
+								type="button" id="submit" class="btn btn-submit"
+								style="width: auto;" value="등록하기">
 
 						</div>
 					</form>

@@ -3,13 +3,6 @@
 <%@ taglib prefix="se"
 	uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<link rel="stylesheet" type="text/css" href="css/select2.min.css">
-<link rel="stylesheet" type="text/css" href="css/perfect-scrollbar.css">
-<link rel="stylesheet" type="text/css" href="css/likeutil.css">
-<link rel="stylesheet" type="text/css" href="css/like.css">
-<script src="js/popper.js"></script>
-<script src="js/select2.min.js"></script>
-<script src="js/likemain.js"></script>
 
 <script type="text/javascript">
   $(document).ready(function() {
@@ -27,7 +20,7 @@
         }
       });
     });
-    
+
   });
 </script>
 
@@ -63,61 +56,81 @@
 <section id="services">
 	<div class="container">
 		<div class="row">
-			<h1>날씨 정보, 인기 공원 순위, 인기글 순위 들어갈 곳(contents)</h1>
-			<br> <br> <br> <br> <br>
 			<br> <br> <br> <br>
 
 
 			<div class="col-sm-4 text-center padding wow fadeIn"
 				data-wow-duration="1000ms" data-wow-delay="300ms">
 				<div class="single-service">
-					<div class="wow scaleIn" data-wow-duration="500ms"
-						data-wow-delay="300ms">
-						<img src="images/home/icon1.png" alt="">
-					</div>
-					<h2>Incredibly Responsive</h2>
-					<p>Ground round tenderloin flank shank ribeye. Hamkevin
-						meatball swine. Cow shankle beef sirloin chicken ground round.</p>
+					<a target="_blank" href="https://booked.kr/weather/seoul-18406"><img
+						src="https://w.bookcdn.com/weather/picture/32_18406_1_24_3498db_250_2980b9_ffffff_ffffff_1_2071c9_ffffff_0_6.png?scode=2&domid=593&anc_id=10573"
+						alt="booked.net" /></a>
 				</div>
 			</div>
-			<div class="col-sm-4 text-center padding wow fadeIn"
-				data-wow-duration="1000ms" data-wow-delay="600ms">
-				<div class="single-service">
-					<div class="wow scaleIn" data-wow-duration="500ms"
-						data-wow-delay="600ms">
-						<img src="images/home/icon2.png" alt="">
+
+			<div class="col-sm-4">
+				<div class="table100 ver4 m-b-110">
+					<div class="table100-head">
+						<table>
+							<thead>
+								<tr class="row100 head" style="font-weight: initial;">
+									<th class="cell100 column1"
+										style="width: 33%; text-align: left;">인기 공원 #</th>
+									<th class="cell100 column2" style="width: 47%;">공원 이름</th>
+									<th class="cell100 column3" style="text-align: center;">좋아요</th>
+								</tr>
+							</thead>
+						</table>
 					</div>
-					<h2>Superior Typography</h2>
-					<p>Hamburger ribeye drumstick turkey, strip steak sausage
-						ground round shank pastrami beef brisket pancetta venison.</p>
+					<div class="table100-body js-pscroll">
+						<table>
+							<tbody>
+								<c:forEach var="l" items="${like}" begin="0" end="4" step="1"
+									varStatus="status">
+									<tr class="row100 body">
+										<td class="cell100 column1"
+											style="width: 33%; text-align: center;">${status.count}</td>
+										<td class="cell100 column2" style="width: 47%;"><a
+											href=park.htm?P_PARK=${l.park_name}>${l.park_name}</a></td>
+										<td class="cell100 column3" style="text-align: center;">${l.count}</td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+					</div>
 				</div>
 			</div>
-			<div class="table100 ver4 m-b-110 col-sm-4">
-      <div class="table100-head">
-        <table>
-          <thead>
-            <tr class="row100 head" style="font-weight: initial;">
-              <th width="20%" class="cell100 column2">#</th>
-              <th width="60%" class="cell100 column5">공원 이름</th>
-              <th class="cell100 column2">좋아요</th>
-            </tr>
-          </thead>
-        </table>
-      </div>
-      <div class="table100-body js-pscroll">
-        <table>
-          <tbody>
-            <c:forEach var="l" items="${like}" begin="0" end="4" step="1" varStatus="status">
-              <tr class="row100 body">
-                <td width="20%">${status.count}</td>
-                <td width="60%"><a href=park.htm?P_PARK=${l.park_name}>${l.park_name}</a></td>
-                <td class="cell100 column1">${l.count}</td>
-              </tr>
-            </c:forEach>
-          </tbody>
-        </table>
-      </div>
-    </div>
+
+			<div class="table100 ver4 m-b-110">
+				<div class="table100-head">
+					<table>
+						<thead>
+							<tr class="row100 head" style="font-weight: initial;">
+								<th class="cell100 column1" style="width: 33%;">인기 글 #</th>
+								<th class="cell100 column2" style="width: 47%;">제목</th>
+								<th class="cell100 column3" style="text-align: center;">조회수</th>
+							</tr>
+						</thead>
+					</table>
+				</div>
+				<div class="table100-body js-pscroll">
+					<table>
+						<tbody>
+							<c:forEach var="b" items="${board}" begin="0" end="4" step="1"
+								varStatus="status">
+								<tr class="row100 body">
+									<td class="cell100 column1"
+										style="width: 33%; text-align: center;">${status.count}</td>
+									<td class="cell100 column2" style="width: 47%;"><a
+										href="article.htm?no=${b.b_no }">${b.b_title}</a></td>
+									<td class="cell100 column3" style="text-align: center;">${b.b_view}</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
 		</div>
 	</div>
 </section>
@@ -125,3 +138,31 @@
 
 
 
+<script type="text/javascript">
+  var css_file = document.createElement("link");
+  css_file.setAttribute("rel", "stylesheet");
+  css_file.setAttribute("type", "text/css");
+  css_file.setAttribute("href",
+          'https://s.bookcdn.com/css/w/booked-wzs-widget-160x275.css?v=0.0.1');
+  document.getElementsByTagName("head")[0].appendChild(css_file);
+  function setWidgetData(data) {
+    if (typeof (data) != 'undefined' && data.results.length > 0) {
+      for (var i = 0; i < data.results.length; ++i) {
+        var objMainBlock = document
+                .getElementById('m-booked-bl-simple-week-vertical-83712');
+        if (objMainBlock !== null) {
+          var copyBlock = document.getElementById('m-bookew-weather-copy-'
+                  + data.results[i].widget_type);
+          objMainBlock.innerHTML = data.results[i].html_code;
+          if (copyBlock !== null) objMainBlock.appendChild(copyBlock);
+        }
+      }
+    } else {
+      alert('data=undefined||data.results is empty');
+    }
+  }
+</script>
+<script type="text/javascript" charset="UTF-8"
+	src="https://widgets.booked.net/weather/info?action=get_weather_info&ver=6&cityID=18406&type=4&scode=2&ltid=3457&domid=593&anc_id=5105&cmetric=1&wlangID=24&color=137AE9&wwidth=160&header_color=ffffff&text_color=333333&link_color=08488D&border_form=1&footer_color=ffffff&footer_text_color=333333&transparent=0"></script>
+<!-- weather widget end -->
+<!-- <link rel="stylesheet" href="css/weather.css"> -->

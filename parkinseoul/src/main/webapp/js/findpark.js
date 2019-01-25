@@ -95,9 +95,20 @@ function mapHandle(key, item, marker) {
   var info = document.createElement('div');
   info.className = 'info';
 
+  var a2=document.createElement('a')
+  a2.setAttribute('href',"javascript:maplike()");
+  a2.setAttribute('style',"display:inline;padding:10px;");
+  
+  var i =document.createElement('i')
+  i.className="fa fa-heart";
+  a2.appendChild(i);
+  a2.appendChild(document.createTextNode(" LIKE"));
+  
+  
   var title = document.createElement('div');
   title.className = 'title';
   title.appendChild(document.createTextNode(item.P_PARK));
+  title.appendChild(a2);
   document.createe
 
   var closeBtn = document.createElement('button');
@@ -132,8 +143,7 @@ function mapHandle(key, item, marker) {
   a.setAttribute('href',"park.htm?P_PARK="+item.P_PARK);
   a.appendChild(document.createTextNode("공원 상세 정보 보기"));
   
-
-  
+ 
 
   content.appendChild(info);
   info.appendChild(title);
@@ -145,7 +155,7 @@ function mapHandle(key, item, marker) {
   desc.appendChild(ellipsis);
   desc.appendChild(jibun);
   desc.appendChild(div);
-  div.appendChild(a);   
+  div.appendChild(a);  
   
 
   closeBtn.onclick = function() {
@@ -166,4 +176,39 @@ function mapHandle(key, item, marker) {
 
   });
 
+}
+
+function maplike(){
+  if('${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}'==""){
+    (
+            'Oops...',
+            '로그인 후 이용 가능합니다.',
+            'error'
+         )
+  }else{      
+    $.ajax({
+      url:'likeproc.htm',
+      type:'POST',
+      success: function(data) {
+        if(data.updown=="plus"){       
+          swal({
+            title: "좋아요 추가!",
+            text:"마이페이지 좋아요 리스트에서 확인하세요.",
+            icon: "success",
+            button: "닫기",
+          });
+        }else{
+          swal({
+            title: "좋아요 취소!",
+            text: "마이페이지 좋아요 리스트에서 확인하세요.",
+            icon: "success",
+            button: "닫기",
+          });
+        }
+      },
+      error: function(error) {
+        console.log("error : " + JSON.stringify(error));
+      }
+    });
+  }
 }

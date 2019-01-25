@@ -102,7 +102,11 @@ $(document).ready(function() {
   
   $("#likebtn").click(function(){
     if('${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}'==""){
-      alert("로그인 후 이용 가능합니다.");
+      (
+              'Oops...',
+              '로그인 후 이용 가능합니다.',
+              'error'
+           )
     }else{      
       $.ajax({
         url:'likeproc.htm',

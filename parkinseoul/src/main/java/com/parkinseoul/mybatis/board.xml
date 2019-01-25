@@ -18,7 +18,7 @@
     where b_no=#{b_no}
   </select>
 	
-	<insert id="writeBoard" parameterType="boardDto">
+	<insert id="writeBoard" parameterType="boardDto" useGeneratedKeys="true" keyProperty="b_no">
 		insert into board (b_title, b_content, b_view,b_regdate,id,name,seq)
 		select #{b_title},#{b_content}, 0,now(),id,name,seq
     from user
@@ -52,5 +52,12 @@
     where b_no = #{b_no}
   </update>
 	
+	
+	<select id="boardRank" resultType="boardDto">
+    select b_no,b_title, b_view from board
+    where b_view!=0
+    order by b_view desc
+    limit 5;
+  </select>
 
 </mapper>

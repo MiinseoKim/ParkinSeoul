@@ -38,6 +38,16 @@
   <!-- table -->
   <link href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"  rel="stylesheet">
 <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<!-- table v04 -->
+<link rel="stylesheet" type="text/css" href="css/select2.min.css">
+<link rel="stylesheet" type="text/css" href="css/perfect-scrollbar.css">
+<link rel="stylesheet" type="text/css" href="css/likeutil.css">
+<link rel="stylesheet" type="text/css" href="css/like.css">
+<script src="js/popper.js"></script>
+<script src="js/select2.min.js"></script>
+<script src="js/likemain.js"></script>
+<script src="js/perfect-scrollbar.min.js"></script>
+
 
     <!--[if lt IE 9]>
       <script src="js/html5shiv.js"></script>

@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.View;
+import com.parkinseoul.dto.BoardDto;
 import com.parkinseoul.dto.LikeDto;
 import com.parkinseoul.dto.MemberDto;
+import com.parkinseoul.service.BoardService;
 import com.parkinseoul.service.HeartService;
 import com.parkinseoul.service.MemberRestService;
 
@@ -32,6 +34,9 @@ public class HomeController {
 
   @Autowired
   HeartService heartService;
+  
+  @Autowired
+  BoardService boardService;
 
   @Autowired
   private MemberRestService mservice;
@@ -41,7 +46,9 @@ public class HomeController {
   @RequestMapping(value = "/home.htm")
   public String home(Model model) {
     List<LikeDto> like = heartService.likerank();
+    List<BoardDto> board=boardService.boardRank();
     model.addAttribute("like", like);
+    model.addAttribute("board", board);
     
     return "home.index";
   }

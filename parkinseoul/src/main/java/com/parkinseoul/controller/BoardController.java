@@ -4,6 +4,8 @@ package com.parkinseoul.controller;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -44,19 +46,26 @@ public class BoardController {
   }
   
   @RequestMapping(value = "/writeproc.htm", method = RequestMethod.POST)
-  public View writeproc(@RequestBody BoardDto dto) {
+  public View writeproc(@RequestBody BoardDto dto, Model model) {
     int result=service.insertBoard(dto);
+    model.addAttribute("article",dto);
     return jsonview;
   }
   
   @RequestMapping(value = "/article.htm",method=RequestMethod.GET )
   public String detail(HttpServletRequest request, Model model) {
-    int bnum=Integer.parseInt(request.getParameter("no"));
-    service.updateView(bnum);
+    int bnum=Integer.parseInt(request.getParameter("no"));    
     BoardDto article=service.getBoardDetail(bnum);
     List<ReplyDto> reply= rservice.getReplyList(bnum);
+    int repcnt=rservice.getrepCnt(bnum);
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    if(!article.getId().equals(authentication.getName())) {
+      service.updateView(bnum);
+      article.setB_view(article.getB_view()+1);
+    }
     model.addAttribute("article", article);
     model.addAttribute("replylist", reply);
+    model.addAttribute("repcnt", repcnt);
     return "board.detail";
   }
   
