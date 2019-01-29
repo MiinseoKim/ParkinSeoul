@@ -1,7 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<link rel="stylesheet" type="text/css" href="css/summernote.css">
+<script src="js/summernote.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
+  $('#b_content').summernote({
+    height: 500,
+    toolbar: [ 
+      // [groupName, [list of button]]
+      ['pstyle', ['style']],
+      ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+      ['font', ['fontname','fontsize']],
+      ['color', ['color']],
+      ['para', ['ul', 'ol', 'paragraph']],
+      ['Misc', ['fullscreen','codeview']]
+    ] 
+  }); 
+  
   $("#submit").click(function() {
     if($("#b_title").val=="" || $("#b_content").val==""){
       swal(
